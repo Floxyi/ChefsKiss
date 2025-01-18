@@ -33,7 +33,7 @@ const HomePage = () => {
                 <Button onClick={() => navigate('/create')}>Create</Button>
                 <Button onClick={() => navigate('/imprint')}>Imprint</Button>
                 <Button onClick={() => navigate('/search')}>
-                    <CircleIcon width={10} height={10} color={'black'} />
+                    <CircleIcon width={14} height={14} color={'white'} />
                     Search
                 </Button>
                 <Button onClick={() => navigate('/recipe/1')}>Recipe 1</Button>
