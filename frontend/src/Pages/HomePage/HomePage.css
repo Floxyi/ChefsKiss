@@ -1,0 +1,7 @@
+.text {
+    @apply px-4 py-2 rounded bg-blue-500 text-white mt-8;
+}
+
+.buttonContainer {
+    @apply flex flex-row gap-1 w-full justify-between mt-2;
+}
