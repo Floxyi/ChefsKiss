@@ -1,14 +1,15 @@
 import { Link } from 'react-router-dom'
 
-import Headline from '@Components/Headline/Headline'
+import Header from '@Components/Header/Header'
+import PageContainer from '@Components/PageContainer/PageContainer'
 
 const CreationPage = () => {
     return (
-        <div>
-            <Headline>Create Recipe</Headline>
+        <PageContainer>
+            <Header />
             <p>On this page you can create recipes.</p>
             <Link to="/">Home</Link>
-        </div>
+        </PageContainer>
     )
 }
 

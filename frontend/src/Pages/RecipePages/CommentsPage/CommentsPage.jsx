@@ -1,16 +1,17 @@
 import { Link, useParams } from 'react-router-dom'
 
-import Headline from '@Components/Headline/Headline'
+import Header from '@Components/Header/Header'
+import PageContainer from '@Components/PageContainer/PageContainer'
 
 const CommentsPage = () => {
     const { id } = useParams()
 
     return (
-        <div>
-            <Headline>Comments for Recipe {id}</Headline>
-            <p>On this page you can view recipe comments.</p>
+        <PageContainer>
+            <Header />
+            <p>On this page you can view recipe comments from {id}.</p>
             <Link to="/">Home</Link>
-        </div>
+        </PageContainer>
     )
 }
 

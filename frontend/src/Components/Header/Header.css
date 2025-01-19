@@ -1,0 +1,31 @@
+.headerContainer {
+    @apply min-w-full;
+}
+
+.headerBar {
+    @apply max-h-20 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5 mt-5;
+}
+
+.headline {
+    @apply font-bold text-5xl text-primary-light w-[500px] font-shrikhand text-stroke-dark select-none hover:cursor-pointer;
+}
+
+.navButton {
+    @apply flex flex-row shrink-0 items-center text-primary-dark hover:border-2 hover:border-primary-dark hover:rounded-full hover:cursor-pointer px-4 py-1 m-[2px] hover:m-0;
+}
+
+.navButtonActive {
+    @apply flex flex-row shrink-0 items-center text-primary-dark border-2 border-primary-dark rounded-full cursor-pointer px-4 py-1 m-0;
+}
+
+.navItems {
+    @apply flex flex-row gap-2 w-[500px] justify-end;
+}
+
+.navText {
+    @apply pr-2 select-none;
+}
+
+.navImage {
+    @apply w-20;
+}

@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import Headline from '@Components/Headline/Headline'
+import Header from '@Components/Header/Header'
 import Button from '@Components/Button/Button'
 import PageContainer from '@Components/PageContainer/PageContainer'
 
@@ -21,7 +21,8 @@ const SearchPage = () => {
 
     return (
         <PageContainer>
-            <Headline>Search Recipes</Headline>
+            <Header />
+            <p>Search all recipes:</p>
 
             {recipes.map((recipe) => (
                 <div key={recipe.id}>

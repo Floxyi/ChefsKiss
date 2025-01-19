@@ -3,7 +3,7 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 import CircleIcon from '@Icons/SearchIcon'
-import Headline from '@Components/Headline/Headline'
+import Header from '@Components/Header/Header'
 import PageContainer from '@Components/PageContainer/PageContainer'
 import Button from '@Components/Button/Button'
 
@@ -24,17 +24,12 @@ const HomePage = () => {
 
     return (
         <PageContainer>
-            <Headline>Welcome to Chef's Kiss</Headline>
+            <Header />
             <p className="text">{message}</p>
             <div className="buttonContainer">
-                <Button onClick={() => navigate('/')}>Home</Button>
-                <Button onClick={() => navigate('/categories')}>
-                    Categories
-                </Button>
-                <Button onClick={() => navigate('/create')}>Create</Button>
                 <Button onClick={() => navigate('/imprint')}>Imprint</Button>
                 <Button onClick={() => navigate('/search')}>
-                    <CircleIcon width={14} height={14} color={'white'} />
+                    <CircleIcon width={14} height={14} />
                     Search
                 </Button>
                 <Button onClick={() => navigate('/recipe/1')}>Recipe 1</Button>
