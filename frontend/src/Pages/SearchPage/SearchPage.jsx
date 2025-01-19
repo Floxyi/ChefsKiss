@@ -5,6 +5,7 @@ import axios from 'axios'
 import Header from '@Components/Header/Header'
 import Button from '@Components/Button/Button'
 import PageContainer from '@Components/PageContainer/PageContainer'
+import Footer from '@Components/Footer/Footer'
 
 const SearchPage = () => {
     const [recipes, setRecipes] = useState([])
@@ -31,6 +32,7 @@ const SearchPage = () => {
             ))}
 
             <Button onClick={() => navigate('/')}>Home</Button>
+            <Footer />
         </PageContainer>
     )
 }

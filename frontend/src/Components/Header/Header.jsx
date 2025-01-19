@@ -16,7 +16,7 @@ const Header = () => {
     return (
         <div className="headerContainer">
             <div className="headerBar">
-                <div className="headline" onClick={() => navigate('/')}>
+                <div className="headerTitle" onClick={() => navigate('/')}>
                     Chef’s Kiss
                 </div>
                 <img className="navImage" src={logo} alt="logo" />

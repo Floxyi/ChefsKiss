@@ -1,0 +1,4 @@
+.screenPageContainer {
+    @apply flex flex-col max-h-screen;
+    min-height: calc(100vh - 20px);
+}

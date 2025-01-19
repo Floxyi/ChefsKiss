@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 
 import Header from '@Components/Header/Header'
 import PageContainer from '@Components/PageContainer/PageContainer'
+import Footer from '@Components/Footer/Footer'
 
 const CreationPage = () => {
     return (
@@ -9,6 +10,7 @@ const CreationPage = () => {
             <Header />
             <p>On this page you can create recipes.</p>
             <Link to="/">Home</Link>
+            <Footer />
         </PageContainer>
     )
 }

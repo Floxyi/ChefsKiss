@@ -1,0 +1,3 @@
+.imprintContainer {
+    @apply flex-1 m-8 flex flex-col;
+}

@@ -1,4 +1,4 @@
-const Icon = ({ width = 20, height = 20 }) => (
+const CategoriesIcon = ({ width = 20, height = 20 }) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
         xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -42,4 +42,4 @@ const Icon = ({ width = 20, height = 20 }) => (
     </svg>
 )
 
-export default Icon
+export default CategoriesIcon
