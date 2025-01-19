@@ -1,11 +1,23 @@
 .homeContainer {
-    @apply flex-1 m-8 flex flex-col;
+    @apply flex-1 m-8 flex flex-col items-center justify-center mb-[100px];
 }
 
-.text {
-    @apply px-4 py-2 rounded bg-blue-500 text-white;
+.homeContentContainer {
+    @apply bg-primary-light border-4 border-primary-dark rounded-[48px] py-8 px-[120px] max-w-[1200px];
 }
 
-.buttonContainer {
-    @apply flex flex-row gap-1 w-full justify-between mt-2;
+.homeSearchWrapper {
+    @apply flex flex-row justify-around pt-4;
+}
+
+.contentTitle {
+    @apply font-semibold text-3xl text-primary-dark my-auto pb-4 pt-16 select-none;
+}
+
+.categoryContainer {
+    @apply flex flex-row gap-16 w-full justify-between;
+}
+
+.recipeContainer {
+    @apply flex flex-row gap-16 w-full justify-between;
 }

@@ -1,50 +1,78 @@
-import React, { useEffect, useState } from 'react'
-import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
 
-import CircleIcon from '@Icons/SearchIcon'
+import SearchIcon from '@Icons/SearchIcon'
 import Header from '@Components/Header/Header'
-import Button from '@Components/Button/Button'
 import Footer from '@Components/Footer/Footer'
 import ScreenPageContainer from '@Components/ScreenPageContainer/ScreenPageContainer'
+import Tile from '@Components/Tile/Tile'
 
 import './HomePage.css'
+import ArrowRightIcon from '@Icons/ArrowIcon'
+import HomeSearch from '@Components/HomeSearch/HomeSearch'
 
 const HomePage = () => {
-    const [message, setMessage] = useState('')
     const navigate = useNavigate()
-
-    useEffect(() => {
-        axios
-            .get('/api/homepage/greeting')
-            .then((response) => setMessage(response.data))
-            .catch((error) =>
-                console.error('Error fetching the greeting:', error),
-            )
-    }, [])
 
     return (
         <ScreenPageContainer>
             <Header />
             <div className="homeContainer">
-                <p className="text">{message}</p>
-                <div className="buttonContainer">
-                    <Button onClick={() => navigate('/search')}>
-                        <CircleIcon width={14} height={14} />
-                        Search
-                    </Button>
-                    <Button onClick={() => navigate('/recipe/1')}>
-                        Recipe 1
-                    </Button>
-                    <Button onClick={() => navigate('/recipe/1/comments')}>
-                        Recipe 1 comments
-                    </Button>
-                    <Button onClick={() => navigate('/recipe/1/rating')}>
-                        Recipe 1 rating
-                    </Button>
-                    <Button onClick={() => navigate('/recipe/1/similar')}>
-                        Recipe 1 similar
-                    </Button>
+                <div className="homeContentContainer">
+                    <div className="homeSearchWrapper">
+                        <HomeSearch />
+                    </div>
+                    <div className="contentTitle">Popular Categories:</div>
+                    <div className="categoryContainer">
+                        <Tile
+                            text="Category 1"
+                            icon={<ArrowRightIcon />}
+                            onClick={() => navigate('/search')}
+                        />
+                        <Tile
+                            text="Category 2"
+                            icon={<ArrowRightIcon />}
+                            onClick={() => navigate('/search')}
+                        />
+                        <Tile
+                            text="Category 4"
+                            icon={<ArrowRightIcon />}
+                            onClick={() => navigate('/search')}
+                        />
+                        <Tile
+                            text="Category 5"
+                            icon={<ArrowRightIcon />}
+                            onClick={() => navigate('/search')}
+                        />
+                        <Tile text="View all categories" />
+                    </div>
+                    <div className="contentTitle">Popular Recipes:</div>
+                    <div className="recipeContainer">
+                        <Tile
+                            text="Recipe 1"
+                            icon={<SearchIcon />}
+                            onClick={() => navigate('/recipe/1')}
+                        />
+                        <Tile
+                            text="Recipe 2"
+                            icon={<SearchIcon />}
+                            onClick={() => navigate('/recipe/1')}
+                        />
+                        <Tile
+                            text="Recipe 4"
+                            icon={<SearchIcon />}
+                            onClick={() => navigate('/recipe/1')}
+                        />
+                        <Tile
+                            text="Recipe 5"
+                            icon={<SearchIcon />}
+                            onClick={() => navigate('/recipe/1')}
+                        />
+                        <Tile
+                            text="Recipe 6"
+                            icon={<SearchIcon />}
+                            onClick={() => navigate('/recipe/1')}
+                        />
+                    </div>
                 </div>
             </div>
             <Footer />
