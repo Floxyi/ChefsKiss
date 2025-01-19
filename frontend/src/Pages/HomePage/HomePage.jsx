@@ -16,7 +16,7 @@ const HomePage = () => {
 
     useEffect(() => {
         axios
-            .get('http://localhost:8080/api/homepage/greeting')
+            .get('/api/homepage/greeting')
             .then((response) => setMessage(response.data))
             .catch((error) =>
                 console.error('Error fetching the greeting:', error),

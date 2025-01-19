@@ -3,7 +3,7 @@
 }
 
 .footerBar {
-    @apply max-h-20 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5;
+    @apply max-h-14 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5;
 }
 
 .footerLink {
