@@ -1,13 +1,35 @@
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Headline from '../../Components/Headline/Headline'
+import { useEffect, useState } from 'react'
+import axios from 'axios'
+import Button from '../../Components/Button/Button'
+import PageContainer from '../../Components/PageContainer/PageContainer'
 
 const SearchPage = () => {
+    const [recipes, setRecipes] = useState([])
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        axios
+            .get('http://localhost:8080/api/search')
+            .then((response) => setRecipes(response.data))
+            .catch((error) =>
+                console.error('Error fetching the recipes:', error),
+            )
+    }, [])
+
     return (
-        <div>
+        <PageContainer>
             <Headline>Search Recipes</Headline>
-            <p>On this page you can search recipes.</p>
-            <Link to="/">Home</Link>
-        </div>
+
+            {recipes.map((recipe) => (
+                <div key={recipe.id}>
+                    <h2>{recipe.title}</h2>
+                </div>
+            ))}
+
+            <Button onClick={() => navigate('/')}>Home</Button>
+        </PageContainer>
     )
 }
 
