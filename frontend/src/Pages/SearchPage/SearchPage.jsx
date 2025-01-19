@@ -1,7 +1,8 @@
 import { useNavigate } from 'react-router-dom'
-import Headline from '@Components/Headline/Headline'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
+
+import Headline from '@Components/Headline/Headline'
 import Button from '@Components/Button/Button'
 import PageContainer from '@Components/PageContainer/PageContainer'
 

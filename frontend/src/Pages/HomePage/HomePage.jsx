@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom'
+
 import CircleIcon from '@Icons/SearchIcon'
 import Headline from '@Components/Headline/Headline'
-
-import './HomePage.css'
 import PageContainer from '@Components/PageContainer/PageContainer'
 import Button from '@Components/Button/Button'
+
+import './HomePage.css'
 
 const HomePage = () => {
     const [message, setMessage] = useState('')
