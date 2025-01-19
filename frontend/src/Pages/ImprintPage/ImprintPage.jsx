@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Headline from '../../Components/Headline/Headline'
+import Headline from '@Components/Headline/Headline'
 
 const ImprintPage = () => {
     return (

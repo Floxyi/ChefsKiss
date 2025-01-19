@@ -1,5 +1,5 @@
 import { Link, useParams } from 'react-router-dom'
-import Headline from '../../../Components/Headline/Headline'
+import Headline from '@Components/Headline/Headline'
 
 const InstructionsPage = () => {
     const { id } = useParams()
