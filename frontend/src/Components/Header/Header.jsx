@@ -6,6 +6,7 @@ import EditIcon from '@Icons/EditIcon'
 
 import logo from '@Images/Chefskiss.webp'
 import './Header.css'
+import SearchIcon from '@Icons/SearchIcon'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -34,15 +35,6 @@ const Header = () => {
                     </div>
                     <div
                         className={
-                            isActive('/') ? 'navButtonActive' : 'navButton'
-                        }
-                        onClick={() => navigate('/')}
-                    >
-                        <div className="navText">home</div>
-                        <HouseIcon />
-                    </div>
-                    <div
-                        className={
                             isActive('/categories')
                                 ? 'navButtonActive'
                                 : 'navButton'
@@ -51,6 +43,26 @@ const Header = () => {
                     >
                         <div className="navText">categories</div>
                         <CategoriesIcon />
+                    </div>
+                    <div
+                        className={
+                            isActive('/search')
+                                ? 'navButtonActive'
+                                : 'navButton'
+                        }
+                        onClick={() => navigate('/search')}
+                    >
+                        <div className="navText">search</div>
+                        <SearchIcon />
+                    </div>
+                    <div
+                        className={
+                            isActive('/') ? 'navButtonActive' : 'navButton'
+                        }
+                        onClick={() => navigate('/')}
+                    >
+                        <div className="navText">home</div>
+                        <HouseIcon />
                     </div>
                 </div>
             </div>

@@ -1,3 +1,31 @@
 .contactContainer {
-    @apply flex-1 m-8 flex flex-col;
+    @apply flex-1 m-8 flex flex-col items-center;
+}
+
+.contactContentContainer {
+    @apply bg-primary-light border-4 border-primary-dark rounded-[48px] py-8 px-[120px] my-12 mx-12 flex flex-col items-center;
+}
+
+.contactTitle {
+    @apply text-3xl text-primary-dark font-semibold mb-8 text-center select-none;
+}
+
+.contactDescription {
+    @apply text-primary-dark text-lg font-bold mb-8 text-center select-none;
+}
+
+.contactForm {
+    @apply flex flex-col gap-3 w-full max-w-lg;
+}
+
+.formLabel {
+    @apply text-xl text-primary-dark font-bold select-none mt-3;
+}
+
+.formInput {
+    @apply border-2 text-primary-dark font-bold placeholder:font-normal placeholder:text-primary-dark border-primary-dark bg-primary-light p-2 rounded-md focus:outline-none;
+}
+
+.formTextarea {
+    @apply border-2 text-primary-dark placeholder:text-primary-dark border-primary-dark bg-primary-light p-2 rounded-md focus:outline-none resize-none;
 }

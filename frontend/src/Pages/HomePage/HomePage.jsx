@@ -5,10 +5,10 @@ import Header from '@Components/Header/Header'
 import Footer from '@Components/Footer/Footer'
 import ScreenPageContainer from '@Components/ScreenPageContainer/ScreenPageContainer'
 import Tile from '@Components/Tile/Tile'
-
-import './HomePage.css'
 import ArrowRightIcon from '@Icons/ArrowIcon'
 import HomeSearch from '@Components/HomeSearch/HomeSearch'
+
+import './HomePage.css'
 
 const HomePage = () => {
     const navigate = useNavigate()
@@ -49,27 +49,27 @@ const HomePage = () => {
                     <div className="recipeContainer">
                         <Tile
                             text="Recipe 1"
-                            icon={<SearchIcon />}
+                            icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
                             text="Recipe 2"
-                            icon={<SearchIcon />}
+                            icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
                             text="Recipe 4"
-                            icon={<SearchIcon />}
+                            icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
                             text="Recipe 5"
-                            icon={<SearchIcon />}
+                            icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
                             text="Recipe 6"
-                            icon={<SearchIcon />}
+                            icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                     </div>
