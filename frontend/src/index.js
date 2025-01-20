@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+
 import HomePage from '@Pages/HomePage/HomePage'
 import CategoryPage from '@Pages/CategoriesPage/CategoryPage'
 import CreationPage from '@Pages/CreationPage/CreationPage'
@@ -10,6 +11,8 @@ import InstructionsPage from '@Pages/RecipePages/InstructionsPage/InstructionsPa
 import CommentsPage from '@Pages/RecipePages/CommentsPage/CommentsPage'
 import RatingPage from '@Pages/RecipePages/RatingPage/RatingPage'
 import SimilarPage from '@Pages/RecipePages/SimilarPage/SimilarPage'
+import ContactPage from '@Pages/ContactPage/ContactPage'
+
 import './index.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -20,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="/categories" element={<CategoryPage />} />
                 <Route path="/create" element={<CreationPage />} />
                 <Route path="/imprint" element={<ImprintPage />} />
+                <Route path="/contact" element={<ContactPage />} />
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/recipe/:id" element={<InstructionsPage />} />
                 <Route path="/recipe/:id/comments" element={<CommentsPage />} />

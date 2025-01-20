@@ -13,11 +13,20 @@ const Footer = () => {
     return (
         <div className="footerContainer">
             <div className="footerBar">
-                <div
-                    className="footerLink"
-                    onClick={() => navigate('/imprint')}
-                >
-                    Imprint & Privacy Policy
+                <div className="footerLinks">
+                    <div
+                        className="footerLink"
+                        onClick={() => navigate('/imprint')}
+                    >
+                        Imprint & Privacy Policy
+                    </div>
+                    ⦁
+                    <div
+                        className="footerLink"
+                        onClick={() => navigate('/contact')}
+                    >
+                        Contact
+                    </div>
                 </div>
                 <div className="footerText">© Chef’s Kiss</div>
                 <div className="footerSocials">
