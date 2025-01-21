@@ -5,33 +5,33 @@ import InstagramIcon from '@Icons/InstagramIcon'
 import FacebookIcon from '@Icons/FacebookIcon'
 import YouTubeIcon from '@Icons/YouTubeIcon'
 
-import './Footer.css'
+import styles from './Footer.module.css'
 
 const Footer = () => {
     const navigate = useNavigate()
 
     return (
-        <div className="footerContainer">
-            <div className="footerBar">
-                <div className="footerLinks">
+        <div className={styles.footerContainer}>
+            <div className={styles.footerBar}>
+                <div className={styles.footerLinks}>
                     <div
-                        className="footerLink"
+                        className={styles.footerLink}
                         onClick={() => navigate('/imprint')}
                     >
                         Imprint & Privacy Policy
                     </div>
                     ⦁
                     <div
-                        className="footerLink"
+                        className={styles.footerLink}
                         onClick={() => navigate('/contact')}
                     >
                         Contact
                     </div>
                 </div>
-                <div className="footerText">© Chef’s Kiss</div>
-                <div className="footerSocials">
+                <div className={styles.footerText}>© Chef’s Kiss</div>
+                <div className={styles.footerSocials}>
                     <div
-                        className="footerIcon"
+                        className={styles.footerIcon}
                         onClick={() =>
                             window.open('https://www.youtube.com', '_blank')
                         }
@@ -39,7 +39,7 @@ const Footer = () => {
                         <YouTubeIcon />
                     </div>
                     <div
-                        className="footerIcon"
+                        className={styles.footerIcon}
                         onClick={() =>
                             window.open('https://www.tiktok.com', '_blank')
                         }
@@ -47,7 +47,7 @@ const Footer = () => {
                         <TikTokIcon />
                     </div>
                     <div
-                        className="footerIcon"
+                        className={styles.footerIcon}
                         onClick={() =>
                             window.open('https://www.instagram.com', '_blank')
                         }
@@ -55,7 +55,7 @@ const Footer = () => {
                         <InstagramIcon />
                     </div>
                     <div
-                        className="footerIcon"
+                        className={styles.footerIcon}
                         onClick={() =>
                             window.open('https://www.facebook.com', '_blank')
                         }

@@ -1,7 +1,7 @@
-import './PageContainer.css'
+import styles from './PageContainer.module.css'
 
 const PageContainer = ({ children }) => {
-    return <div className="pageContainer">{children}</div>
+    return <div className={styles.pageContainer}>{children}</div>
 }
 
 export default PageContainer

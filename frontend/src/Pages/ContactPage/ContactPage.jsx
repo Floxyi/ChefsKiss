@@ -1,23 +1,23 @@
 import Header from '@Components/Header/Header'
 import Footer from '@Components/Footer/Footer'
 import ScreenPageContainer from '@Components/ScreenPageContainer/ScreenPageContainer'
-
-import './ContactPage.css'
 import Button from '@Components/Button/Button'
+
+import styles from './ContactPage.module.css'
 
 const ContactPage = () => {
     return (
         <ScreenPageContainer>
             <Header />
-            <div className="contactContainer">
-                <div className="contactContentContainer">
-                    <h1 className="contactTitle">Contact Us</h1>
-                    <p className="contactDescription">
+            <div className={styles.contactContainer}>
+                <div className={styles.contactContentContainer}>
+                    <h1 className={styles.contactTitle}>Contact Us</h1>
+                    <p className={styles.contactDescription}>
                         If you have any questions, suggestions, or need
                         assistance, feel free to contact us using the details
                         below.
                     </p>
-                    <form className="contactForm">
+                    <form className={styles.contactForm}>
                         <label htmlFor="name" className="formLabel">
                             Name
                         </label>
@@ -26,10 +26,10 @@ const ContactPage = () => {
                             id="name"
                             name="name"
                             placeholder="Your Name"
-                            className="formInput"
+                            className={styles.formInput}
                         />
 
-                        <label htmlFor="email" className="formLabel">
+                        <label htmlFor="email" className={styles.formLabel}>
                             Email
                         </label>
                         <input
@@ -37,10 +37,10 @@ const ContactPage = () => {
                             id="email"
                             name="email"
                             placeholder="Your Email"
-                            className="formInput"
+                            className={styles.formInput}
                         />
 
-                        <label htmlFor="message" className="formLabel">
+                        <label htmlFor="message" className={styles.formLabel}>
                             Message
                         </label>
                         <textarea
@@ -48,12 +48,10 @@ const ContactPage = () => {
                             name="message"
                             rows="5"
                             placeholder="Your Message"
-                            className="formTextarea"
+                            className={styles.formTextarea}
                         ></textarea>
 
-                        <Button type="submit" className="formButton">
-                            Submit
-                        </Button>
+                        <Button type="submit">Submit</Button>
                     </form>
                 </div>
             </div>

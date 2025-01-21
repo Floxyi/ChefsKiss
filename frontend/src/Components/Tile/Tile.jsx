@@ -1,11 +1,11 @@
-import './Tile.css'
+import styles from './Tile.module.css'
 
 const Tile = ({ text, icon, onClick }) => {
     return (
-        <div className="tileContainer" onClick={onClick}>
-            <div className="tileText">{text}</div>
-            <div className="tileIconContainer">
-                <div className="tileIcon">{icon}</div>
+        <div className={styles.tileContainer} onClick={onClick}>
+            <div className={styles.tileText}>{text}</div>
+            <div className={styles.tileIconContainer}>
+                <div className={styles.tileIcon}>{icon}</div>
             </div>
         </div>
     )

@@ -8,7 +8,7 @@ import Tile from '@Components/Tile/Tile'
 import ArrowRightIcon from '@Icons/ArrowIcon'
 import HomeSearch from '@Components/HomeSearch/HomeSearch'
 
-import './HomePage.css'
+import styles from './HomePage.module.css'
 
 const HomePage = () => {
     const navigate = useNavigate()
@@ -16,13 +16,15 @@ const HomePage = () => {
     return (
         <ScreenPageContainer>
             <Header />
-            <div className="homeContainer">
-                <div className="homeContentContainer">
-                    <div className="homeSearchWrapper">
+            <div className={styles.homeContainer}>
+                <div className={styles.homeContentContainer}>
+                    <div className={styles.homeSearchWrapper}>
                         <HomeSearch />
                     </div>
-                    <div className="contentTitle">Popular Categories:</div>
-                    <div className="categoryContainer">
+                    <div className={styles.contentTitle}>
+                        Popular Categories:
+                    </div>
+                    <div className={styles.categoryContainer}>
                         <Tile
                             text="Category 1"
                             icon={<ArrowRightIcon />}
@@ -45,8 +47,8 @@ const HomePage = () => {
                         />
                         <Tile text="View all categories" />
                     </div>
-                    <div className="contentTitle">Popular Recipes:</div>
-                    <div className="recipeContainer">
+                    <div className={styles.contentTitle}>Popular Recipes:</div>
+                    <div className={styles.recipeContainer}>
                         <Tile
                             text="Recipe 1"
                             icon={<SearchIcon stroke={3} />}
