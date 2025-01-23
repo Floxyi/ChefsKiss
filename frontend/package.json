@@ -24,6 +24,10 @@
     "postcss": "^8.5.1",
     "prettier": "^3.4.2"
   },
+  "engines": {
+    "node": ">=22.10.0",
+    "yarn": ">=1.22.0"
+  },
   "eslintConfig": {
     "extends": [
       "react-app"
