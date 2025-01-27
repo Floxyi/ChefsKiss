@@ -1,7 +1,6 @@
 package de.florian.chefskiss.controller;
 
 import de.florian.chefskiss.dto.RecipeDto;
-import de.florian.chefskiss.entities.Recipe;
 import de.florian.chefskiss.services.RecipeService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
