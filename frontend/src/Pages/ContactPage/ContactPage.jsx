@@ -1,7 +1,7 @@
-import Header from '@Components/Header/Header'
-import Footer from '@Components/Footer/Footer'
-import ScreenPageContainer from '@Components/ScreenPageContainer/ScreenPageContainer'
-import Button from '@Components/Button/Button'
+import Header from '@Components/Header'
+import Footer from '@Components/Footer'
+import ScreenPageContainer from '@Components/ScreenPageContainer'
+import Button from '@Components/Button'
 
 import styles from './ContactPage.module.css'
 
@@ -18,7 +18,7 @@ const ContactPage = () => {
                         below.
                     </p>
                     <form className={styles.contactForm}>
-                        <label htmlFor="name" className="formLabel">
+                        <label htmlFor="name" className={styles.formLabel}>
                             Name
                         </label>
                         <input

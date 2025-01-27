@@ -1,6 +1,6 @@
-import Header from '@Components/Header/Header'
-import Footer from '@Components/Footer/Footer'
-import ScreenPageContainer from '@Components/ScreenPageContainer/ScreenPageContainer'
+import Header from '@Components/Header'
+import Footer from '@Components/Footer'
+import ScreenPageContainer from '@Components/ScreenPageContainer'
 
 import styles from './ImprintPage.module.css'
 

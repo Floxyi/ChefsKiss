@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
-import Header from '@Components/Header/Header'
-import PageContainer from '@Components/PageContainer/PageContainer'
-import Footer from '@Components/Footer/Footer'
-import Button from '@Components/Button/Button'
+import Header from '@Components/Header'
+import PageContainer from '@Components/PageContainer'
+import Footer from '@Components/Footer'
+import Button from '@Components/Button'
 
 const InstructionsPage = () => {
     const { id } = useParams()

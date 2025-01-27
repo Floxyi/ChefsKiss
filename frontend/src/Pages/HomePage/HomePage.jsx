@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom'
 
 import SearchIcon from '@Icons/SearchIcon'
-import Header from '@Components/Header/Header'
-import Footer from '@Components/Footer/Footer'
-import ScreenPageContainer from '@Components/ScreenPageContainer/ScreenPageContainer'
-import Tile from '@Components/Tile/Tile'
-import ArrowRightIcon from '@Icons/ArrowIcon'
-import HomeSearch from '@Components/HomeSearch/HomeSearch'
+import Header from '@Components/Header'
+import Footer from '@Components/Footer'
+import ScreenPageContainer from '@Components/ScreenPageContainer'
+import Tile from '@Components/Tile'
+import ArrowRightIcon from '@Icons/ArrowRightIcon'
+import HomeSearch from '@Components/HomeSearch'
 
 import styles from './HomePage.module.css'
 
@@ -26,51 +26,54 @@ const HomePage = () => {
                     </div>
                     <div className={styles.categoryContainer}>
                         <Tile
-                            text="Category 1"
+                            title="Category 1"
                             icon={<ArrowRightIcon />}
                             onClick={() => navigate('/search')}
                         />
                         <Tile
-                            text="Category 2"
+                            title="Category 2"
                             icon={<ArrowRightIcon />}
                             onClick={() => navigate('/search')}
                         />
                         <Tile
-                            text="Category 4"
+                            title="Category 4"
                             icon={<ArrowRightIcon />}
                             onClick={() => navigate('/search')}
                         />
                         <Tile
-                            text="Category 5"
+                            title="Category 5"
                             icon={<ArrowRightIcon />}
                             onClick={() => navigate('/search')}
                         />
-                        <Tile text="View all categories" />
+                        <Tile
+                            title="View all categories"
+                            onClick={() => navigate('/categories')}
+                        />
                     </div>
                     <div className={styles.contentTitle}>Popular Recipes:</div>
                     <div className={styles.recipeContainer}>
                         <Tile
-                            text="Recipe 1"
+                            title="Recipe 1"
                             icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
-                            text="Recipe 2"
+                            title="Recipe 2"
                             icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
-                            text="Recipe 4"
+                            title="Recipe 4"
                             icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
-                            text="Recipe 5"
+                            title="Recipe 5"
                             icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />
                         <Tile
-                            text="Recipe 6"
+                            title="Recipe 6"
                             icon={<SearchIcon stroke={3} />}
                             onClick={() => navigate('/recipe/1')}
                         />

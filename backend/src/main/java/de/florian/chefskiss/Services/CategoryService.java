@@ -1,11 +1,13 @@
 package de.florian.chefskiss.Services;
 
+import de.florian.chefskiss.Dto.CategoryWithRecipeCount;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class CategoryService {
@@ -16,8 +18,16 @@ public class CategoryService {
         this.categoryRepository = categoryRepository;
     }
 
-    public List<Category> getAllCategories() {
-        return (List<Category>) categoryRepository.findAll();
+    public List<CategoryWithRecipeCount> getAllCategoriesWithRecipeCount() {
+        List<Category> categories = (List<Category>) categoryRepository.findAll();
+
+        return categories.stream()
+                .map(category -> new CategoryWithRecipeCount(
+                        category.getId(),
+                        category.getName(),
+                        category.getRecipes().size()
+                ))
+                .collect(Collectors.toList());
     }
 
     public Category createCategory(Category category) {

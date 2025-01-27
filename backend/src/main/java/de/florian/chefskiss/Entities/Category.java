@@ -38,15 +38,15 @@ public class Category {
         return recipes;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes;
     }
 }

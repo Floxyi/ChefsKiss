@@ -1,5 +1,6 @@
 package de.florian.chefskiss.Controller;
 
+import de.florian.chefskiss.Dto.CategoryWithRecipeCount;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Services.CategoryService;
 import org.springframework.web.bind.annotation.*;
@@ -17,8 +18,8 @@ public class CategoriesController {
     }
 
     @GetMapping(path = "")
-    public @ResponseBody List<Category> getAllCategories() {
-        return categoryService.getAllCategories();
+    public @ResponseBody List<CategoryWithRecipeCount> getAllCategoriesWithRecipeCount() {
+        return categoryService.getAllCategoriesWithRecipeCount();
     }
 
     @PostMapping(path = "/add")

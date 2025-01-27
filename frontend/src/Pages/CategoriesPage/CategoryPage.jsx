@@ -1,11 +1,18 @@
 import { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-import Header from '@Components/Header/Header'
-import PageContainer from '@Components/PageContainer/PageContainer'
-import Footer from '@Components/Footer/Footer'
+import Header from '@Components/Header'
+import Footer from '@Components/Footer'
+import Tile from '@Components/Tile'
+import ScreenPageContainer from '@Components/ScreenPageContainer'
+import ArrowRightIcon from '@Icons/ArrowRightIcon'
+
+import styles from './CategoryPage.module.css'
 
 const CategoryPage = () => {
+    const navigate = useNavigate()
+
     const [categories, setCategories] = useState([])
     const [isLoading, setIsLoading] = useState(true)
 
@@ -23,22 +30,32 @@ const CategoryPage = () => {
     }, [])
 
     return (
-        <PageContainer>
+        <ScreenPageContainer>
             <Header />
-            <p>On this page you can view all categories.</p>
-
-            {isLoading ? (
-                <p>Loading categories...</p>
-            ) : (
-                categories.map((category) => (
-                    <div key={category.id}>
-                        <h2>{category.name}</h2>
+            <div className={styles.categoryPageContainer}>
+                <div className={styles.categoryContentContainer}>
+                    <div className={styles.contentTitle}>Categories</div>
+                    <div className={styles.categoryContainer}>
+                        {isLoading ? (
+                            <div className={styles.spacer}>
+                                Loading categories...
+                            </div>
+                        ) : (
+                            categories.map((category) => (
+                                <Tile
+                                    key={category.id}
+                                    title={category.name}
+                                    subtitle={`${category.count} recipe${category.count === 1 ? '' : 's'}`}
+                                    icon={<ArrowRightIcon />}
+                                    onClick={() => navigate('/search')}
+                                />
+                            ))
+                        )}
                     </div>
-                ))
-            )}
-
+                </div>
+            </div>
             <Footer />
-        </PageContainer>
+        </ScreenPageContainer>
     )
 }
 

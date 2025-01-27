@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import Header from '@Components/Header/Header'
-import PageContainer from '@Components/PageContainer/PageContainer'
-import Footer from '@Components/Footer/Footer'
+import Header from '@Components/Header'
+import PageContainer from '@Components/PageContainer'
+import Footer from '@Components/Footer'
 
 const SearchPage = () => {
     const [recipes, setRecipes] = useState([])

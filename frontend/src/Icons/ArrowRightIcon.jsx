@@ -1,4 +1,4 @@
-const ArrowIcon = ({ width = 24, height = 24 }) => (
+const ArrowRightIcon = ({ width = 24, height = 24 }) => (
     <svg
         width={width}
         height={height}
@@ -16,4 +16,4 @@ const ArrowIcon = ({ width = 24, height = 24 }) => (
     </svg>
 )
 
-export default ArrowIcon
+export default ArrowRightIcon

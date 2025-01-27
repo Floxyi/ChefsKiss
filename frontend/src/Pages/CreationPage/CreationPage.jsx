@@ -1,6 +1,6 @@
-import Header from '@Components/Header/Header'
-import PageContainer from '@Components/PageContainer/PageContainer'
-import Footer from '@Components/Footer/Footer'
+import Header from '@Components/Header'
+import PageContainer from '@Components/PageContainer'
+import Footer from '@Components/Footer'
 
 const CreationPage = () => {
     return (

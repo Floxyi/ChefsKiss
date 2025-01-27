@@ -1,0 +1,93 @@
+-- Insert category data
+INSERT INTO
+    category (id, name)
+VALUES
+    (1, 'Desserts'),
+    (2, 'Main Courses'),
+    (3, 'Appetizers'),
+    (4, 'Soups'),
+    (5, 'Salads'),
+    (6, 'Beverages'),
+    (7, 'Snacks'),
+    (8, 'Side Dishes'),
+    (9, 'Breakfast'),
+    (10, 'Pasta'),
+    (11, 'Grill'),
+    (12, 'Seafood'),
+    (13, 'Vegetarian'),
+    (14, 'Vegan');
+
+-- Insert recipe data
+INSERT INTO
+    recipe (id, title)
+VALUES
+    (1, 'Chocolate Cake'),
+    (2, 'Spaghetti Bolognese'),
+    (3, 'Caesar Salad'),
+    (4, 'Minestrone Soup'),
+    (5, 'Iced Tea'),
+    (6, 'French Fries'),
+    (7, 'Grilled Chicken'),
+    (8, 'Tomato Soup'),
+    (9, 'Banana Pancakes'),
+    (10, 'Vegetable Stir-Fry'),
+    (11, 'BBQ Ribs'),
+    (12, 'Shrimp Scampi'),
+    (13, 'Vegan Brownies'),
+    (14, 'Spinach Smoothie'),
+    (15, 'Lemonade'),
+    (16, 'Lasagna'),
+    (17, 'Tacos'),
+    (18, 'Garlic Bread'),
+    (19, 'Pumpkin Pie'),
+    (20, 'Mango Smoothie'),
+    (21, 'Cheeseburger'),
+    (22, 'Lobster Bisque'),
+    (23, 'Avocado Toast'),
+    (24, 'Stuffed Peppers'),
+    (25, 'Chicken Alfredo'),
+    (26, 'Vegetarian Chili'),
+    (27, 'Berry Parfait'),
+    (28, 'Apple Crumble'),
+    (29, 'Roast Turkey'),
+    (30, 'Seafood Paella');
+
+-- Insert recipe_category data
+INSERT INTO
+    recipe_category (recipe_id, category_id)
+VALUES
+    (1, 1),
+    (2, 2),
+    (3, 5),
+    (4, 4),
+    (5, 6),
+    (6, 7),
+    (7, 2),
+    (8, 4),
+    (9, 9),
+    (10, 13),
+    (11, 11),
+    (12, 12),
+    (13, 14),
+    (14, 6),
+    (15, 6),
+    (16, 10),
+    (17, 2),
+    (18, 8),
+    (19, 1),
+    (20, 6),
+    (21, 2),
+    (22, 12),
+    (23, 9),
+    (24, 13),
+    (25, 10),
+    (26, 13),
+    (27, 1),
+    (28, 1),
+    (29, 2),
+    (30, 12),
+    (3, 3),
+    (18, 3),
+    (8, 13),
+    (14, 5),
+    (10, 14);
