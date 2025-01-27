@@ -14,7 +14,7 @@ const CategoryPage = () => {
 
     useEffect(() => {
         axios
-            .get('/api/categories')
+            .get('/api/categories/')
             .then((response) => {
                 setCategories(response.data)
                 setIsLoading(false)
@@ -40,9 +40,13 @@ const CategoryPage = () => {
                         <Tile
                             key={category.id}
                             title={category.name}
-                            subtitle={`${category.count} recipe${category.count === 1 ? '' : 's'}`}
+                            subtitle={`${category.recipeCount} recipe${category.recipeCount === 1 ? '' : 's'}`}
                             icon={<ArrowRightIcon />}
-                            onClick={() => navigate('/search')}
+                            onClick={() =>
+                                navigate(
+                                    `/search?category=${encodeURIComponent(category.name)}`
+                                )
+                            }
                         />
                     ))
                 )}

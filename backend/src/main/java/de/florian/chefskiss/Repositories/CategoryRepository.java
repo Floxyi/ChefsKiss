@@ -1,8 +1,21 @@
-package de.florian.chefskiss.Repositories;
+package de.florian.chefskiss.repositories;
 
-import de.florian.chefskiss.Entities.Category;
-import org.springframework.data.repository.CrudRepository;
+import de.florian.chefskiss.dto.CategoryWithRecipeCountDto;
+import de.florian.chefskiss.dto.CategoryWithRecipesDto;
+import de.florian.chefskiss.entities.Category;
+import java.util.List;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-public interface CategoryRepository extends CrudRepository<Category, Integer> {
-    Category findFirstByName(String name);
+public interface CategoryRepository extends JpaRepository<Category, Integer> {
+    @EntityGraph(attributePaths = "recipes")
+    @Query("SELECT c FROM Category c")
+    List<CategoryWithRecipesDto> findCategoriesWithRecipes();
+
+    @Query(
+        "SELECT new de.florian.chefskiss.dto.CategoryWithRecipeCountDto(c.id, c.name, COUNT(r)) " +
+        "FROM Category c LEFT JOIN c.recipes r GROUP BY c.id"
+    )
+    List<CategoryWithRecipeCountDto> findCategoriesWithRecipeCount();
 }

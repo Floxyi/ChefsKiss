@@ -1,4 +1,4 @@
-package de.florian.chefskiss.Controller;
+package de.florian.chefskiss.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

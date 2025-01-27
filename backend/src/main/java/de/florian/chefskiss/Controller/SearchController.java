@@ -1,39 +1,36 @@
-package de.florian.chefskiss.Controller;
+package de.florian.chefskiss.controller;
 
-import de.florian.chefskiss.Entities.Category;
-import de.florian.chefskiss.Entities.Recipe;
-import de.florian.chefskiss.Services.CategoryService;
-import de.florian.chefskiss.Services.RecipeService;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.HashSet;
+import de.florian.chefskiss.dto.RecipeDto;
+import de.florian.chefskiss.entities.Recipe;
+import de.florian.chefskiss.services.RecipeService;
 import java.util.List;
-import java.util.Set;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/search")
 public class SearchController {
 
     private final RecipeService recipeService;
-    private final CategoryService categoryService;
 
-    public SearchController(RecipeService recipeService, CategoryService categoryService) {
+    public SearchController(RecipeService recipeService) {
         this.recipeService = recipeService;
-        this.categoryService = categoryService;
     }
 
-    @GetMapping(path = "/recipes")
-    public @ResponseBody List<Recipe> getAllRecipes() {
-        return recipeService.getAllRecipes();
-    }
-
-    @PostMapping(path = "/recipes/add")
-    public @ResponseBody Recipe addNewRecipe(@RequestParam String title, @RequestParam String[] categories) {
-        Set<Category> categorySet = new HashSet<>();
-        for (String category : categories) {
-            Category categoryEntity = categoryService.getCategoryByName(category).orElseThrow();
-            categorySet.add(categoryEntity);
+    @GetMapping
+    public ResponseEntity<List<RecipeDto>> getRecipes(@RequestParam(required = false) String category) {
+        if (category != null && !category.isEmpty()) {
+            return ResponseEntity.ok(getRecipesByCategory(category));
+        } else {
+            return ResponseEntity.ok(getAllRecipes());
         }
-        return recipeService.createRecipe(new Recipe(title, categorySet));
+    }
+
+    private List<RecipeDto> getRecipesByCategory(String category) {
+        return recipeService.findByCategory(category);
+    }
+
+    private List<RecipeDto> getAllRecipes() {
+        return recipeService.getAllRecipes();
     }
 }

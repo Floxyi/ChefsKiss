@@ -1,7 +1,8 @@
-package de.florian.chefskiss.Entities;
+package de.florian.chefskiss.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -14,16 +15,16 @@ public class Category {
 
     @ManyToMany(mappedBy = "categories")
     @JsonBackReference
-    private Set<Recipe> recipes;
+    private Set<Recipe> recipes = new HashSet<>();
 
+    @Column(nullable = false)
     private String name;
 
-    public Category() {
-
-    }
+    public Category() {}
 
     public Category(String name) {
         this.name = name;
+        this.recipes = new HashSet<>();
     }
 
     public Integer getId() {
@@ -38,6 +39,10 @@ public class Category {
         return recipes;
     }
 
+    public void setRecipes(Set<Recipe> recipes) {
+        this.recipes = recipes != null ? recipes : new HashSet<>();
+    }
+
     public String getName() {
         return name;
     }
@@ -46,7 +51,9 @@ public class Category {
         this.name = name;
     }
 
-    public void setRecipes(Set<Recipe> recipes) {
-        this.recipes = recipes;
+    public void addRecipe(Recipe recipe) {
+        if (recipe != null) {
+            recipes.add(recipe);
+        }
     }
 }

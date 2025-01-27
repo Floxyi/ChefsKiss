@@ -1,11 +1,9 @@
-package de.florian.chefskiss.Controller;
+package de.florian.chefskiss.controller;
 
-import de.florian.chefskiss.Dto.CategoryWithRecipeCount;
-import de.florian.chefskiss.Entities.Category;
-import de.florian.chefskiss.Services.CategoryService;
-import org.springframework.web.bind.annotation.*;
-
+import de.florian.chefskiss.dto.CategoryWithRecipeCountDto;
+import de.florian.chefskiss.services.CategoryService;
 import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/categories")
@@ -17,13 +15,8 @@ public class CategoriesController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping(path = "")
-    public @ResponseBody List<CategoryWithRecipeCount> getAllCategoriesWithRecipeCount() {
-        return categoryService.getAllCategoriesWithRecipeCount();
-    }
-
-    @PostMapping(path = "/add")
-    public @ResponseBody Category addNewCategory(@RequestParam String name) {
-        return categoryService.createCategory(new Category(name));
+    @GetMapping(path = "/")
+    public @ResponseBody List<CategoryWithRecipeCountDto> getCategoriesWithRecipes() {
+        return categoryService.findCategoriesWithRecipeCount();
     }
 }

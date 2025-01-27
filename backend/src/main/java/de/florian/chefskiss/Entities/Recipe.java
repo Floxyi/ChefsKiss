@@ -1,7 +1,8 @@
-package de.florian.chefskiss.Entities;
+package de.florian.chefskiss.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,17 +20,16 @@ public class Recipe {
         inverseJoinColumns = @JoinColumn(name = "category_id")
     )
     @JsonManagedReference
-    private Set<Category> categories;
+    private Set<Category> categories = new HashSet<>();
 
+    @Column(nullable = false)
     private String title;
 
-    public Recipe() {
-
-    }
+    public Recipe() {}
 
     public Recipe(String title, Set<Category> categories) {
         this.title = title;
-        this.categories = categories;
+        this.categories = categories != null ? categories : new HashSet<>();
     }
 
     public Integer getId() {
@@ -53,6 +53,12 @@ public class Recipe {
     }
 
     public void setCategories(Set<Category> categories) {
-        this.categories = categories;
+        this.categories = categories != null ? categories : new HashSet<>();
+    }
+
+    public void addCategory(Category category) {
+        if (category != null) {
+            categories.add(category);
+        }
     }
 }
