@@ -1,21 +1,19 @@
 import Header from '@Components/Header'
 import Footer from '@Components/Footer'
 
-import styles from './PageContainer.module.css'
-
 const PageContainer = ({ children, useMinDimensions }) => {
     return (
-        <div className={styles.pageContainer}>
+        <div className="flex flex-col max-h-screen min-h-screen">
             <Header />
             {useMinDimensions ? (
-                <div className={styles.minPageContent}>
-                    <div className={styles.minPageContentContainer}>
+                <div className="flex-1 flex justify-center items-center my-12 mx-5">
+                    <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-[120px]">
                         {children}
                     </div>
                 </div>
             ) : (
-                <div className={styles.pageContent}>
-                    <div className={styles.pageContentContainer}>
+                <div className="flex-1 flex justify-center my-12 mx-60">
+                    <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-[120px] max-w-full min-w-full min-h-full">
                         {children}
                     </div>
                 </div>

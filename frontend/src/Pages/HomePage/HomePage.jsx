@@ -1,23 +1,23 @@
 import { useNavigate } from 'react-router-dom'
 
-import SearchIcon from '@Icons/SearchIcon'
 import PageContainer from '@Components/PageContainer'
 import Tile from '@Components/Tile'
-import ArrowRightIcon from '@Icons/ArrowRightIcon'
 import Search from '@Components/Search'
-
-import styles from './HomePage.module.css'
+import ArrowRightIcon from '@Icons/ArrowRightIcon'
+import SearchIcon from '@Icons/SearchIcon'
 
 const HomePage = () => {
     const navigate = useNavigate()
 
     return (
         <PageContainer useMinDimensions={true}>
-            <div className={styles.homeSearchWrapper}>
+            <div className="flex flex-row justify-around">
                 <Search />
             </div>
-            <div className={styles.contentTitle}>Popular Categories:</div>
-            <div className={styles.categoryContainer}>
+            <div className="font-semibold text-3xl text-primary-dark my-auto pb-4 pt-16 select-none">
+                Popular Categories:
+            </div>
+            <div className="flex flex-row gap-16 w-full justify-between">
                 <Tile
                     title="Category 1"
                     icon={<ArrowRightIcon />}
@@ -43,8 +43,10 @@ const HomePage = () => {
                     onClick={() => navigate('/categories')}
                 />
             </div>
-            <div className={styles.contentTitle}>Popular Recipes:</div>
-            <div className={styles.recipeContainer}>
+            <div className="font-semibold text-3xl text-primary-dark my-auto pb-4 pt-16 select-none">
+                Popular Recipes:
+            </div>
+            <div className="flex flex-row gap-16 w-full justify-between">
                 <Tile
                     title="Recipe 1"
                     icon={<SearchIcon stroke={3} />}

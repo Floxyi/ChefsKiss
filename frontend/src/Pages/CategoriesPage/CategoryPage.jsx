@@ -6,8 +6,6 @@ import Tile from '@Components/Tile'
 import PageContainer from '@Components/PageContainer'
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
 
-import styles from './CategoryPage.module.css'
-
 const CategoryPage = () => {
     const navigate = useNavigate()
 
@@ -29,10 +27,14 @@ const CategoryPage = () => {
 
     return (
         <PageContainer>
-            <div className={styles.contentTitle}>Categories</div>
-            <div className={styles.categoryContainer}>
+            <div className="font-semibold text-3xl text-primary-dark my-auto pb-4 text-center select-none mb-8">
+                Categories
+            </div>
+            <div className="flex flex-row gap-16 w-full justify-between flex-wrap">
                 {isLoading ? (
-                    <div className={styles.spacer}>Loading categories...</div>
+                    <div className="min-w-full min-h-full text-primary-dark">
+                        Loading categories...
+                    </div>
                 ) : (
                     categories.map((category) => (
                         <Tile

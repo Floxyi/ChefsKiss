@@ -1,12 +1,10 @@
 import { useNavigate, useLocation } from 'react-router-dom'
 
+import logo from '@Images/Chefskiss.webp'
 import HouseIcon from '@Icons/HouseIcon'
 import CategoriesIcon from '@Icons/CategoriesIcon'
 import EditIcon from '@Icons/EditIcon'
-import logo from '@Images/Chefskiss.webp'
 import SearchIcon from '@Icons/SearchIcon'
-
-import styles from './Header.module.css'
 
 const Header = () => {
     const navigate = useNavigate()
@@ -14,61 +12,41 @@ const Header = () => {
     const location = useLocation()
     const isActive = (path) => location.pathname === path
 
+    const buildButton = (path, text, icon) => {
+        return (
+            <div
+                className={
+                    isActive(path)
+                        ? 'flex flex-row shrink-0 items-center text-primary-dark border-2 border-primary-dark rounded-full cursor-pointer px-4 py-1 m-0'
+                        : 'flex flex-row shrink-0 items-center text-primary-dark hover:border-2 hover:border-primary-dark hover:rounded-full hover:cursor-pointer px-4 py-1 m-[2px] hover:m-0'
+                }
+                onClick={() => navigate(path)}
+            >
+                <div className="pr-2 select-none">{text}</div>
+                {icon}
+            </div>
+        )
+    }
+
     return (
-        <div className={styles.headerContainer}>
-            <div className={styles.headerBar}>
+        <div className="min-w-full">
+            <div className="max-h-20 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5 mt-5">
                 <div
-                    className={styles.headerTitle}
+                    className="font-bold text-5xl text-primary-light w-[500px] font-shrikhand text-stroke-dark select-none hover:cursor-pointer"
                     onClick={() => navigate('/')}
                 >
                     Chef’s Kiss
                 </div>
-                <img className={styles.navImage} src={logo} alt="logo" />
-                <div className={styles.navItems}>
-                    <div
-                        className={
-                            isActive('/create')
-                                ? styles.navButtonActive
-                                : styles.navButton
-                        }
-                        onClick={() => navigate('/create')}
-                    >
-                        <div className={styles.navText}>create a recipe</div>
-                        <EditIcon />
-                    </div>
-                    <div
-                        className={
-                            isActive('/categories')
-                                ? styles.navButtonActive
-                                : styles.navButton
-                        }
-                        onClick={() => navigate('/categories')}
-                    >
-                        <div className={styles.navText}>categories</div>
+                <img className="w-20" src={logo} alt="logo" />
+                <div className="flex flex-row gap-2 w-[500px] justify-end">
+                    {buildButton('/create', 'create a recipe', <EditIcon />)}
+                    {buildButton(
+                        '/categories',
+                        'categories',
                         <CategoriesIcon />
-                    </div>
-                    <div
-                        className={
-                            isActive('/search')
-                                ? styles.navButtonActive
-                                : styles.navButton
-                        }
-                        onClick={() => navigate('/search')}
-                    >
-                        <div className={styles.navText}>search</div>
-                        <SearchIcon />
-                    </div>
-                    <div
-                        className={
-                            isActive('/')
-                                ? styles.navButtonActive
-                                : styles.navButton
-                        }
-                        onClick={() => navigate('/')}
-                    >
-                        <div className={styles.navText}>home</div>
-                        <HouseIcon />
-                    </div>
+                    )}
+                    {buildButton('/search', 'search', <SearchIcon />)}
+                    {buildButton('/', 'home', <HouseIcon />)}
                 </div>
             </div>
         </div>

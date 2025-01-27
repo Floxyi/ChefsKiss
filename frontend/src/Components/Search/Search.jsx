@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom'
 
 import SearchIcon from '@Icons/SearchIcon'
 
-import styles from './Search.module.css'
-
 const Search = () => {
     const navigate = useNavigate()
 
@@ -21,9 +19,9 @@ const Search = () => {
     }
 
     return (
-        <div className={styles.searchContainer}>
+        <div className="h-12 w-[600px] border-[3px] border-primary-dark rounded-3xl bg-transparent px-4 py-2 flex flex-row items-center">
             <input
-                className={styles.search}
+                className="w-full font-bold text-xl text-primary-dark bg-transparent placeholder:font-normal placeholder:text-primary-normal focus:outline-none"
                 type="text"
                 value={value}
                 onChange={handleChange}
@@ -31,7 +29,7 @@ const Search = () => {
                 placeholder="Suchen..."
             />
             <div
-                className={styles.searchIcon}
+                className="text-primary-dark cursor-pointer p-1"
                 onClick={() => navigate('/search')}
             >
                 <SearchIcon />

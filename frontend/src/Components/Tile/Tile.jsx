@@ -1,14 +1,17 @@
-import styles from './Tile.module.css'
-
 const Tile = ({ title, subtitle, icon, onClick }) => {
     return (
-        <div className={styles.tileContainer} onClick={onClick}>
-            <div className={styles.titleContainer}>
-                <div className={styles.tileText}>{title}</div>
-                <div className={styles.subtileText}>{subtitle}</div>
+        <div
+            className="min-h-36 min-w-36 max-h-36 max-w-36 bg-primary-normal hover:bg-primary-light border-[3px] border-primary-dark rounded-lg flex flex-col justify-center items-center cursor-pointer"
+            onClick={onClick}
+        >
+            <div className="font-semibold text-2xl text-center text-primary-dark select-none my-auto">
+                <div className="text-2xl">{title}</div>
+                <div className="text-lg">{subtitle}</div>
             </div>
-            <div className={styles.tileIconContainer}>
-                <div className={styles.tileIcon}>{icon}</div>
+            <div className="ml-auto pr-4 pb-2">
+                <div className="font-bold text-2xl text-primary-dark">
+                    {icon}
+                </div>
             </div>
         </div>
     )

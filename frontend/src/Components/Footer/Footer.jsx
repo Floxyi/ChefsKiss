@@ -5,63 +5,46 @@ import InstagramIcon from '@Icons/InstagramIcon'
 import FacebookIcon from '@Icons/FacebookIcon'
 import YouTubeIcon from '@Icons/YouTubeIcon'
 
-import styles from './Footer.module.css'
-
 const Footer = () => {
     const navigate = useNavigate()
 
+    const buildLink = (path, text) => {
+        return (
+            <div
+                className="font-bold select-none hover:cursor-pointer text-base hover:underline"
+                onClick={() => navigate(path)}
+            >
+                {text}
+            </div>
+        )
+    }
+
+    const buildIcon = (icon, link) => {
+        return (
+            <div
+                className="cursor-pointer shrink-0 p-2"
+                onClick={() => window.open(link, '_blank')}
+            >
+                {icon}
+            </div>
+        )
+    }
+
     return (
-        <div className={styles.footerContainer}>
-            <div className={styles.footerBar}>
-                <div className={styles.footerLinks}>
-                    <div
-                        className={styles.footerLink}
-                        onClick={() => navigate('/imprint')}
-                    >
-                        Imprint & Privacy Policy
-                    </div>
-                    ⦁
-                    <div
-                        className={styles.footerLink}
-                        onClick={() => navigate('/contact')}
-                    >
-                        Contact
-                    </div>
+        <div className="min-w-full">
+            <div className="max-h-14 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5 mb-5">
+                <div className="w-[340px] flex flex-row justify-start gap-4 items-center px-4 py-1 text-primary-dark">
+                    {buildLink('/imprint', 'Imprint & Privacy Policy')}⦁
+                    {buildLink('/contact', 'Contact')}
                 </div>
-                <div className={styles.footerText}>© Chef’s Kiss</div>
-                <div className={styles.footerSocials}>
-                    <div
-                        className={styles.footerIcon}
-                        onClick={() =>
-                            window.open('https://www.youtube.com', '_blank')
-                        }
-                    >
-                        <YouTubeIcon />
-                    </div>
-                    <div
-                        className={styles.footerIcon}
-                        onClick={() =>
-                            window.open('https://www.tiktok.com', '_blank')
-                        }
-                    >
-                        <TikTokIcon />
-                    </div>
-                    <div
-                        className={styles.footerIcon}
-                        onClick={() =>
-                            window.open('https://www.instagram.com', '_blank')
-                        }
-                    >
-                        <InstagramIcon />
-                    </div>
-                    <div
-                        className={styles.footerIcon}
-                        onClick={() =>
-                            window.open('https://www.facebook.com', '_blank')
-                        }
-                    >
-                        <FacebookIcon />
-                    </div>
+                <div className="font-bold select-none text-base text-primary-dark">
+                    © Chef’s Kiss
+                </div>
+                <div className="w-[340px] flex flex-row justify-end gap-4 items-center text-primary-dark px-4 py-1">
+                    {buildIcon(<YouTubeIcon />, 'https://www.youtube.com')}
+                    {buildIcon(<TikTokIcon />, 'https://www.tiktok.com')}
+                    {buildIcon(<InstagramIcon />, 'https://www.instagram.com')}
+                    {buildIcon(<FacebookIcon />, 'https://www.facebook.com')}
                 </div>
             </div>
         </div>

@@ -31,5 +31,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="/recipe/:id/similar" element={<SimilarPage />} />
             </Routes>
         </Router>
-    </React.StrictMode>,
+    </React.StrictMode>
 )
