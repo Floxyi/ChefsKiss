@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom'
 
 import SearchIcon from '@Icons/SearchIcon'
 
-import styles from './HomeSearch.module.css'
+import styles from './Search.module.css'
 
-const HomeSearch = () => {
+const Search = () => {
     const navigate = useNavigate()
 
     const [value, setValue] = useState('')
@@ -21,9 +21,9 @@ const HomeSearch = () => {
     }
 
     return (
-        <div className={styles.homeSearchContainer}>
+        <div className={styles.searchContainer}>
             <input
-                className={styles.homeSearch}
+                className={styles.search}
                 type="text"
                 value={value}
                 onChange={handleChange}
@@ -31,7 +31,7 @@ const HomeSearch = () => {
                 placeholder="Suchen..."
             />
             <div
-                className={styles.homeSearchIcon}
+                className={styles.searchIcon}
                 onClick={() => navigate('/search')}
             >
                 <SearchIcon />
@@ -40,4 +40,4 @@ const HomeSearch = () => {
     )
 }
 
-export default HomeSearch
+export default Search

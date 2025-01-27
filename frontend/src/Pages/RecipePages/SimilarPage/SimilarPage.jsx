@@ -1,8 +1,6 @@
 import { useNavigate, useParams } from 'react-router-dom'
 
-import Header from '@Components/Header'
 import PageContainer from '@Components/PageContainer'
-import Footer from '@Components/Footer'
 import Button from '@Components/Button'
 
 const SimilarPage = () => {
@@ -11,7 +9,6 @@ const SimilarPage = () => {
 
     return (
         <PageContainer>
-            <Header />
             <p>On this page you can view similar recipes from {id}.</p>
             <Button onClick={() => navigate('/recipe/1')}>Recipe 1</Button>
             <Button onClick={() => navigate('/recipe/1/comments')}>
@@ -20,7 +17,6 @@ const SimilarPage = () => {
             <Button onClick={() => navigate('/recipe/1/rating')}>
                 Recipe 1 rating
             </Button>
-            <Footer />
         </PageContainer>
     )
 }

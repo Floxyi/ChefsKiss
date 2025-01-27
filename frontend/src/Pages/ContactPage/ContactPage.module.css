@@ -1,9 +1,5 @@
-.contactContainer {
-    @apply flex-1 flex justify-center my-12 mx-5;
-}
-
-.contactContentContainer {
-    @apply bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-[120px] max-w-[114rem] min-w-[114rem] flex flex-col items-center;
+.centerContainer {
+    @apply flex flex-col items-center;
 }
 
 .contactTitle {

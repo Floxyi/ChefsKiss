@@ -1,9 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 
-import Header from '@Components/Header'
 import PageContainer from '@Components/PageContainer'
-import Footer from '@Components/Footer'
 
 const SearchPage = () => {
     const [recipes, setRecipes] = useState([])
@@ -24,7 +22,6 @@ const SearchPage = () => {
 
     return (
         <PageContainer>
-            <Header />
             <p>Search all recipes:</p>
 
             {isLoading ? (
@@ -42,8 +39,6 @@ const SearchPage = () => {
                     </div>
                 ))
             )}
-
-            <Footer />
         </PageContainer>
     )
 }

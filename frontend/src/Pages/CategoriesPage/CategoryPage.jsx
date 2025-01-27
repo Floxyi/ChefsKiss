@@ -2,10 +2,8 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import axios from 'axios'
 
-import Header from '@Components/Header'
-import Footer from '@Components/Footer'
 import Tile from '@Components/Tile'
-import ScreenPageContainer from '@Components/ScreenPageContainer'
+import PageContainer from '@Components/PageContainer'
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
 
 import styles from './CategoryPage.module.css'
@@ -30,32 +28,24 @@ const CategoryPage = () => {
     }, [])
 
     return (
-        <ScreenPageContainer>
-            <Header />
-            <div className={styles.categoryPageContainer}>
-                <div className={styles.categoryContentContainer}>
-                    <div className={styles.contentTitle}>Categories</div>
-                    <div className={styles.categoryContainer}>
-                        {isLoading ? (
-                            <div className={styles.spacer}>
-                                Loading categories...
-                            </div>
-                        ) : (
-                            categories.map((category) => (
-                                <Tile
-                                    key={category.id}
-                                    title={category.name}
-                                    subtitle={`${category.count} recipe${category.count === 1 ? '' : 's'}`}
-                                    icon={<ArrowRightIcon />}
-                                    onClick={() => navigate('/search')}
-                                />
-                            ))
-                        )}
-                    </div>
-                </div>
+        <PageContainer>
+            <div className={styles.contentTitle}>Categories</div>
+            <div className={styles.categoryContainer}>
+                {isLoading ? (
+                    <div className={styles.spacer}>Loading categories...</div>
+                ) : (
+                    categories.map((category) => (
+                        <Tile
+                            key={category.id}
+                            title={category.name}
+                            subtitle={`${category.count} recipe${category.count === 1 ? '' : 's'}`}
+                            icon={<ArrowRightIcon />}
+                            onClick={() => navigate('/search')}
+                        />
+                    ))
+                )}
             </div>
-            <Footer />
-        </ScreenPageContainer>
+        </PageContainer>
     )
 }
 
