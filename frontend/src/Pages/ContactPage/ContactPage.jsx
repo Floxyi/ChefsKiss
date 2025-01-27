@@ -1,7 +1,28 @@
+import { useState } from 'react'
+
 import Button from '@Components/Button'
 import PageContainer from '@Components/PageContainer'
+import ContactField from '@Components/ContactField'
 
 const ContactPage = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        message: ''
+    })
+
+    const handleChange = (e) => {
+        const { name, value } = e.target
+        setFormData((prevData) => ({
+            ...prevData,
+            [name]: value
+        }))
+    }
+
+    const handleSubmit = (e) => {
+        setFormData({ name: '', email: '', message: '' })
+    }
+
     return (
         <PageContainer>
             <div className="flex flex-col items-center">
@@ -12,50 +33,42 @@ const ContactPage = () => {
                     If you have any questions, suggestions, or need assistance,
                     feel free to contact us using the details below.
                 </p>
-                <form className="flex flex-col gap-3 w-full max-w-lg">
-                    <label
-                        className="text-xl text-primary-dark font-bold select-none mt-3"
-                        htmlFor="name"
-                    >
-                        Name
-                    </label>
-                    <input
-                        className="border-2 text-primary-dark font-bold placeholder:font-normal placeholder:text-primary-dark border-primary-dark bg-primary-light p-2 rounded-md focus:outline-none"
-                        type="text"
+                <form
+                    className="flex flex-col gap-4 w-full max-w-lg"
+                    onSubmit={handleSubmit}
+                >
+                    <ContactField
+                        label="Name"
                         id="name"
                         name="name"
                         placeholder="Your Name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
                     />
-
-                    <label
-                        className="text-xl text-primary-dark font-bold select-none mt-3"
-                        htmlFor="email"
-                    >
-                        Email
-                    </label>
-                    <input
-                        className="border-2 text-primary-dark font-bold placeholder:font-normal placeholder:text-primary-dark border-primary-dark bg-primary-light p-2 rounded-md focus:outline-none"
+                    <ContactField
+                        label="Email"
                         type="email"
                         id="email"
                         name="email"
                         placeholder="Your Email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
                     />
-
-                    <label
-                        className="text-xl text-primary-dark font-bold select-none mt-3"
-                        htmlFor="message"
-                    >
-                        Message
-                    </label>
-                    <textarea
-                        className="border-2 text-primary-dark placeholder:text-primary-dark border-primary-dark bg-primary-light p-2 rounded-md focus:outline-none resize-none"
+                    <ContactField
+                        label="Message"
+                        type="textarea"
                         id="message"
                         name="message"
-                        rows="5"
                         placeholder="Your Message"
-                    ></textarea>
-
-                    <Button type="submit">Submit</Button>
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                    />
+                    <div className="flex justify-center mt-4">
+                        <Button type="submit">Submit</Button>
+                    </div>
                 </form>
             </div>
         </PageContainer>
