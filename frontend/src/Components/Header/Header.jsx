@@ -29,26 +29,38 @@ const Header = () => {
     }
 
     return (
-        <div className="min-w-full">
-            <div className="max-h-20 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5 mt-5">
-                <div
-                    className="font-bold text-5xl text-primary-light w-[500px] font-shrikhand text-stroke-dark select-none hover:cursor-pointer"
-                    onClick={() => navigate('/')}
-                >
-                    Chef’s Kiss
-                </div>
-                <img className="w-20" src={logo} alt="logo" />
-                <div className="flex flex-row gap-2 w-[500px] justify-end">
-                    {buildButton('/create', 'create a recipe', <EditIcon />)}
-                    {buildButton(
-                        '/categories',
-                        'categories',
-                        <CategoriesIcon />
-                    )}
-                    {buildButton('/search', 'search', <SearchIcon />)}
-                    {buildButton('/', 'home', <HouseIcon />)}
+        <div>
+            <div className="min-w-full z-50 fixed">
+                <div className="mx-60 min-h-20 min-w-fit bg-primary-background mr-[calc(-1*(100vw-100%))]" />
+            </div>
+            <div className="min-w-full z-[51] fixed">
+                <div className="mr-[calc(-1*(100vw-100%))]">
+                    <div className="max-h-20 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5 mt-5">
+                        <div
+                            className="font-bold text-5xl text-primary-light w-[500px] font-shrikhand text-stroke-dark select-none hover:cursor-pointer"
+                            onClick={() => navigate('/')}
+                        >
+                            Chef’s Kiss
+                        </div>
+                        <img className="w-20" src={logo} alt="logo" />
+                        <div className="flex flex-row gap-2 w-[500px] justify-end">
+                            {buildButton(
+                                '/create',
+                                'create a recipe',
+                                <EditIcon />
+                            )}
+                            {buildButton(
+                                '/categories',
+                                'categories',
+                                <CategoriesIcon />
+                            )}
+                            {buildButton('/search', 'search', <SearchIcon />)}
+                            {buildButton('/', 'home', <HouseIcon />)}
+                        </div>
+                    </div>
                 </div>
             </div>
+            <div className="min-h-20" />
         </div>
     )
 }

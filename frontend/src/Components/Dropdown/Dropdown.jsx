@@ -6,7 +6,7 @@ const Dropdown = ({ label, options, value, onChange }) => {
     const [isOpen, setIsOpen] = useState(false)
 
     return (
-        <div className="relative inline-block text-left pb-8">
+        <div className="relative inline-block text-left pb-8 mx-4">
             <button
                 className="inline-flex items-center px-4 py-2 border-[3px] border-primary-dark rounded-full font-bold text-center text-primary-dark select-none my-auto focus:outline-none"
                 onClick={() => setIsOpen(!isOpen)}
@@ -23,7 +23,7 @@ const Dropdown = ({ label, options, value, onChange }) => {
                 </div>
             </button>
             {isOpen && (
-                <div className="absolute top-12 py-1 w-full bg-primary-light border-[3px] border-primary-dark rounded-[24px] shadow-lg">
+                <div className="absolute top-12 py-1 w-max min-w-full bg-primary-light border-[3px] border-primary-dark rounded-[24px] shadow-lg">
                     {options.map((option) => (
                         <div
                             key={option}

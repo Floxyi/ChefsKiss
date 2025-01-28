@@ -5,7 +5,9 @@
             "@Components/*": ["Components/*"],
             "@Icons/*": ["Icons/*"],
             "@Pages/*": ["Pages/*"],
-            "@Images/*": ["Images/*"]
+            "@Images/*": ["Images/*"],
+            "@Enums/*": ["Enums/*"],
+            "@Infrastructure/*": ["Infrastructure/*"]
         }
     }
 }

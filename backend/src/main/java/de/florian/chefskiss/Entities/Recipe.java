@@ -1,6 +1,8 @@
 package de.florian.chefskiss.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import de.florian.chefskiss.enums.Difficulty;
+import de.florian.chefskiss.enums.Time;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -25,10 +27,20 @@ public class Recipe {
     @Column(nullable = false)
     private String title;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Difficulty difficulty;
+
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Time time;
+
     public Recipe() {}
 
-    public Recipe(String title, Set<Category> categories) {
+    public Recipe(String title, Difficulty difficulty, Time time, Set<Category> categories) {
         this.title = title;
+        this.difficulty = difficulty;
+        this.time = time;
         this.categories = categories != null ? categories : new HashSet<>();
     }
 
@@ -46,6 +58,22 @@ public class Recipe {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Time getTime() {
+        return time;
+    }
+
+    public void setTime(Time time) {
+        this.time = time;
     }
 
     public Set<Category> getCategories() {

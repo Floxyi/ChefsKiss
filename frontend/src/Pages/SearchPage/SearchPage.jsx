@@ -1,64 +1,29 @@
-import { useEffect, useState } from 'react'
-import { useSearchParams, useNavigate } from 'react-router-dom'
-import axios from 'axios'
+import { useNavigate } from 'react-router-dom'
 
 import PageContainer from '@Components/PageContainer'
 import Search from '@Components/Search'
-import ArrowRightIcon from '@Icons/ArrowRightIcon'
 import Tile from '@Components/Tile'
 import Dropdown from '@Components/Dropdown'
+import { Difficulty, DifficultyLabels } from '@Enums/Difficulty'
+import { Time, TimeLabels } from '@Enums/Time'
+import useSearchRecipes from './useSearchRecipes'
+import ArrowRightIcon from '@Icons/ArrowRightIcon'
 
 const SearchPage = () => {
     const navigate = useNavigate()
-    const [searchParams] = useSearchParams()
-    const [recipes, setRecipes] = useState([])
-    const [categories, setCategories] = useState([])
 
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(null)
-
-    const category = searchParams.get('category')
-    const [selectedCategory, setSelectedcategory] = useState(category ?? 'All')
-
-    useEffect(() => {
-        setIsLoading(true)
-        setError(null)
-
-        const apiUrl = category
-            ? `/api/search?category=${encodeURIComponent(category)}`
-            : '/api/search'
-
-        axios
-            .get(apiUrl)
-            .then((response) => {
-                setRecipes(response.data)
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching the recipes:', error)
-                setError('Failed to fetch recipes. Please try again later.')
-                setIsLoading(false)
-            })
-    }, [category])
-
-    useEffect(() => {
-        axios
-            .get('/api/search/categories')
-            .then((response) => {
-                setCategories(response.data)
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching the recipes:', error)
-            })
-    }, [categories])
-
-    const changeCategory = (category) => {
-        setSelectedcategory(category)
-        category === 'All'
-            ? navigate(`/search`)
-            : navigate(`/search?category=${category}`)
-    }
+    const {
+        recipes,
+        categories,
+        isLoading,
+        error,
+        selectedCategory,
+        selectedTime,
+        selectedDifficulty,
+        changeCategory,
+        changeTime,
+        changeDifficulty
+    } = useSearchRecipes()
 
     return (
         <PageContainer>
@@ -76,10 +41,30 @@ const SearchPage = () => {
                 onChange={changeCategory}
             />
 
+            <Dropdown
+                label="Time"
+                options={[
+                    'All',
+                    ...Object.values(Time).map((item) => item.label)
+                ]}
+                value={selectedTime}
+                onChange={changeTime}
+            />
+
+            <Dropdown
+                label="Difficulty"
+                options={[
+                    'All',
+                    ...Object.values(Difficulty).map((item) => item.label)
+                ]}
+                value={selectedDifficulty}
+                onChange={changeDifficulty}
+            />
+
             <div className="flex flex-row gap-16 w-full flex-wrap justify-center">
                 {isLoading ? (
                     <div className="flex flex-row justify-center items-center min-w-full min-h-full text-primary-dark">
-                        Loading categories...
+                        Loading recipes...
                     </div>
                 ) : error ? (
                     <p className="text-red-500">{error}</p>
@@ -88,7 +73,7 @@ const SearchPage = () => {
                         <Tile
                             key={recipe.id}
                             title={recipe.title}
-                            subtitle={recipe.categories.join(', ')}
+                            subtitle={`${recipe.categories.join(', ')}, ${TimeLabels[recipe.time]}, ${DifficultyLabels[recipe.difficulty]}`}
                             icon={<ArrowRightIcon />}
                             onClick={() => navigate(`/recipe/${recipe.id}`)}
                         />

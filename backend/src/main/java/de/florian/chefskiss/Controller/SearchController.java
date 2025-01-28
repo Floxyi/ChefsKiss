@@ -2,6 +2,8 @@ package de.florian.chefskiss.controller;
 
 import de.florian.chefskiss.dto.CategoriesDto;
 import de.florian.chefskiss.dto.RecipeDto;
+import de.florian.chefskiss.enums.Difficulty;
+import de.florian.chefskiss.enums.Time;
 import de.florian.chefskiss.services.CategoryService;
 import de.florian.chefskiss.services.RecipeService;
 import java.util.List;
@@ -21,24 +23,22 @@ public class SearchController {
     }
 
     @GetMapping
-    public ResponseEntity<List<RecipeDto>> getRecipes(@RequestParam(required = false) String category) {
-        if (category != null && !category.isEmpty()) {
-            return ResponseEntity.ok(getRecipesByCategory(category));
+    public ResponseEntity<List<RecipeDto>> getRecipes(
+        @RequestParam(required = false) String category,
+        @RequestParam(required = false) Difficulty difficulty,
+        @RequestParam(required = false) Time time
+    ) {
+        List<RecipeDto> recipes;
+        if (category == null && difficulty == null && time == null) {
+            recipes = recipeService.findAllRecipes();
         } else {
-            return ResponseEntity.ok(getAllRecipes());
+            recipes = recipeService.findRecipes(category, difficulty, time);
         }
+        return ResponseEntity.ok(recipes);
     }
 
     @GetMapping(path = "/categories")
     public @ResponseBody List<CategoriesDto> getAllCategories() {
         return categoryService.findAllCategories();
-    }
-
-    private List<RecipeDto> getRecipesByCategory(String category) {
-        return recipeService.findByCategory(category);
-    }
-
-    private List<RecipeDto> getAllRecipes() {
-        return recipeService.findAllRecipes();
     }
 }
