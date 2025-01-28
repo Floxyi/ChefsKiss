@@ -5,6 +5,7 @@ import de.florian.chefskiss.entities.Category;
 import de.florian.chefskiss.entities.Recipe;
 import de.florian.chefskiss.repositories.RecipeRepository;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +18,7 @@ public class RecipeService {
         this.recipeRepository = recipeRepository;
     }
 
-    public List<RecipeDto> getAllRecipes() {
+    public List<RecipeDto> findAllRecipes() {
         List<Recipe> recipes = recipeRepository.findAll();
 
         return recipes
@@ -44,5 +45,21 @@ public class RecipeService {
                 )
             )
             .collect(Collectors.toList());
+    }
+
+    public Optional<RecipeDto> findById(Integer id) {
+        Optional<Recipe> recipe = recipeRepository.findById(id);
+        if (recipe.isPresent()) {
+            Recipe r = recipe.get();
+            return Optional.of(
+                new RecipeDto(
+                    r.getId(),
+                    r.getTitle(),
+                    r.getCategories().stream().map(Category::getName).collect(Collectors.toSet())
+                )
+            );
+        } else {
+            return Optional.empty();
+        }
     }
 }

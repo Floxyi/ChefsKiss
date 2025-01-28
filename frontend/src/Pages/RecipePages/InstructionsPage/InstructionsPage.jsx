@@ -1,24 +1,39 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 import PageContainer from '@Components/PageContainer'
-import Button from '@Components/Button'
+import RecipeHeader from '@Components/RecipeHeader'
+import RecipeNavigation from '@Components/RecipeNavigation'
 
 const InstructionsPage = () => {
     const { id } = useParams()
-    const navigate = useNavigate()
+
+    const [recipe, setRecipe] = useState(null)
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        axios
+            .get(`/api/recipe/?id=${id}`)
+            .then((response) => {
+                setRecipe(response.data)
+                setIsLoading(false)
+            })
+            .catch((error) => {
+                console.error('Error fetching the categories:', error)
+                setIsLoading(false)
+            })
+    }, [id])
 
     return (
         <PageContainer>
+            <div>
+                <RecipeHeader isLoading={isLoading} recipe={recipe} />
+            </div>
+
+            <RecipeNavigation id={id} />
+
             <p>On this page you can view recipe instructions from {id}.</p>
-            <Button onClick={() => navigate('/recipe/1/comments')}>
-                Recipe 1 comments
-            </Button>
-            <Button onClick={() => navigate('/recipe/1/rating')}>
-                Recipe 1 rating
-            </Button>
-            <Button onClick={() => navigate('/recipe/1/similar')}>
-                Recipe 1 similar
-            </Button>
         </PageContainer>
     )
 }

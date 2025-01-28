@@ -30,7 +30,7 @@ VALUES
     (7, 'Grilled Chicken'),
     (8, 'Tomato Soup'),
     (9, 'Banana Pancakes'),
-    (10, 'Vegetable Stir-Fry'),
+    (10, 'Stir-Fry'),
     (11, 'BBQ Ribs'),
     (12, 'Shrimp Scampi'),
     (13, 'Vegan Brownies'),

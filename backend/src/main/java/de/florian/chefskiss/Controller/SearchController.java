@@ -1,6 +1,8 @@
 package de.florian.chefskiss.controller;
 
+import de.florian.chefskiss.dto.CategoriesDto;
 import de.florian.chefskiss.dto.RecipeDto;
+import de.florian.chefskiss.services.CategoryService;
 import de.florian.chefskiss.services.RecipeService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
@@ -11,9 +13,11 @@ import org.springframework.web.bind.annotation.*;
 public class SearchController {
 
     private final RecipeService recipeService;
+    private final CategoryService categoryService;
 
-    public SearchController(RecipeService recipeService) {
+    public SearchController(RecipeService recipeService, CategoryService categoryService) {
         this.recipeService = recipeService;
+        this.categoryService = categoryService;
     }
 
     @GetMapping
@@ -25,11 +29,16 @@ public class SearchController {
         }
     }
 
+    @GetMapping(path = "/categories")
+    public @ResponseBody List<CategoriesDto> getAllCategories() {
+        return categoryService.findAllCategories();
+    }
+
     private List<RecipeDto> getRecipesByCategory(String category) {
         return recipeService.findByCategory(category);
     }
 
     private List<RecipeDto> getAllRecipes() {
-        return recipeService.getAllRecipes();
+        return recipeService.findAllRecipes();
     }
 }

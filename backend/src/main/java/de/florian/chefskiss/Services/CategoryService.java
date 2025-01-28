@@ -1,9 +1,14 @@
 package de.florian.chefskiss.services;
 
+import de.florian.chefskiss.dto.CategoriesDto;
 import de.florian.chefskiss.dto.CategoryWithRecipeCountDto;
 import de.florian.chefskiss.dto.CategoryWithRecipesDto;
+import de.florian.chefskiss.entities.Category;
 import de.florian.chefskiss.repositories.CategoryRepository;
 import java.util.List;
+import java.util.stream.Collectors;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +25,15 @@ public class CategoryService {
     }
 
     public List<CategoryWithRecipeCountDto> findCategoriesWithRecipeCount() {
-        return categoryRepository.findCategoriesWithRecipeCount();
+        return categoryRepository.findCategoriesWithRecipeCount(Pageable.unpaged());
+    }
+
+    public List<CategoryWithRecipeCountDto> findCategoriesWithRecipeCount(int limit) {
+        return categoryRepository.findCategoriesWithRecipeCount(PageRequest.of(0, limit));
+    }
+
+    public List<CategoriesDto> findAllCategories() {
+        List<Category> recipes = categoryRepository.findAll();
+        return recipes.stream().map(category -> new CategoriesDto(category.getName())).collect(Collectors.toList());
     }
 }
