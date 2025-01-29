@@ -1,19 +1,14 @@
-import { useNavigate } from 'react-router-dom'
-
 import PageContainer from '@Components/PageContainer'
 import Search from '@Components/Search'
-import Tile from '@Components/Tile'
+import RecipeTile from '@Components/RecipeTile'
 import Dropdown from '@Components/Dropdown'
 import Title from '@Components/Title'
-import ArrowRightIcon from '@Icons/ArrowRightIcon'
 import { Difficulty, DifficultyLabels } from '@Enums/Difficulty'
 import { Time, TimeLabels } from '@Enums/Time'
 
 import useSearchRecipes from './useSearchRecipes'
 
 const SearchPage = () => {
-    const navigate = useNavigate()
-
     const {
         recipes,
         categories,
@@ -82,13 +77,7 @@ const SearchPage = () => {
                     </p>
                 ) : (
                     recipes.map((recipe) => (
-                        <Tile
-                            key={recipe.id}
-                            title={recipe.title}
-                            subtitle={`${recipe.categories.join(', ')}, ${TimeLabels[recipe.time]}, ${DifficultyLabels[recipe.difficulty]}`}
-                            icon={<ArrowRightIcon />}
-                            onClick={() => navigate(`/recipe/${recipe.id}`)}
-                        />
+                        <RecipeTile key={recipe.id} recipe={recipe} />
                     ))
                 )}
             </div>

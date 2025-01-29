@@ -6,8 +6,7 @@ import PageContainer from '@Components/PageContainer'
 import Tile from '@Components/Tile'
 import Search from '@Components/Search'
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
-import { DifficultyLabels } from '@Enums/Difficulty'
-import { TimeLabels } from '@Enums/Time'
+import RecipeTile from '@Components/RecipeTile'
 
 const HomePage = () => {
     const navigate = useNavigate()
@@ -18,7 +17,7 @@ const HomePage = () => {
 
     useEffect(() => {
         axios
-            .get(`/api/homepage/categories?amount=4`)
+            .get(`/api/homepage/categories?amount=6`)
             .then((response) => {
                 setCategories(response.data)
                 setIsLoading(false)
@@ -44,7 +43,7 @@ const HomePage = () => {
 
     return (
         <PageContainer useMinDimensions={true}>
-            <div className="flex flex-row items-center justify-center mb-20 text-center text-6xl text-primary-dark">
+            <div className="flex flex-row items-center justify-center mb-12 text-center text-6xl text-primary-dark">
                 <div className="font-bold">Find Recipes,&nbsp;</div>
                 <div className="font-bold italic text-primary-light text-stroke-dark">
                     Fast.
@@ -55,31 +54,43 @@ const HomePage = () => {
                 <Search />
             </div>
 
-            <div className="font-semibold text-3xl text-primary-dark my-auto mb-6 mt-20 select-none">
-                Recommended Recipes:
+            <div className="flex flex-row justify-between items-baseline my-auto mb-6 mt-16 select-none">
+                <p className="font-semibold text-3xl text-primary-dark">
+                    Recommended Recipes
+                </p>
+                <div
+                    className="flex flex-row items-center text-primary-dark hover:underline hover:cursor-pointer"
+                    onClick={() => navigate('/search')}
+                >
+                    <p>view all</p>
+                    <ArrowRightIcon stroke={2} />
+                </div>
             </div>
-            <div className="flex flex-row gap-16 w-full justify-between">
+            <div className="flex flex-row flex-wrap gap-4 w-full justify-between">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">
                         Loading categories...
                     </div>
                 ) : (
                     recipes.map((recipe) => (
-                        <Tile
-                            key={recipe.id}
-                            title={recipe.title}
-                            subtitle={`${recipe.categories.join(', ')}, ${TimeLabels[recipe.time]}, ${DifficultyLabels[recipe.difficulty]}`}
-                            icon={<ArrowRightIcon />}
-                            onClick={() => navigate(`/recipe/${recipe.id}`)}
-                        />
+                        <RecipeTile recipe={recipe} small />
                     ))
                 )}
             </div>
 
-            <div className="font-semibold text-3xl text-primary-dark my-auto mb-6 mt-16 select-none">
-                Popular Categories:
+            <div className="flex flex-row justify-between items-baseline my-auto mb-6 mt-16 select-none">
+                <p className="font-semibold text-3xl text-primary-dark">
+                    Popular Categories
+                </p>
+                <div
+                    className="flex flex-row items-center text-primary-dark hover:underline hover:cursor-pointer"
+                    onClick={() => navigate('/categories')}
+                >
+                    <p>view all</p>
+                    <ArrowRightIcon stroke={2} />
+                </div>
             </div>
-            <div className="flex flex-row gap-16 w-full justify-between">
+            <div className="flex flex-row gap-6 w-full justify-between">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">
                         Loading categories...
@@ -99,10 +110,6 @@ const HomePage = () => {
                         />
                     ))
                 )}
-                <Tile
-                    title="View all categories"
-                    onClick={() => navigate('/categories')}
-                />
             </div>
         </PageContainer>
     )

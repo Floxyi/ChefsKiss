@@ -6,7 +6,7 @@ const PageContainer = ({ children, useMinDimensions }) => {
         <div className="flex flex-col max-h-screen min-h-screen">
             <Header />
             {useMinDimensions ? (
-                <div className="flex-1 flex justify-center items-center my-12 mx-5">
+                <div className="flex-1 flex justify-center items-center my-12 mx-20">
                     <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-[120px]">
                         {children}
                     </div>

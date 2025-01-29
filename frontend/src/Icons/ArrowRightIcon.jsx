@@ -1,4 +1,4 @@
-const ArrowRightIcon = ({ width = 24, height = 24 }) => (
+const ArrowRightIcon = ({ width = 24, height = 24, stroke = 3 }) => (
     <svg
         width={width}
         height={height}
@@ -9,7 +9,7 @@ const ArrowRightIcon = ({ width = 24, height = 24 }) => (
         <path
             d="M5 12H19M19 12L13 6M19 12L13 18"
             stroke="currentColor"
-            strokeWidth="3"
+            strokeWidth={stroke}
             strokeLinecap="round"
             strokeLinejoin="round"
         />

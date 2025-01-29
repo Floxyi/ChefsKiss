@@ -30,8 +30,8 @@ const Header = () => {
 
     return (
         <div>
-            <div className="min-w-full z-50 fixed">
-                <div className="mx-60 min-h-20 min-w-fit bg-primary-background mr-[calc(-1*(100vw-100%))]" />
+            <div className="min-w-full z-50 fixed mr-[calc(-1*(100vw-100%))]">
+                <div className="mr-12 ml-12 min-h-20 bg-primary-background" />
             </div>
             <div className="min-w-full z-[51] fixed">
                 <div className="mr-[calc(-1*(100vw-100%))]">
@@ -44,26 +44,14 @@ const Header = () => {
                         </div>
                         <img className="w-20" src={logo} alt="logo" />
                         <div className="flex flex-row gap-2 w-[500px] justify-end">
-                            {buildButton(
-                                '/create',
-                                'Create',
-                                <EditIcon stroke={isActive ? 5 : 2} />
-                            )}
+                            {buildButton('/create', 'Create', <EditIcon />)}
                             {buildButton(
                                 '/categories',
                                 'Categories',
-                                <CategoriesIcon stroke={isActive ? 3 : 2} />
+                                <CategoriesIcon />
                             )}
-                            {buildButton(
-                                '/search',
-                                'Search',
-                                <SearchIcon stroke={isActive ? 3 : 2} />
-                            )}
-                            {buildButton(
-                                '/',
-                                'Home',
-                                <HouseIcon stroke={isActive ? 3 : 2} />
-                            )}
+                            {buildButton('/search', 'Search', <SearchIcon />)}
+                            {buildButton('/', 'Home', <HouseIcon />)}
                         </div>
                     </div>
                 </div>
