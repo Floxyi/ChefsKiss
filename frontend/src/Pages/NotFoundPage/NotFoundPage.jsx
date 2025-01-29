@@ -8,8 +8,10 @@ const HomePage = () => {
 
     return (
         <PageContainer useMinDimensions={true}>
-            <div className="text-center my-24 mx-12">
-                <div className="text-7xl font-bold text-primary-dark">404</div>
+            <div className="min-h-full text-center my-24 mx-12">
+                <div className="text-7xl font-bold text-primary-dark animate-bounce">
+                    404
+                </div>
                 <div className="my-4 text-primary-dark text-2xl">
                     Sorry, but we couldn't find this page :(
                 </div>

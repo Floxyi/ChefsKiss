@@ -12,8 +12,8 @@ const PageContainer = ({ children, useMinDimensions }) => {
                     </div>
                 </div>
             ) : (
-                <div className="flex-1 flex justify-center my-12 mx-60">
-                    <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-20 max-w-full min-w-full min-h-full">
+                <div className="flex-1 flex justify-center my-12 mx-20">
+                    <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-14 max-w-full min-w-full min-h-full">
                         {children}
                     </div>
                 </div>

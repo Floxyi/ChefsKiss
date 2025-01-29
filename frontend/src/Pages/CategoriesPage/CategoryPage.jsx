@@ -4,6 +4,7 @@ import axios from 'axios'
 
 import Tile from '@Components/Tile'
 import PageContainer from '@Components/PageContainer'
+import Title from '@Components/Title'
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
 
 const CategoryPage = () => {
@@ -27,9 +28,8 @@ const CategoryPage = () => {
 
     return (
         <PageContainer>
-            <div className="font-semibold text-3xl text-primary-dark my-auto pb-4 text-center select-none mb-8">
-                Categories
-            </div>
+            <Title title="Categories" margin />
+
             <div className="flex flex-row gap-16 w-full justify-between flex-wrap">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">

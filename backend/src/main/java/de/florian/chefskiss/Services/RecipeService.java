@@ -10,6 +10,7 @@ import de.florian.chefskiss.specifications.RecipeSpecification;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
@@ -83,5 +84,22 @@ public class RecipeService {
         } else {
             return Optional.empty();
         }
+    }
+
+    public List<RecipeDto> findAmountOfRecipes(Integer amount) {
+        List<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, amount)).getContent();
+
+        return recipes
+            .stream()
+            .map(recipe ->
+                new RecipeDto(
+                    recipe.getId(),
+                    recipe.getTitle(),
+                    recipe.getDifficulty().name(),
+                    recipe.getTime().name(),
+                    recipe.getCategories().stream().map(Category::getName).collect(Collectors.toSet())
+                )
+            )
+            .collect(Collectors.toList());
     }
 }

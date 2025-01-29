@@ -17,13 +17,13 @@ const Header = () => {
             <div
                 className={
                     isActive(path)
-                        ? 'flex flex-row shrink-0 items-center text-primary-dark border-2 border-primary-dark rounded-full cursor-pointer px-4 py-1 m-0'
+                        ? 'flex flex-row shrink-0 items-center text-primary-dark font-bold border-2 border-primary-dark rounded-full cursor-pointer px-4 py-1 m-0'
                         : 'flex flex-row shrink-0 items-center text-primary-dark hover:border-2 hover:border-primary-dark hover:rounded-full hover:cursor-pointer px-4 py-1 m-[2px] hover:m-0'
                 }
                 onClick={() => navigate(path)}
             >
-                <div className="pr-2 select-none">{text}</div>
                 {icon}
+                <div className="pl-2 select-none">{text}</div>
             </div>
         )
     }
@@ -46,16 +46,24 @@ const Header = () => {
                         <div className="flex flex-row gap-2 w-[500px] justify-end">
                             {buildButton(
                                 '/create',
-                                'create a recipe',
-                                <EditIcon />
+                                'Create',
+                                <EditIcon stroke={isActive ? 5 : 2} />
                             )}
                             {buildButton(
                                 '/categories',
-                                'categories',
-                                <CategoriesIcon />
+                                'Categories',
+                                <CategoriesIcon stroke={isActive ? 3 : 2} />
                             )}
-                            {buildButton('/search', 'search', <SearchIcon />)}
-                            {buildButton('/', 'home', <HouseIcon />)}
+                            {buildButton(
+                                '/search',
+                                'Search',
+                                <SearchIcon stroke={isActive ? 3 : 2} />
+                            )}
+                            {buildButton(
+                                '/',
+                                'Home',
+                                <HouseIcon stroke={isActive ? 3 : 2} />
+                            )}
                         </div>
                     </div>
                 </div>

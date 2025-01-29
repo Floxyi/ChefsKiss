@@ -1,12 +1,15 @@
 import { useNavigate } from 'react-router-dom'
+
 import PageContainer from '@Components/PageContainer'
 import Search from '@Components/Search'
 import Tile from '@Components/Tile'
 import Dropdown from '@Components/Dropdown'
+import Title from '@Components/Title'
+import ArrowRightIcon from '@Icons/ArrowRightIcon'
 import { Difficulty, DifficultyLabels } from '@Enums/Difficulty'
 import { Time, TimeLabels } from '@Enums/Time'
+
 import useSearchRecipes from './useSearchRecipes'
-import ArrowRightIcon from '@Icons/ArrowRightIcon'
 
 const SearchPage = () => {
     const navigate = useNavigate()
@@ -26,6 +29,8 @@ const SearchPage = () => {
 
     return (
         <PageContainer>
+            <Title title="Search" margin />
+
             <div className="flex flex-row justify-around pb-8">
                 <Search />
             </div>

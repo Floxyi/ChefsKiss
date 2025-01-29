@@ -26,7 +26,7 @@ const Search = () => {
                 value={value}
                 onChange={handleChange}
                 onKeyDown={handleKeyDown}
-                placeholder="Suchen..."
+                placeholder="Search..."
             />
             <div
                 className="text-primary-dark cursor-pointer p-1"
