@@ -1,5 +1,4 @@
 import { useNavigate } from 'react-router-dom'
-
 import PageContainer from '@Components/PageContainer'
 import Search from '@Components/Search'
 import Tile from '@Components/Tile'
@@ -18,8 +17,8 @@ const SearchPage = () => {
         isLoading,
         error,
         selectedCategory,
-        selectedTime,
-        selectedDifficulty,
+        selectedTimeValue,
+        selectedDifficultyValue,
         changeCategory,
         changeTime,
         changeDifficulty
@@ -31,43 +30,51 @@ const SearchPage = () => {
                 <Search />
             </div>
 
-            <Dropdown
-                label="Category"
-                options={[
-                    'All',
-                    ...categories.map((category) => category.name)
-                ]}
-                value={selectedCategory}
-                onChange={changeCategory}
-            />
+            <div className="flex flex-row justify-center">
+                <Dropdown
+                    label="Category"
+                    options={[
+                        'All',
+                        ...categories.map((category) => category.name)
+                    ]}
+                    value={selectedCategory}
+                    defaultValue="All"
+                    onChange={changeCategory}
+                />
 
-            <Dropdown
-                label="Time"
-                options={[
-                    'All',
-                    ...Object.values(Time).map((item) => item.label)
-                ]}
-                value={selectedTime}
-                onChange={changeTime}
-            />
+                <Dropdown
+                    label="Time"
+                    options={Object.values(Time).map((item) => item.label)}
+                    value={TimeLabels[selectedTimeValue]}
+                    defaultValue={Time.ALL.label}
+                    onChange={changeTime}
+                />
 
-            <Dropdown
-                label="Difficulty"
-                options={[
-                    'All',
-                    ...Object.values(Difficulty).map((item) => item.label)
-                ]}
-                value={selectedDifficulty}
-                onChange={changeDifficulty}
-            />
+                <Dropdown
+                    label="Difficulty"
+                    options={Object.values(Difficulty).map(
+                        (item) => item.label
+                    )}
+                    value={DifficultyLabels[selectedDifficultyValue]}
+                    defaultValue={Difficulty.ALL.label}
+                    onChange={changeDifficulty}
+                />
+            </div>
 
             <div className="flex flex-row gap-16 w-full flex-wrap justify-center">
                 {isLoading ? (
-                    <div className="flex flex-row justify-center items-center min-w-full min-h-full text-primary-dark">
+                    <div className="text-center font-bold text-primary-dark">
                         Loading recipes...
                     </div>
                 ) : error ? (
-                    <p className="text-red-500">{error}</p>
+                    <p className="text-center font-bold text-primary-dark">
+                        {error}
+                    </p>
+                ) : recipes.length === 0 ? (
+                    <p className="text-center font-bold text-primary-dark">
+                        :( <br /> We are sorry, but we couldn't find any
+                        matching recipes.
+                    </p>
                 ) : (
                     recipes.map((recipe) => (
                         <Tile

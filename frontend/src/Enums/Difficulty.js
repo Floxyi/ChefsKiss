@@ -1,4 +1,5 @@
 export const Difficulty = {
+    ALL: { value: 'ALL', label: 'All' },
     EASY: { value: 'EASY', label: 'Easy' },
     MEDIUM: { value: 'MEDIUM', label: 'Medium' },
     HARD: { value: 'HARD', label: 'Hard' }

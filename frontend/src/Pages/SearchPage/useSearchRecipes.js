@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
 import axios from 'axios'
-import { DifficultyValues } from '@Enums/Difficulty'
-import { TimeValues } from '@Enums/Time'
+import { Difficulty, DifficultyValues } from '@Enums/Difficulty'
+import { Time, TimeValues } from '@Enums/Time'
 import { updateQueryString } from '@Infrastructure/QueryHelper'
 
 const useSearchRecipes = () => {
@@ -14,69 +14,91 @@ const useSearchRecipes = () => {
     const [isLoading, setIsLoading] = useState(true)
     const [error, setError] = useState(null)
 
-    const categoryParam = searchParams.get('category')
-    const timeParam = searchParams.get('time')
-    const difficultyParam = searchParams.get('difficulty')
+    const categoryParam = searchParams.get('category') || 'All'
+    const timeParam = searchParams.get('time') || Time.ALL.value
+    const difficultyParam =
+        searchParams.get('difficulty') || Difficulty.ALL.value
 
-    const [selectedCategory, setSelectedCategory] = useState(
-        categoryParam ?? 'All'
+    const [selectedCategory, setSelectedCategory] = useState(categoryParam)
+    const [selectedTimeValue, setSelectedTimeValue] = useState(
+        Time[timeParam]?.value || Time.ALL.value
     )
-    const [selectedTime, setSelectedTime] = useState(timeParam ?? 'All')
-    const [selectedDifficulty, setSelectedDifficulty] = useState(
-        difficultyParam ?? 'All'
+    const [selectedDifficultyValue, setSelectedDifficultyValue] = useState(
+        Difficulty[difficultyParam]?.value || Difficulty.ALL.value
     )
 
-    useEffect(() => {
+    const fetchRecipes = useCallback(async () => {
         setIsLoading(true)
         setError(null)
 
         const queryParams = new URLSearchParams()
 
-        if (categoryParam) queryParams.set('category', categoryParam)
-        if (timeParam) queryParams.set('time', timeParam)
-        if (difficultyParam) queryParams.set('difficulty', difficultyParam)
+        if (selectedCategory !== 'All')
+            queryParams.set('category', selectedCategory)
+        if (selectedTimeValue !== Time.ALL.value)
+            queryParams.set('time', selectedTimeValue)
+        if (selectedDifficultyValue !== Difficulty.ALL.value)
+            queryParams.set('difficulty', selectedDifficultyValue)
 
-        const apiUrl = `/api/search${queryParams.toString() ? `?${queryParams.toString()}` : ''}`
+        try {
+            const { data } = await axios.get(
+                `/api/search${queryParams.toString() ? `?${queryParams}` : ''}`
+            )
+            setRecipes(data)
+        } catch (err) {
+            setError('Failed to fetch recipes. Please try again later.')
+        } finally {
+            setIsLoading(false)
+        }
+    }, [selectedCategory, selectedTimeValue, selectedDifficultyValue])
 
-        axios
-            .get(apiUrl)
-            .then((response) => {
-                setRecipes(response.data)
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching the recipes:', error)
-                setError('Failed to fetch recipes. Please try again later.')
-                setIsLoading(false)
-            })
-    }, [categoryParam, timeParam, difficultyParam])
+    const fetchCategories = async () => {
+        try {
+            const { data } = await axios.get('/api/search/categories')
+            setCategories(data)
+        } catch (err) {
+            console.error('Error fetching categories:', err)
+        }
+    }
 
     useEffect(() => {
-        axios
-            .get('/api/search/categories')
-            .then((response) => setCategories(response.data))
-            .catch((error) => {
-                console.error('Error fetching categories:', error)
-            })
+        fetchRecipes()
+    }, [
+        selectedCategory,
+        selectedTimeValue,
+        selectedDifficultyValue,
+        fetchRecipes
+    ])
+
+    useEffect(() => {
+        fetchCategories()
     }, [])
 
     const changeCategory = (category) => {
         setSelectedCategory(category)
-        const newQuery = updateQueryString('category', category)
+        const newQuery = updateQueryString(
+            'category',
+            category === 'All' ? null : category
+        )
         navigate(newQuery ? `/search?${newQuery}` : '/search')
     }
 
     const changeTime = (time) => {
-        setSelectedTime(time)
-        const newQuery = updateQueryString('time', TimeValues[time] ?? 'All')
+        const value = TimeValues[time] || Time.ALL.value
+        setSelectedTimeValue(value)
+        const newQuery = updateQueryString(
+            'time',
+            value === Time.ALL.value ? null : value
+        )
         navigate(newQuery ? `/search?${newQuery}` : '/search')
     }
 
     const changeDifficulty = (difficulty) => {
-        setSelectedDifficulty(difficulty)
+        const value = DifficultyValues[difficulty] || Difficulty.ALL.value
+        setSelectedDifficultyValue(value)
         const newQuery = updateQueryString(
             'difficulty',
-            DifficultyValues[difficulty] ?? 'All'
+            value === Difficulty.ALL.value ? null : value
         )
         navigate(newQuery ? `/search?${newQuery}` : '/search')
     }
@@ -87,8 +109,8 @@ const useSearchRecipes = () => {
         isLoading,
         error,
         selectedCategory,
-        selectedTime,
-        selectedDifficulty,
+        selectedTimeValue,
+        selectedDifficultyValue,
         changeCategory,
         changeTime,
         changeDifficulty
