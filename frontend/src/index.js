@@ -12,6 +12,7 @@ import CommentsPage from '@Pages/RecipePages/CommentsPage'
 import RatingPage from '@Pages/RecipePages/RatingPage'
 import SimilarPage from '@Pages/RecipePages/SimilarPage'
 import ContactPage from '@Pages/ContactPage'
+import NotFoundPage from '@Pages/NotFoundPage'
 
 import './index.css'
 
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="/recipe/:id/comments" element={<CommentsPage />} />
                 <Route path="/recipe/:id/rating" element={<RatingPage />} />
                 <Route path="/recipe/:id/similar" element={<SimilarPage />} />
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </Router>
     </React.StrictMode>
