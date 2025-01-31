@@ -7,7 +7,7 @@ A website to share and find new cooking recipes.
 Start the frontend:
 
 ```bash
-make start-frotnend
+make start-frontend
 ```
 
 Start the backend:
