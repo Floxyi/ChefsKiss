@@ -1,23 +1,15 @@
 import Header from '@Components/Header'
 import Footer from '@Components/Footer'
 
-const PageContainer = ({ children, useMinDimensions }) => {
+const PageContainer = ({ children }) => {
     return (
         <div className="flex flex-col max-h-screen min-h-screen">
             <Header />
-            {useMinDimensions ? (
-                <div className="flex-1 flex justify-center items-center my-12 mx-20">
-                    <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-[120px]">
-                        {children}
-                    </div>
+            <div className="flex-1 flex justify-center mb-12 mx-20">
+                <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-14 max-w-full min-w-full min-h-full">
+                    {children}
                 </div>
-            ) : (
-                <div className="flex-1 flex justify-center my-12 mx-20">
-                    <div className="bg-primary-light border-4 border-primary-dark rounded-[2.7rem] py-8 px-14 max-w-full min-w-full min-h-full">
-                        {children}
-                    </div>
-                </div>
-            )}
+            </div>
             <Footer />
         </div>
     )

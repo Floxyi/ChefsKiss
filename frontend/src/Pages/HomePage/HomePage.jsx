@@ -42,7 +42,7 @@ const HomePage = () => {
     }, [])
 
     return (
-        <PageContainer useMinDimensions={true}>
+        <PageContainer>
             <div className="flex flex-row items-center justify-center mb-12 text-center text-6xl text-primary-dark">
                 <div className="font-bold">Find Recipes,&nbsp;</div>
                 <div className="font-bold italic text-primary-light text-stroke-dark">
@@ -66,7 +66,7 @@ const HomePage = () => {
                     <ArrowRightIcon stroke={2} />
                 </div>
             </div>
-            <div className="flex flex-row flex-wrap gap-4 w-full justify-between">
+            <div className="grid grid-cols-4 gap-4 w-full">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">
                         Loading categories...

@@ -61,7 +61,7 @@ const SearchPage = () => {
                 />
             </div>
 
-            <div className="flex flex-row gap-16 w-full flex-wrap justify-center">
+            <div className="grid grid-cols-4 gap-16 w-full">
                 {isLoading ? (
                     <div className="text-center font-bold text-primary-dark">
                         Loading recipes...

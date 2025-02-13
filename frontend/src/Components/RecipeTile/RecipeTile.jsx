@@ -36,19 +36,12 @@ const RecipeTile = ({ recipe, small }) => {
             className="bg-primary-background border-[3px] border-primary-dark rounded-xl cursor-pointer select-none p-4 hover:scale-105 hover:shadow-xl"
             onClick={() => navigate(`/recipe/${id}`)}
         >
-            <div
-                className={
-                    small
-                        ? 'w-52 bg-primary-light rounded-lg'
-                        : 'w-72 bg-primary-light rounded-lg'
-                }
-            >
-                <img
-                    className={`w-full h-full rounded-lg`}
-                    src={burger}
-                    alt="logo"
-                />
-            </div>
+            <img
+                className={` w-full rounded-lg`}
+                src={burger}
+                alt="logo"
+            />
+            
             <div className="flex flex-col items-start max-w-72 mt-3">
                 <div className="flex flex-row items-center gap-2 max-w-72">
                     <div className="font-bold text-primary-dark text-xl">
@@ -60,7 +53,7 @@ const RecipeTile = ({ recipe, small }) => {
                         </div>
                     )}
                 </div>
-                <div className="flex flex-row items-center gap-2 text-primary-dark mt-2 max-w-72 overflow-x-scroll scrollbar-none">
+                <div className="flex flex-row items-center gap-2 text-primary-dark mt-2 max-w-72 overflow-x-scroll scrollbar-none flex-wrap">
                     <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-2 overflow-hidden whitespace-nowrap min-w-min">
                         <ClockIcon width={14} height={14} />
                         {TimeShortLabels[time]}

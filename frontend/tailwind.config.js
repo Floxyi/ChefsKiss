@@ -21,8 +21,8 @@ module.exports = {
         function ({ addUtilities }) {
             addUtilities({
                 '.text-stroke-dark': {
-                    '-webkit-text-stroke': '2.5px #D38B8B',
-                    'text-stroke': '2.5px #D38B8B'
+                    '-webkit-text-stroke': '1.5px #D38B8B',
+                    'text-stroke': '1.5px #D38B8B'
                 }
             })
         }
