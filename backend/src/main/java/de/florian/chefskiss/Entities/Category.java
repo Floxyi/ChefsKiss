@@ -1,4 +1,4 @@
-package de.florian.chefskiss.entities;
+package de.florian.chefskiss.Entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;

@@ -1,7 +1,7 @@
-package de.florian.chefskiss.controller;
+package de.florian.chefskiss.Controller;
 
 import de.florian.chefskiss.dto.RecipeDto;
-import de.florian.chefskiss.services.RecipeService;
+import de.florian.chefskiss.Services.RecipeService;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.*;
 

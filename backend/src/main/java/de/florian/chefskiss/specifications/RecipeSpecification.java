@@ -1,7 +1,7 @@
 package de.florian.chefskiss.specifications;
 
-import de.florian.chefskiss.entities.Category;
-import de.florian.chefskiss.entities.Recipe;
+import de.florian.chefskiss.Entities.Category;
+import de.florian.chefskiss.Entities.Recipe;
 import de.florian.chefskiss.enums.Difficulty;
 import de.florian.chefskiss.enums.Time;
 import jakarta.persistence.criteria.Join;

@@ -1,11 +1,11 @@
-package de.florian.chefskiss.services;
+package de.florian.chefskiss.Services;
 
 import de.florian.chefskiss.dto.RecipeDto;
-import de.florian.chefskiss.entities.Category;
-import de.florian.chefskiss.entities.Recipe;
+import de.florian.chefskiss.Entities.Category;
+import de.florian.chefskiss.Entities.Recipe;
 import de.florian.chefskiss.enums.Difficulty;
 import de.florian.chefskiss.enums.Time;
-import de.florian.chefskiss.repositories.RecipeRepository;
+import de.florian.chefskiss.Repositories.RecipeRepository;
 import de.florian.chefskiss.specifications.RecipeSpecification;
 import java.util.List;
 import java.util.Optional;

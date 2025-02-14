@@ -1,6 +1,6 @@
-package de.florian.chefskiss.repositories;
+package de.florian.chefskiss.Repositories;
 
-import de.florian.chefskiss.entities.Recipe;
+import de.florian.chefskiss.Entities.Recipe;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.stereotype.Repository;
