@@ -1,10 +1,10 @@
-package de.florian.chefskiss.services;
+package de.florian.chefskiss.Services;
 
-import de.florian.chefskiss.dto.CategoriesDto;
-import de.florian.chefskiss.dto.CategoryWithRecipeCountDto;
-import de.florian.chefskiss.dto.CategoryWithRecipesDto;
-import de.florian.chefskiss.entities.Category;
-import de.florian.chefskiss.repositories.CategoryRepository;
+import de.florian.chefskiss.Dto.CategoriesDto;
+import de.florian.chefskiss.Dto.CategoryWithRecipeCountDto;
+import de.florian.chefskiss.Dto.CategoryWithRecipesDto;
+import de.florian.chefskiss.Entities.Category;
+import de.florian.chefskiss.Repositories.CategoryRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.PageRequest;

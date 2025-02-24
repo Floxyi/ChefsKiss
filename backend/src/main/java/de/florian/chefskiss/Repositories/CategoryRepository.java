@@ -1,8 +1,8 @@
-package de.florian.chefskiss.repositories;
+package de.florian.chefskiss.Repositories;
 
-import de.florian.chefskiss.dto.CategoryWithRecipeCountDto;
-import de.florian.chefskiss.dto.CategoryWithRecipesDto;
-import de.florian.chefskiss.entities.Category;
+import de.florian.chefskiss.Dto.CategoryWithRecipeCountDto;
+import de.florian.chefskiss.Dto.CategoryWithRecipesDto;
+import de.florian.chefskiss.Entities.Category;
 import java.util.List;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;

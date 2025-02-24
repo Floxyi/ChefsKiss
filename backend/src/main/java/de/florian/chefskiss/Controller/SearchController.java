@@ -1,11 +1,11 @@
-package de.florian.chefskiss.controller;
+package de.florian.chefskiss.Controller;
 
-import de.florian.chefskiss.dto.CategoriesDto;
-import de.florian.chefskiss.dto.RecipeDto;
+import de.florian.chefskiss.Dto.CategoriesDto;
+import de.florian.chefskiss.Dto.RecipeDto;
 import de.florian.chefskiss.enums.Difficulty;
 import de.florian.chefskiss.enums.Time;
-import de.florian.chefskiss.services.CategoryService;
-import de.florian.chefskiss.services.RecipeService;
+import de.florian.chefskiss.Services.CategoryService;
+import de.florian.chefskiss.Services.RecipeService;
 import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,12 +1,13 @@
 package de.florian.chefskiss.Services;
 
-import de.florian.chefskiss.dto.RecipeDto;
+import de.florian.chefskiss.Dto.RecipeDto;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Entities.Recipe;
 import de.florian.chefskiss.enums.Difficulty;
 import de.florian.chefskiss.enums.Time;
 import de.florian.chefskiss.Repositories.RecipeRepository;
-import de.florian.chefskiss.specifications.RecipeSpecification;
+import de.florian.chefskiss.Specifications.RecipeSpecification;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
