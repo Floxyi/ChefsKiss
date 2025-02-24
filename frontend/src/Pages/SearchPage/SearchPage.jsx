@@ -30,35 +30,42 @@ const SearchPage = () => {
                 <Search />
             </div>
 
-            <div className="flex flex-row justify-center">
-                <Dropdown
-                    label="Category"
-                    options={[
-                        'All',
-                        ...categories.map((category) => category.name)
-                    ]}
-                    value={selectedCategory}
-                    defaultValue="All"
-                    onChange={changeCategory}
-                />
+            <div className="flex flex-row justify-center pb-8">
+                <div className="px-2">
+                    <Dropdown
+                        label="Category"
+                        options={[
+                            'All',
+                            ...categories.map((category) => category.name)
+                        ]}
+                        value={selectedCategory}
+                        defaultValue="All"
+                        onChange={changeCategory}
+                    />
+                </div>
 
-                <Dropdown
-                    label="Time"
-                    options={Object.values(Time).map((item) => item.label)}
-                    value={TimeLabels[selectedTimeValue]}
-                    defaultValue={Time.ALL.label}
-                    onChange={changeTime}
-                />
+                <div className="px-2">
+                    <Dropdown
+                        label="Time"
+                        options={Object.values(Time).map((item) => item.label)}
+                        value={TimeLabels[selectedTimeValue]}
+                        defaultValue={Time.ALL.label}
+                        onChange={changeTime}
+                    />
+                </div>
 
-                <Dropdown
-                    label="Difficulty"
-                    options={Object.values(Difficulty).map(
-                        (item) => item.label
-                    )}
-                    value={DifficultyLabels[selectedDifficultyValue]}
-                    defaultValue={Difficulty.ALL.label}
-                    onChange={changeDifficulty}
-                />
+                <div className="px-2">
+                    <Dropdown
+                        label="Difficulty"
+                        options={Object.values(Difficulty).map(
+                            (item) => item.label
+                        )}
+                        value={DifficultyLabels[selectedDifficultyValue]}
+                        defaultValue={Difficulty.ALL.label}
+                        onChange={changeDifficulty}
+                    />
+                </div>
+
             </div>
 
             <div className="grid grid-cols-4 gap-16 w-full">
