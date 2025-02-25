@@ -1,18 +1,20 @@
 package de.florian.chefskiss.Services;
 
-import de.florian.chefskiss.dto.RecipeDto;
+import de.florian.chefskiss.Dto.RecipeDto;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Entities.Recipe;
-import de.florian.chefskiss.enums.Difficulty;
-import de.florian.chefskiss.enums.Time;
+import de.florian.chefskiss.Enums.Difficulty;
+import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Repositories.RecipeRepository;
-import de.florian.chefskiss.specifications.RecipeSpecification;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import de.florian.chefskiss.Specifications.RecipeSpecification;
+
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class RecipeService {
@@ -21,6 +23,10 @@ public class RecipeService {
 
     public RecipeService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
+    }
+
+    public Recipe saveRecipe(Recipe recipe) {
+        return recipeRepository.save(recipe);
     }
 
     public List<RecipeDto> findAllRecipes() {

@@ -69,7 +69,7 @@ const HomePage = () => {
             <div className="grid grid-cols-4 gap-4 w-full">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">
-                        Loading categories...
+                        Loading recipes...
                     </div>
                 ) : (
                     recipes.map((recipe) => (
@@ -90,7 +90,7 @@ const HomePage = () => {
                     <ArrowRightIcon stroke={2} />
                 </div>
             </div>
-            <div className="flex flex-row gap-6 w-full justify-between">
+            <div className="grid grid-cols-6 gap-4 w-full">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">
                         Loading categories...

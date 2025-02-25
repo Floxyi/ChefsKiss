@@ -30,7 +30,7 @@ const CategoryPage = () => {
         <PageContainer>
             <Title title="Categories" margin />
 
-            <div className="grid grid-cols-6 gap-16 w-full">
+            <div className="grid grid-cols-6 gap-12 w-full">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">
                         Loading categories...

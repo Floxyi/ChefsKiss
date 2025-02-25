@@ -1,4 +1,4 @@
-package de.florian.chefskiss.dto;
+package de.florian.chefskiss.Dto;
 
 import java.util.Set;
 

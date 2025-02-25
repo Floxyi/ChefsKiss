@@ -1,4 +1,4 @@
-package de.florian.chefskiss.enums;
+package de.florian.chefskiss.Enums;
 
 public enum Time {
     SHORT,

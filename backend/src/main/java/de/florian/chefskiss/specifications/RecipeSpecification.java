@@ -1,9 +1,9 @@
-package de.florian.chefskiss.specifications;
+package de.florian.chefskiss.Specifications;
 
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Entities.Recipe;
-import de.florian.chefskiss.enums.Difficulty;
-import de.florian.chefskiss.enums.Time;
+import de.florian.chefskiss.Enums.Difficulty;
+import de.florian.chefskiss.Enums.Time;
 import jakarta.persistence.criteria.Join;
 import org.springframework.data.jpa.domain.Specification;
 

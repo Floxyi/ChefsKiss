@@ -1,8 +1,9 @@
 package de.florian.chefskiss.Entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import de.florian.chefskiss.enums.Difficulty;
-import de.florian.chefskiss.enums.Time;
+
+import de.florian.chefskiss.Enums.Difficulty;
+import de.florian.chefskiss.Enums.Time;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -16,13 +17,12 @@ public class Recipe {
     private Integer id;
 
     @ManyToMany
-    @JoinTable(
-        name = "recipe_category",
-        joinColumns = @JoinColumn(name = "recipe_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
+    @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     @JsonManagedReference
     private Set<Category> categories = new HashSet<>();
+
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Image> images = new HashSet<>();
 
     @Column(nullable = false)
     private String title;
@@ -35,7 +35,8 @@ public class Recipe {
     @Column(nullable = false)
     private Time time;
 
-    public Recipe() {}
+    public Recipe() {
+    }
 
     public Recipe(String title, Difficulty difficulty, Time time, Set<Category> categories) {
         this.title = title;
@@ -84,9 +85,16 @@ public class Recipe {
         this.categories = categories != null ? categories : new HashSet<>();
     }
 
-    public void addCategory(Category category) {
-        if (category != null) {
-            categories.add(category);
-        }
+    public void addImage(Image image) {
+        images.add(image);
+        image.setRecipe(this);
+    }
+
+    public Set<Image> getImages() {
+        return images;
+    }
+
+    public void setImages(Set<Image> images) {
+        this.images = images;
     }
 }
