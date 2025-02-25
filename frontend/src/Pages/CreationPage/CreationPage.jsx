@@ -7,15 +7,16 @@ import FileUpload from '@Components/FileUpload';
 import ArrowRightIcon from '@Icons/ArrowRightIcon';
 import axios from 'axios';
 import useFileUpload from './Hooks/useFileUpload';
+import { useNavigate } from 'react-router-dom'
 
 const CreationPage = () => {
     const [name, setName] = useState('');
     const [time, setTime] = useState('');
     const [cookingInstructions, setCookingInstruction] = useState('');
     const [isRecipeCreated, setIsRecipeCreated] = useState(false);
+    const navigate = useNavigate()
 
     const {
-        selectedFiles,
         previews,
         uploadStatus,
         onFileChange,
@@ -35,6 +36,7 @@ const CreationPage = () => {
             const response = await axios.post('/api/recipe/create', recipe);
             onFileUpload(response.data.id);
             setIsRecipeCreated(true);
+            navigate(`/recipe/${response.data.id}`)
         } catch (error) {
             console.error('Error creating recipe:', error);
         }
