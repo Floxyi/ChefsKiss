@@ -1,8 +1,9 @@
 package de.florian.chefskiss.Entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import de.florian.chefskiss.enums.Difficulty;
-import de.florian.chefskiss.enums.Time;
+
+import de.florian.chefskiss.Enums.Difficulty;
+import de.florian.chefskiss.Enums.Time;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;

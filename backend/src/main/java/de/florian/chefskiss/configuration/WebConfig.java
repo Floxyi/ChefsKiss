@@ -1,4 +1,4 @@
-package de.florian.chefskiss.configuration;
+package de.florian.chefskiss.Configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;

@@ -2,8 +2,8 @@ package de.florian.chefskiss.Controller;
 
 import de.florian.chefskiss.Dto.CategoriesDto;
 import de.florian.chefskiss.Dto.RecipeDto;
-import de.florian.chefskiss.enums.Difficulty;
-import de.florian.chefskiss.enums.Time;
+import de.florian.chefskiss.Enums.Difficulty;
+import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Services.CategoryService;
 import de.florian.chefskiss.Services.RecipeService;
 import java.util.List;

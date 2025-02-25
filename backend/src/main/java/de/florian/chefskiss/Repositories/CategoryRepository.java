@@ -15,7 +15,7 @@ public interface CategoryRepository extends JpaRepository<Category, Integer> {
     List<CategoryWithRecipesDto> findCategoriesWithRecipes();
 
     @Query(
-        "SELECT new de.florian.chefskiss.dto.CategoryWithRecipeCountDto(c.id, c.name, COUNT(r)) " +
+        "SELECT new de.florian.chefskiss.Dto.CategoryWithRecipeCountDto(c.id, c.name, COUNT(r)) " +
         "FROM Category c LEFT JOIN c.recipes r " +
         "GROUP BY c.id, c.name " +
         "ORDER BY COUNT(r) DESC"

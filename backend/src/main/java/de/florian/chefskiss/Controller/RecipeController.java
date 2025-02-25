@@ -3,9 +3,9 @@ package de.florian.chefskiss.Controller;
 import de.florian.chefskiss.Dto.NewRecipeRequest;
 import de.florian.chefskiss.Dto.RecipeDto;
 import de.florian.chefskiss.Entities.Recipe;
+import de.florian.chefskiss.Enums.Difficulty;
+import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Services.RecipeService;
-import de.florian.chefskiss.enums.Difficulty;
-import de.florian.chefskiss.enums.Time;
 
 import org.springframework.web.bind.annotation.*;
 
