@@ -7,14 +7,12 @@ import de.florian.chefskiss.Enums.Difficulty;
 import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Repositories.RecipeRepository;
 import de.florian.chefskiss.Specifications.RecipeSpecification;
-
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.jpa.domain.Specification;
-import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Service;
 
 @Service
 public class RecipeService {
