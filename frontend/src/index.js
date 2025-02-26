@@ -7,10 +7,8 @@ import CategoryPage from '@Pages/CategoriesPage'
 import CreationPage from '@Pages/CreationPage'
 import ImprintPage from '@Pages/ImprintPage'
 import SearchPage from '@Pages/SearchPage'
-import InstructionsPage from '@Pages/RecipePages/InstructionsPage'
-import CommentsPage from '@Pages/RecipePages/CommentsPage'
-import RatingPage from '@Pages/RecipePages/RatingPage'
-import SimilarPage from '@Pages/RecipePages/SimilarPage'
+import InstructionsPage from '@Pages/InstructionsPage'
+import SimilarPage from '@Pages/SimilarPage'
 import ContactPage from '@Pages/ContactPage'
 import NotFoundPage from '@Pages/NotFoundPage'
 
@@ -27,8 +25,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 <Route path="/contact" element={<ContactPage />} />
                 <Route path="/search" element={<SearchPage />} />
                 <Route path="/recipe/:id" element={<InstructionsPage />} />
-                <Route path="/recipe/:id/comments" element={<CommentsPage />} />
-                <Route path="/recipe/:id/rating" element={<RatingPage />} />
                 <Route path="/recipe/:id/similar" element={<SimilarPage />} />
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
