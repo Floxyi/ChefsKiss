@@ -17,7 +17,7 @@ const HomePage = () => {
 
     useEffect(() => {
         axios
-            .get(`/api/homepage/categories?amount=6`)
+            .get(`/api/homepage/categories?amount=5`)
             .then((response) => {
                 setCategories(response.data)
                 setIsLoading(false)
@@ -90,7 +90,7 @@ const HomePage = () => {
                     <ArrowRightIcon stroke={2} />
                 </div>
             </div>
-            <div className="grid grid-cols-6 gap-4 w-full">
+            <div className="grid grid-cols-5 gap-4 w-full">
                 {isLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">
                         Loading categories...

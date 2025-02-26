@@ -26,7 +26,7 @@ INSERT INTO
     recipe (id, title, difficulty, time)
 VALUES
     (1, 'Chocolate Cake', 'MEDIUM', 'LONG'),
-    (2, 'Spaghetti Bolognese', 'EASY', 'MEDIUM'),
+    (2, 'Spaghetti', 'EASY', 'MEDIUM'),
     (3, 'Caesar Salad', 'EASY', 'SHORT'),
     (4, 'Minestrone Soup', 'MEDIUM', 'MEDIUM'),
     (5, 'Iced Tea', 'EASY', 'SHORT'),
@@ -55,7 +55,7 @@ VALUES
     (28, 'Apple Crumble', 'MEDIUM', 'MEDIUM'),
     (29, 'Roast Turkey', 'HARD', 'LONG'),
     (30, 'Seafood Paella', 'HARD', 'LONG'),
-    (31, 'Chocolate Chip Cookies', 'EASY', 'SHORT'),
+    (31, 'Chocolate Cookies', 'EASY', 'SHORT'),
     (32, 'Vegetable Stir-Fry', 'EASY', 'MEDIUM'),
     (33, 'Chicken Salad', 'MEDIUM', 'MEDIUM'),
     (34, 'Beef Tacos', 'MEDIUM', 'SHORT'),
@@ -67,13 +67,12 @@ VALUES
     (40, 'Pork Schnitzel', 'HARD', 'LONG'),
     (41, 'Quiche Lorraine', 'HARD', 'LONG'),
     (42, 'Chili Con Carne', 'MEDIUM', 'MEDIUM'),
-    (43, 'Pulled Pork Sandwiches', 'HARD', 'LONG'),
-    (44, 'Crispy Tofu Stir-Fry', 'EASY', 'MEDIUM'),
+    (43, 'Pulled Pork', 'HARD', 'LONG'),
+    (44, 'Crispy Tofu', 'EASY', 'MEDIUM'),
     (45, 'Mushroom Risotto', 'HARD', 'LONG'),
     (46, 'Frittata', 'MEDIUM', 'MEDIUM'),
     (47, 'Omelette', 'EASY', 'SHORT'),
-    (48, 'Grilled Cheese Sandwich', 'EASY', 'SHORT'),
-    (49, 'Roasted Vegetables', 'EASY', 'MEDIUM');
+    (48, 'Cheese Sandwich', 'EASY', 'SHORT');
 
 -- Insert recipe_category data
 INSERT INTO
@@ -131,5 +130,4 @@ VALUES
     (45, 10),
     (46, 5),
     (47, 9),
-    (48, 8),
-    (49, 7);
+    (48, 8);

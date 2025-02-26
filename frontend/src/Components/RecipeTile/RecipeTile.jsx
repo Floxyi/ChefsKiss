@@ -49,12 +49,12 @@ const RecipeTile = ({ recipe, small }) => {
                         </div>
                     )}
                 </div>
-                <div className="flex flex-row items-center gap-2 text-primary-dark mt-2 max-w-72 overflow-x-scroll scrollbar-none flex-wrap">
-                    <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-2 overflow-hidden whitespace-nowrap min-w-min">
+                <div className="flex flex-row items-center gap-2 text-sm text-primary-dark mt-2 max-w-72 overflow-x-scroll scrollbar-none flex-wrap">
+                    <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-1 overflow-hidden whitespace-nowrap min-w-min">
                         <ClockIcon width={14} height={14} />
                         {TimeShortLabels[time]}
                     </div>
-                    <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-2 overflow-hidden min-w-min">
+                    <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-1 overflow-hidden min-w-min">
                         <SkillLevelIcon difficulty={difficulty} />
                         {DifficultyLabels[difficulty]}
                     </div>
