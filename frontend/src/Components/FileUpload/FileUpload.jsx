@@ -15,7 +15,7 @@ const FileUpload = ({ onFileChange, previews }) => {
             />
             <label
                 htmlFor="fileInput"
-                className="w-[120px] h-[90px] border-[5px] border-dashed rounded-xl border-primary-dark flex justify-center items-center relative mt-2 cursor-pointer"
+                className="w-[120px] h-[90px] border-[5px] border-dashed rounded-xl border-primary-dark flex justify-center items-center relative mt-2 mr-3 cursor-pointer"
             >
                 <div className="self-center text-primary-dark">
                     <CameraIcon />
@@ -24,11 +24,11 @@ const FileUpload = ({ onFileChange, previews }) => {
                     <PlusIcon />
                 </div>
             </label>
-            <div className="flex flex-wrap mt-2 gap-2">
+            <div className="flex flex-wrap mt-2 gap-4">
                 {previews.length > 0 &&
                     previews.map((preview, index) => (
                         <img
-                            className="h-[90px]"
+                            className="h-[90px] border-4 border-primary-dark rounded-lg"
                             key={index}
                             src={preview}
                             alt={`Preview ${index}`}

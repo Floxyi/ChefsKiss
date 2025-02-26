@@ -52,7 +52,7 @@ const Dropdown = ({ label, options, value, defaultValue, onChange }) => {
                 </div>
             </button>
             {isOpen && (
-                <div className="absolute top-12 py-1 w-max min-w-full bg-primary-light border-[3px] border-primary-dark rounded-[24px] shadow-lg">
+                <div className="z-10 absolute top-12 py-1 w-max min-w-full bg-primary-light border-[3px] border-primary-dark rounded-[24px] shadow-lg">
                     {options.map((option) => (
                         <div
                             key={option}

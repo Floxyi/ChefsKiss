@@ -17,7 +17,6 @@ module.exports = {
         }
     },
     plugins: [
-        require('tailwindcss-no-scrollbar'),
         function ({ addUtilities }) {
             addUtilities({
                 '.text-stroke-dark': {

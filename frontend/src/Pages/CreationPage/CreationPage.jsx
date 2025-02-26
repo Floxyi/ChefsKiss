@@ -55,7 +55,7 @@ const CreationPage = () => {
                                 Name:
                             </p>
                             <input
-                                className="mt-2 w-full font-bold text-xl text-primary-dark bg-transparent border-[3px] border-primary-dark pl-2 rounded-full placeholder:font-normal placeholder:text-primary-normal focus:outline-none"
+                                className="mt-2 w-full font-bold text-xl text-primary-dark bg-transparent border-[3px] border-primary-dark pl-4 rounded-full placeholder:font-normal placeholder:text-primary-normal focus:outline-none"
                                 type="text"
                                 value={name}
                                 placeholder="Pumpkin Soup"

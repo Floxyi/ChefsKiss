@@ -22,5 +22,13 @@
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #efdada;
+    background: #d38b8b;
+    border-radius: 10px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+}
+
+.custom-scrollbar {
+    scrollbar-width: 12px;
+    scrollbar-color: #d38b8b transparent;
 }

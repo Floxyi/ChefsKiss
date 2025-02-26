@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from 'react'
 import axios from 'axios'
 
-import PlusIcon from '@Icons/PlusIcon'
+import ThinPlusIcon from '@Icons/ThinPlusIcon'
 
 const AddCategoryDropdown = () => {
     const [isOpen, setIsOpen] = useState(false)
@@ -57,7 +57,7 @@ const AddCategoryDropdown = () => {
                     className="inline-flex items-center px-2 py-1 border-[3px] border-primary-dark rounded-full font-bold text-center text-primary-dark select-none my-auto focus:outline-none"
                 >
                     <div>Add category</div>
-                    <PlusIcon />
+                    <ThinPlusIcon />
                 </button>
 
                 {isOpen && (
