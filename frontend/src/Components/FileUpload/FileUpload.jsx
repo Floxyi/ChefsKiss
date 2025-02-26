@@ -1,6 +1,6 @@
-import React from 'react';
-import CameraIcon from '@Icons/CameraIcon';
-import PlusIcon from '@Icons/PlusIcon';
+import React from 'react'
+import CameraIcon from '@Icons/CameraIcon'
+import PlusIcon from '@Icons/PlusIcon'
 
 const FileUpload = ({ onFileChange, previews }) => {
     return (
@@ -13,7 +13,10 @@ const FileUpload = ({ onFileChange, previews }) => {
                 style={{ display: 'none' }}
                 id="fileInput"
             />
-            <label htmlFor="fileInput" className="w-[120px] h-[90px] border-[5px] border-dashed rounded-xl border-primary-dark flex justify-center items-center relative mt-2 cursor-pointer">
+            <label
+                htmlFor="fileInput"
+                className="w-[120px] h-[90px] border-[5px] border-dashed rounded-xl border-primary-dark flex justify-center items-center relative mt-2 cursor-pointer"
+            >
                 <div className="self-center text-primary-dark">
                     <CameraIcon />
                 </div>
@@ -22,17 +25,18 @@ const FileUpload = ({ onFileChange, previews }) => {
                 </div>
             </label>
             <div className="flex flex-wrap mt-2 gap-2">
-                {previews.length > 0 && previews.map((preview, index) => (
-                    <img
-                    className="h-[90px]"
-                        key={index}
-                        src={preview}
-                        alt={`Image Preview ${index}`}
-                    />
-                ))}
+                {previews.length > 0 &&
+                    previews.map((preview, index) => (
+                        <img
+                            className="h-[90px]"
+                            key={index}
+                            src={preview}
+                            alt={`Preview ${index}`}
+                        />
+                    ))}
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default FileUpload;
+export default FileUpload

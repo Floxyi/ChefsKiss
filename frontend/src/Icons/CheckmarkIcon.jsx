@@ -14,6 +14,6 @@ const CheckmarkIcon = ({ size = 24, strokeWidth = 2 }) => (
             strokeLinejoin="round"
         />
     </svg>
-);
+)
 
-export default CheckmarkIcon;
+export default CheckmarkIcon

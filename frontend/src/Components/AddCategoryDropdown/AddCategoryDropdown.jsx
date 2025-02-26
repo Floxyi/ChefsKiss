@@ -40,7 +40,7 @@ const AddCategoryDropdown = () => {
 
     const toggleCategory = (categoryName) => {
         const updatedCategories = selectedCategories.includes(categoryName)
-            ? selectedCategories.filter(cat => cat !== categoryName)
+            ? selectedCategories.filter((cat) => cat !== categoryName)
             : [...selectedCategories, categoryName]
 
         setSelectedCategories(updatedCategories)
@@ -56,9 +56,7 @@ const AddCategoryDropdown = () => {
                     onClick={() => setIsOpen(!isOpen)}
                     className="inline-flex items-center px-2 py-1 border-[3px] border-primary-dark rounded-full font-bold text-center text-primary-dark select-none my-auto focus:outline-none"
                 >
-                    <div>
-                        Add category
-                    </div>
+                    <div>Add category</div>
                     <PlusIcon />
                 </button>
 
@@ -67,10 +65,11 @@ const AddCategoryDropdown = () => {
                         {categories.map((category) => (
                             <div
                                 key={category.name}
-                                className={`px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-normal ${selectedCategories.includes(category.name)
-                                    ? 'text-primary-dark font-bold text-lg'
-                                    : 'text-primary-dark'
-                                    }`}
+                                className={`px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-normal ${
+                                    selectedCategories.includes(category.name)
+                                        ? 'text-primary-dark font-bold text-lg'
+                                        : 'text-primary-dark'
+                                }`}
                                 onClick={() => {
                                     toggleCategory(category.name)
                                 }}
@@ -85,7 +84,9 @@ const AddCategoryDropdown = () => {
                 {selectedCategories.map((category) => (
                     <div
                         key={category}
-                        className={"py-1 px-3 text-primary-dark border-[3px] border-primary-dark rounded-full cursor-pointer"}
+                        className={
+                            'py-1 px-3 text-primary-dark border-[3px] border-primary-dark rounded-full cursor-pointer'
+                        }
                         onClick={() => {
                             toggleCategory(category)
                         }}
@@ -94,7 +95,6 @@ const AddCategoryDropdown = () => {
                     </div>
                 ))}
             </div>
-
         </div>
     )
 }

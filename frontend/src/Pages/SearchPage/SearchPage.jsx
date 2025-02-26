@@ -65,7 +65,6 @@ const SearchPage = () => {
                         onChange={changeDifficulty}
                     />
                 </div>
-
             </div>
 
             <div className="grid grid-cols-4 gap-16 w-full">

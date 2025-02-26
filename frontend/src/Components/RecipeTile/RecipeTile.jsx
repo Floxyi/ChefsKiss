@@ -36,12 +36,8 @@ const RecipeTile = ({ recipe, small }) => {
             className="bg-primary-background border-[3px] border-primary-dark rounded-xl cursor-pointer select-none p-4 hover:scale-105 hover:shadow-xl"
             onClick={() => navigate(`/recipe/${id}`)}
         >
-            <img
-                className={` w-full rounded-lg`}
-                src={burger}
-                alt="logo"
-            />
-            
+            <img className={` w-full rounded-lg`} src={burger} alt="logo" />
+
             <div className="flex flex-col items-start max-w-72 mt-3">
                 <div className="flex flex-row items-center gap-2 max-w-72">
                     <div className="font-bold text-primary-dark text-xl">

@@ -24,10 +24,7 @@ const Dropdown = ({ label, options, value, defaultValue, onChange }) => {
     }, [dropdownRef])
 
     return (
-        <div
-            ref={dropdownRef}
-            className="relative inline-block text-left"
-        >
+        <div ref={dropdownRef} className="relative inline-block text-left">
             <button
                 onClick={() => setIsOpen(!isOpen)}
                 className="inline-flex items-center px-2 py-1 border-[3px] border-primary-dark rounded-full font-bold text-center text-primary-dark select-none my-auto focus:outline-none"
@@ -47,8 +44,9 @@ const Dropdown = ({ label, options, value, defaultValue, onChange }) => {
                     </div>
                 )}
                 <div
-                    className={`transform transition-transform duration-900 ${isOpen ? 'rotate-180' : ''
-                        }`}
+                    className={`transform transition-transform duration-900 ${
+                        isOpen ? 'rotate-180' : ''
+                    }`}
                 >
                     <ArrowDownIcon />
                 </div>
@@ -58,10 +56,11 @@ const Dropdown = ({ label, options, value, defaultValue, onChange }) => {
                     {options.map((option) => (
                         <div
                             key={option}
-                            className={`px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-normal ${value === option
+                            className={`px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-normal ${
+                                value === option
                                     ? 'text-primary-dark font-bold text-lg'
                                     : 'text-primary-dark'
-                                }`}
+                            }`}
                             onClick={() => {
                                 onChange(option)
                                 setIsOpen(false)

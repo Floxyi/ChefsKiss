@@ -29,7 +29,7 @@ const Header = () => {
     }
 
     return (
-        <div className='mr-[calc(-1*(100vw-100%))] pb-36'>
+        <div className="mr-[calc(-1*(100vw-100%))] pb-36">
             <div className="fixed w-full h-12 flex justify-center z-[50]">
                 <div className="w-[93%] h-full bg-background" />
             </div>
@@ -41,7 +41,11 @@ const Header = () => {
                     >
                         Chef’s Kiss
                     </div>
-                    <img className="w-20 flex justify-self-center" src={logo} alt="logo" />
+                    <img
+                        className="w-20 flex justify-self-center"
+                        src={logo}
+                        alt="logo"
+                    />
                     <div className="col-span-2 flex justify-between gap-2 items-center justify-self-end">
                         {buildButton('/create', 'Create', <EditIcon />)}
                         {buildButton(
