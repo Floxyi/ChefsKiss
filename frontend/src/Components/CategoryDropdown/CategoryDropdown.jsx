@@ -3,7 +3,7 @@ import axios from 'axios'
 
 import ThinPlusIcon from '@Icons/ThinPlusIcon'
 
-const AddCategoryDropdown = () => {
+const CategoryDropdown = () => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef(null)
     const [categories, setCategories] = useState([])
@@ -99,4 +99,4 @@ const AddCategoryDropdown = () => {
     )
 }
 
-export default AddCategoryDropdown
+export default CategoryDropdown

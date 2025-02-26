@@ -2,7 +2,7 @@ import Dropdown from '@Components/Dropdown'
 import PageContainer from '@Components/PageContainer'
 import Title from '@Components/Title'
 import { useState } from 'react'
-import AddCategoryDropdown from '@Components/AddCategoryDropdown'
+import CategoryDropdown from '@Components/CategoryDropdown'
 import FileUpload from '@Components/FileUpload'
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
 import axios from 'axios'
@@ -71,7 +71,7 @@ const CreationPage = () => {
                                 onChange={(time) => setTime(time)}
                             />
                             <div className="col-span-2">
-                                <AddCategoryDropdown />
+                                <CategoryDropdown />
                             </div>
                         </div>
                         <div className="mt-4">

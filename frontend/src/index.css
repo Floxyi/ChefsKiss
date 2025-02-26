@@ -27,8 +27,3 @@
     border: 3px solid transparent;
     background-clip: content-box;
 }
-
-.custom-scrollbar {
-    scrollbar-width: 12px;
-    scrollbar-color: #d38b8b transparent;
-}
