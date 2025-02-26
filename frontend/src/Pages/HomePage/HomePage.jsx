@@ -73,7 +73,7 @@ const HomePage = () => {
                     </div>
                 ) : (
                     recipes.map((recipe) => (
-                        <RecipeTile recipe={recipe} small />
+                        <RecipeTile key={recipe.id} recipe={recipe} small />
                     ))
                 )}
             </div>
