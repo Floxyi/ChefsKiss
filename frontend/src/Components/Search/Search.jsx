@@ -28,10 +28,7 @@ const Search = () => {
                 onKeyDown={handleKeyDown}
                 placeholder="Search..."
             />
-            <div
-                className="text-primary-dark cursor-pointer p-1"
-                onClick={() => navigate('/search')}
-            >
+            <div className="text-primary-dark cursor-pointer p-1" onClick={() => navigate('/search')}>
                 <SearchIcon />
             </div>
         </div>

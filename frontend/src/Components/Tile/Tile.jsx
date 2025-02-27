@@ -8,9 +8,7 @@ const Tile = ({ title, subtitle, icon, onClick }) => {
                 <div className="text-xl font-extrabold">{title}</div>
                 <div className="text-sm">{subtitle}</div>
             </div>
-            <div className="absolute bottom-0 right-0 mr-4 mb-2 font-bold text-2xl text-primary-dark">
-                {icon}
-            </div>
+            <div className="absolute bottom-0 right-0 mr-4 mb-2 font-bold text-2xl text-primary-dark">{icon}</div>
         </div>
     )
 }

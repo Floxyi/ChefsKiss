@@ -15,7 +15,7 @@ const FileUpload = ({ onFileChange, previews }) => {
             />
             <label
                 htmlFor="fileInput"
-                className="w-[120px] h-[90px] border-[5px] border-dashed rounded-xl border-primary-dark flex justify-center items-center relative mt-2 mr-3 cursor-pointer"
+                className="w-[120px] h-[90px] border-[4px] border-dashed rounded-xl border-primary-dark flex justify-center items-center relative mt-2 mr-3 cursor-pointer"
             >
                 <div className="self-center text-primary-dark">
                     <CameraIcon />

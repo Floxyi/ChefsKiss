@@ -6,6 +6,7 @@ import de.florian.chefskiss.Dto.CategoryWithRecipesDto;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Repositories.CategoryRepository;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -34,6 +35,13 @@ public class CategoryService {
 
     public List<CategoriesDto> findAllCategories() {
         List<Category> recipes = categoryRepository.findAll();
-        return recipes.stream().map(category -> new CategoriesDto(category.getName())).collect(Collectors.toList());
+        return recipes
+            .stream()
+            .map(category -> new CategoriesDto(category.getName(), category.getId()))
+            .collect(Collectors.toList());
+    }
+
+    public Set<Category> findCategoriesByIds(Set<Integer> categoryIds) {
+        return categoryRepository.findAllById(categoryIds).stream().collect(Collectors.toSet());
     }
 }

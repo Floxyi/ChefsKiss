@@ -21,10 +21,7 @@ const Footer = () => {
 
     const buildIcon = (icon, link) => {
         return (
-            <div
-                className="cursor-pointer shrink-0 p-2"
-                onClick={() => window.open(link, '_blank')}
-            >
+            <div className="cursor-pointer shrink-0 p-2" onClick={() => window.open(link, '_blank')}>
                 {icon}
             </div>
         )
@@ -34,12 +31,9 @@ const Footer = () => {
         <div className="min-w-full">
             <div className="max-h-14 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5 mb-5">
                 <div className="w-[340px] flex flex-row justify-start gap-4 items-center px-4 py-1 text-primary-dark">
-                    {buildLink('/imprint', 'Imprint & Privacy Policy')}⦁
-                    {buildLink('/contact', 'Contact')}
+                    {buildLink('/imprint', 'Imprint & Privacy Policy')}⦁{buildLink('/contact', 'Contact')}
                 </div>
-                <div className="font-bold select-none text-base text-primary-dark">
-                    © Chef’s Kiss
-                </div>
+                <div className="font-bold select-none text-base text-primary-dark">© Chef’s Kiss</div>
                 <div className="w-[340px] flex flex-row justify-end gap-4 items-center text-primary-dark px-4 py-1">
                     {buildIcon(<YouTubeIcon />, 'https://www.youtube.com')}
                     {buildIcon(<TikTokIcon />, 'https://www.tiktok.com')}

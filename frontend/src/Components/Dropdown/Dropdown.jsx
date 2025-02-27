@@ -9,10 +9,7 @@ const Dropdown = ({ label, options, value, defaultValue, onChange }) => {
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
-            ) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false)
             }
         }
@@ -43,11 +40,7 @@ const Dropdown = ({ label, options, value, defaultValue, onChange }) => {
                         <XIcon width={20} height={20} />
                     </div>
                 )}
-                <div
-                    className={`transform transition-transform duration-900 ${
-                        isOpen ? 'rotate-180' : ''
-                    }`}
-                >
+                <div className={`transform transition-transform duration-900 ${isOpen ? 'rotate-180' : ''}`}>
                     <ArrowDownIcon />
                 </div>
             </button>
@@ -57,9 +50,7 @@ const Dropdown = ({ label, options, value, defaultValue, onChange }) => {
                         <div
                             key={option}
                             className={`px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-normal ${
-                                value === option
-                                    ? 'text-primary-dark font-bold text-lg'
-                                    : 'text-primary-dark'
+                                value === option ? 'text-primary-dark font-bold text-lg' : 'text-primary-dark'
                             }`}
                             onClick={() => {
                                 onChange(option)

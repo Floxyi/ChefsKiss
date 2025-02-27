@@ -5,14 +5,11 @@ import privacySections from './imprintData.js'
 
 const ImprintPage = () => (
     <PageContainer>
-        <h1 className="text-3xl text-primary-dark font-semibold mb-4 mt-6 select-none">
-            Imprint
-        </h1>
+        <h1 className="text-3xl text-primary-dark font-semibold mb-4 mt-6 select-none">Imprint</h1>
         <ImprintText>
             <strong>Company Name:</strong> ExampleTech Solutions GmbH
             <br />
-            <strong>Address:</strong> Innovation Street 42, 10115 Berlin,
-            Germany
+            <strong>Address:</strong> Innovation Street 42, 10115 Berlin, Germany
             <br />
             <strong>Managing Director:</strong> John Doe
             <br />
@@ -23,14 +20,10 @@ const ImprintPage = () => (
 
         <div className="min-h-6" />
 
-        <h1 className="text-3xl text-primary-dark font-semibold select-none mb-4 mt-6">
-            Privacy Policy
-        </h1>
+        <h1 className="text-3xl text-primary-dark font-semibold select-none mb-4 mt-6">Privacy Policy</h1>
         {privacySections.map((section, index) => (
             <article key={index}>
-                <h2 className="text-xl text-primary-dark font-bold select-none mt-3">
-                    {section.title}
-                </h2>
+                <h2 className="text-xl text-primary-dark font-bold select-none mt-3">{section.title}</h2>
                 <ImprintText>{section.content}</ImprintText>
             </article>
         ))}

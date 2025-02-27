@@ -3,18 +3,14 @@ import axios from 'axios'
 
 import ThinPlusIcon from '@Icons/ThinPlusIcon'
 
-const CategoryDropdown = () => {
+const CategoryDropdown = ({ selectedCategories, setSelectedCategories }) => {
     const [isOpen, setIsOpen] = useState(false)
     const dropdownRef = useRef(null)
     const [categories, setCategories] = useState([])
-    const [selectedCategories, setSelectedCategories] = useState([])
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (
-                dropdownRef.current &&
-                !dropdownRef.current.contains(event.target)
-            ) {
+            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
                 setIsOpen(false)
             }
         }
@@ -48,10 +44,7 @@ const CategoryDropdown = () => {
 
     return (
         <div className="flex flex-row gap-2">
-            <div
-                ref={dropdownRef}
-                className="relative inline-block text-left min-w-fit"
-            >
+            <div ref={dropdownRef} className="relative inline-block text-left min-w-fit">
                 <button
                     onClick={() => setIsOpen(!isOpen)}
                     className="inline-flex items-center px-2 py-1 border-[3px] border-primary-dark rounded-full font-bold text-center text-primary-dark select-none my-auto focus:outline-none"
@@ -64,14 +57,14 @@ const CategoryDropdown = () => {
                     <div className="absolute top-12 py-1 max-h-96 overflow-y-auto custom-scrollbar w-max min-w-full bg-primary-light border-[3px] border-primary-dark rounded-[24px] shadow-lg">
                         {categories.map((category) => (
                             <div
-                                key={category.name}
+                                key={category.id}
                                 className={`px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-normal ${
-                                    selectedCategories.includes(category.name)
+                                    selectedCategories.includes(category)
                                         ? 'text-primary-dark font-bold text-lg'
                                         : 'text-primary-dark'
                                 }`}
                                 onClick={() => {
-                                    toggleCategory(category.name)
+                                    toggleCategory(category)
                                 }}
                             >
                                 {category.name}
@@ -83,15 +76,15 @@ const CategoryDropdown = () => {
             <div className="flex flex-row flex-wrap gap-2 select-none">
                 {selectedCategories.map((category) => (
                     <div
-                        key={category}
+                        key={category.id}
                         className={
-                            'py-1 px-3 text-primary-dark border-[3px] border-primary-dark rounded-full cursor-pointer'
+                            'py-1 px-3 text-primary-dark border-[2px] border-primary-dark rounded-full cursor-pointer'
                         }
                         onClick={() => {
                             toggleCategory(category)
                         }}
                     >
-                        {category}
+                        {category.name}
                     </div>
                 ))}
             </div>

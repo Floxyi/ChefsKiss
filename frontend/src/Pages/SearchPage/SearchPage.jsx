@@ -3,8 +3,8 @@ import Search from '@Components/Search'
 import RecipeTile from '@Components/RecipeTile'
 import Dropdown from '@Components/Dropdown'
 import Title from '@Components/Title'
-import { Difficulty, DifficultyLabels } from '@Enums/Difficulty'
-import { Time, TimeLabels } from '@Enums/Time'
+import { Difficulty, DifficultyLabels, DifficultyOptionsFull } from '@Enums/Difficulty'
+import { Time, TimeLabels, TimeOptionsFull } from '@Enums/Time'
 
 import useSearchRecipes from './useSearchRecipes'
 
@@ -34,10 +34,7 @@ const SearchPage = () => {
                 <div className="px-2">
                     <Dropdown
                         label="Category"
-                        options={[
-                            'All',
-                            ...categories.map((category) => category.name)
-                        ]}
+                        options={['All', ...categories.map((category) => category.name)]}
                         value={selectedCategory}
                         defaultValue="All"
                         onChange={changeCategory}
@@ -47,7 +44,7 @@ const SearchPage = () => {
                 <div className="px-2">
                     <Dropdown
                         label="Time"
-                        options={Object.values(Time).map((item) => item.label)}
+                        options={TimeOptionsFull}
                         value={TimeLabels[selectedTimeValue]}
                         defaultValue={Time.ALL.label}
                         onChange={changeTime}
@@ -57,9 +54,7 @@ const SearchPage = () => {
                 <div className="px-2">
                     <Dropdown
                         label="Difficulty"
-                        options={Object.values(Difficulty).map(
-                            (item) => item.label
-                        )}
+                        options={DifficultyOptionsFull}
                         value={DifficultyLabels[selectedDifficultyValue]}
                         defaultValue={Difficulty.ALL.label}
                         onChange={changeDifficulty}
@@ -69,22 +64,15 @@ const SearchPage = () => {
 
             <div className="grid grid-cols-4 gap-8 w-full">
                 {isLoading ? (
-                    <div className="text-center font-bold text-primary-dark">
-                        Loading recipes...
-                    </div>
+                    <div className="text-center font-bold text-primary-dark">Loading recipes...</div>
                 ) : error ? (
-                    <p className="text-center font-bold text-primary-dark">
-                        {error}
-                    </p>
+                    <p className="text-center font-bold text-primary-dark">{error}</p>
                 ) : recipes.length === 0 ? (
                     <p className="text-center font-bold text-primary-dark">
-                        :( <br /> We are sorry, but we couldn't find any
-                        matching recipes.
+                        :( <br /> We are sorry, but we couldn't find any matching recipes.
                     </p>
                 ) : (
-                    recipes.map((recipe) => (
-                        <RecipeTile key={recipe.id} recipe={recipe} />
-                    ))
+                    recipes.map((recipe) => <RecipeTile key={recipe.id} recipe={recipe} />)
                 )}
             </div>
         </PageContainer>

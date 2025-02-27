@@ -41,18 +41,10 @@ const Header = () => {
                     >
                         Chef’s Kiss
                     </div>
-                    <img
-                        className="w-20 flex justify-self-center"
-                        src={logo}
-                        alt="logo"
-                    />
+                    <img className="w-20 flex justify-self-center" src={logo} alt="logo" />
                     <div className="col-span-2 flex justify-between gap-2 items-center justify-self-end">
                         {buildButton('/create', 'Create', <EditIcon />)}
-                        {buildButton(
-                            '/categories',
-                            'Categories',
-                            <CategoriesIcon />
-                        )}
+                        {buildButton('/categories', 'Categories', <CategoriesIcon />)}
                         {buildButton('/search', 'Search', <SearchIcon />)}
                         {buildButton('/', 'Home', <HouseIcon />)}
                     </div>

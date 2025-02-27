@@ -32,9 +32,7 @@ const CategoryPage = () => {
 
             <div className="grid grid-cols-5 gap-12 w-full">
                 {isLoading ? (
-                    <div className="min-w-full min-h-full text-primary-dark">
-                        Loading categories...
-                    </div>
+                    <div className="min-w-full min-h-full text-primary-dark">Loading categories...</div>
                 ) : (
                     categories.map((category) => (
                         <Tile
@@ -42,11 +40,7 @@ const CategoryPage = () => {
                             title={category.name}
                             subtitle={`${category.recipeCount} recipe${category.recipeCount === 1 ? '' : 's'}`}
                             icon={<ArrowRightIcon />}
-                            onClick={() =>
-                                navigate(
-                                    `/search?category=${encodeURIComponent(category.name)}`
-                                )
-                            }
+                            onClick={() => navigate(`/search?category=${encodeURIComponent(category.name)}`)}
                         />
                     ))
                 )}

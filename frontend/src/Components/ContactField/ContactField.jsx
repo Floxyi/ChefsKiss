@@ -1,18 +1,6 @@
-const ContactField = ({
-    label,
-    type = 'text',
-    id,
-    placeholder,
-    rows,
-    value,
-    onChange,
-    ...props
-}) => (
+const ContactField = ({ label, type = 'text', id, placeholder, rows, value, onChange, ...props }) => (
     <div className="flex flex-col gap-1">
-        <label
-            className="text-xl text-primary-dark font-bold select-none mt-3"
-            htmlFor={id}
-        >
+        <label className="text-xl text-primary-dark font-bold select-none mt-3" htmlFor={id}>
             {label}
         </label>
         {type === 'textarea' ? (
