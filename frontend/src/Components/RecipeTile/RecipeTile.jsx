@@ -37,8 +37,8 @@ const RecipeTile = ({ recipe }) => {
         >
             <img
                 className="w-full h-40 rounded-lg object-cover"
-                src={recipe?.titleImage ? `data:${recipe.titleImage.type};base64,${recipe.titleImage.data}` : burger}
-                alt={recipe?.title || 'Recipe Image'}
+                src={recipe?.titleImage ? `data:${titleImage.type};base64,${titleImage.data}` : burger}
+                alt={recipe.title}
             />
 
             <div className="flex flex-col items-start max-w-72 mt-3">
