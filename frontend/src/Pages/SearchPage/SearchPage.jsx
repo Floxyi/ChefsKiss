@@ -34,7 +34,7 @@ const SearchPage = () => {
                 <div className="px-2">
                     <Dropdown
                         label="Category"
-                        options={['All', ...categories.map((category) => category.name)]}
+                        options={['All', ...(categories ? categories.map((category) => category.name) : [])]}
                         value={selectedCategory}
                         defaultValue="All"
                         onChange={changeCategory}

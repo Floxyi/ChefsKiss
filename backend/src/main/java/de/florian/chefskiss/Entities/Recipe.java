@@ -1,7 +1,6 @@
 package de.florian.chefskiss.Entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import de.florian.chefskiss.Enums.Difficulty;
 import de.florian.chefskiss.Enums.Time;
 import jakarta.persistence.*;
@@ -16,14 +15,6 @@ public class Recipe {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @ManyToMany
-    @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
-    @JsonManagedReference
-    private Set<Category> categories = new HashSet<>();
-
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Image> images = new HashSet<>();
-
     @Column(nullable = false)
     private String title;
 
@@ -35,14 +26,29 @@ public class Recipe {
     @Column(nullable = false)
     private Time time;
 
-    public Recipe() {
-    }
+    @ManyToMany
+    @JoinTable(
+        name = "recipe_category",
+        joinColumns = @JoinColumn(name = "recipe_id"),
+        inverseJoinColumns = @JoinColumn(name = "category_id")
+    )
+    @JsonManagedReference
+    private Set<Category> categories = new HashSet<>();
 
-    public Recipe(String title, Difficulty difficulty, Time time, Set<Category> categories) {
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Image> images = new HashSet<>();
+
+    @Column(nullable = false)
+    private String instructions;
+
+    public Recipe() {}
+
+    public Recipe(String title, Difficulty difficulty, Time time, Set<Category> categories, String instructions) {
         this.title = title;
         this.difficulty = difficulty;
         this.time = time;
         this.categories = categories != null ? categories : new HashSet<>();
+        this.instructions = instructions;
     }
 
     public Integer getId() {
@@ -96,5 +102,13 @@ public class Recipe {
 
     public void setImages(Set<Image> images) {
         this.images = images;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 }

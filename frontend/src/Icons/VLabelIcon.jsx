@@ -1,4 +1,4 @@
-const VegetarianIcon = ({ width = 24, height = 24 }) => (
+const VLabelIcon = ({ width = 24, height = 24 }) => (
     <svg width={width} height={height} viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
         <rect width="512" height="512" rx="15%" fill="transparent" />
         <circle cx="256" cy="256" r="220" stroke="currentColor" fill="transparent" strokeWidth="50" />
@@ -6,4 +6,4 @@ const VegetarianIcon = ({ width = 24, height = 24 }) => (
     </svg>
 )
 
-export default VegetarianIcon
+export default VLabelIcon

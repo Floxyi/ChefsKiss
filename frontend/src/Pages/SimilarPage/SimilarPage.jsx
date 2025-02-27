@@ -10,7 +10,7 @@ const SimilarPage = () => {
     const { id } = useParams()
 
     const fetchRecipe = async (id) => {
-        const { data } = await axios.get(`/api/recipe/?id=${id}`)
+        const { data } = await axios.get(`/api/similar/?id=${id}`)
         return data
     }
 

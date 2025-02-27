@@ -21,58 +21,346 @@ VALUES
     (17, 'Comfort Food'),
     (18, 'Holiday Specials');
 
--- Insert recipe data with difficulty and time
+-- Insert recipe data with difficulty, time, and instructions
 INSERT INTO
-    recipe (id, title, difficulty, time)
+    recipe (id, title, difficulty, time, instructions)
 VALUES
-    (1, 'Chocolate Cake', 'MEDIUM', 'LONG'),
-    (2, 'Spaghetti', 'EASY', 'MEDIUM'),
-    (3, 'Caesar Salad', 'EASY', 'SHORT'),
-    (4, 'Minestrone Soup', 'MEDIUM', 'MEDIUM'),
-    (5, 'Iced Tea', 'EASY', 'SHORT'),
-    (6, 'French Fries', 'EASY', 'SHORT'),
-    (7, 'Grilled Chicken', 'MEDIUM', 'MEDIUM'),
-    (8, 'Tomato Soup', 'EASY', 'SHORT'),
-    (9, 'Banana Pancakes', 'MEDIUM', 'SHORT'),
-    (10, 'Stir-Fry', 'MEDIUM', 'MEDIUM'),
-    (11, 'BBQ Ribs', 'HARD', 'LONG'),
-    (12, 'Shrimp Scampi', 'MEDIUM', 'LONG'),
-    (13, 'Vegan Brownies', 'EASY', 'MEDIUM'),
-    (14, 'Spinach Smoothie', 'EASY', 'SHORT'),
-    (15, 'Lemonade', 'EASY', 'SHORT'),
-    (16, 'Lasagna', 'HARD', 'LONG'),
-    (17, 'Tacos', 'EASY', 'MEDIUM'),
-    (18, 'Garlic Bread', 'EASY', 'SHORT'),
-    (19, 'Pumpkin Pie', 'MEDIUM', 'MEDIUM'),
-    (20, 'Mango Smoothie', 'EASY', 'SHORT'),
-    (21, 'Cheeseburger', 'EASY', 'MEDIUM'),
-    (22, 'Lobster Bisque', 'HARD', 'LONG'),
-    (23, 'Avocado Toast', 'EASY', 'SHORT'),
-    (24, 'Stuffed Peppers', 'MEDIUM', 'MEDIUM'),
-    (25, 'Chicken Alfredo', 'MEDIUM', 'LONG'),
-    (26, 'Vegetarian Chili', 'MEDIUM', 'MEDIUM'),
-    (27, 'Berry Parfait', 'EASY', 'SHORT'),
-    (28, 'Apple Crumble', 'MEDIUM', 'MEDIUM'),
-    (29, 'Roast Turkey', 'HARD', 'LONG'),
-    (30, 'Seafood Paella', 'HARD', 'LONG'),
-    (31, 'Chocolate Cookies', 'EASY', 'SHORT'),
-    (32, 'Vegetable Stir-Fry', 'EASY', 'MEDIUM'),
-    (33, 'Chicken Salad', 'MEDIUM', 'MEDIUM'),
-    (34, 'Beef Tacos', 'MEDIUM', 'SHORT'),
-    (35, 'Eggplant Parmesan', 'HARD', 'LONG'),
-    (36, 'Green Smoothie', 'EASY', 'SHORT'),
-    (37, 'Grilled Salmon', 'MEDIUM', 'MEDIUM'),
-    (38, 'Homemade Pizza', 'HARD', 'LONG'),
-    (39, 'Fruit Salad', 'EASY', 'SHORT'),
-    (40, 'Pork Schnitzel', 'HARD', 'LONG'),
-    (41, 'Quiche Lorraine', 'HARD', 'LONG'),
-    (42, 'Chili Con Carne', 'MEDIUM', 'MEDIUM'),
-    (43, 'Pulled Pork', 'HARD', 'LONG'),
-    (44, 'Crispy Tofu', 'EASY', 'MEDIUM'),
-    (45, 'Mushroom Risotto', 'HARD', 'LONG'),
-    (46, 'Frittata', 'MEDIUM', 'MEDIUM'),
-    (47, 'Omelette', 'EASY', 'SHORT'),
-    (48, 'Cheese Sandwich', 'EASY', 'SHORT');
+    (
+        1,
+        'Chocolate Cake',
+        'MEDIUM',
+        'LONG',
+        'Mix the ingredients, bake at 350°F for 30 minutes.'
+    ),
+    (
+        2,
+        'Spaghetti',
+        'EASY',
+        'MEDIUM',
+        'Boil pasta, add sauce, and cook for 10 minutes.'
+    ),
+    (
+        3,
+        'Caesar Salad',
+        'EASY',
+        'SHORT',
+        'Toss the salad with dressing and croutons.'
+    ),
+    (
+        4,
+        'Minestrone Soup',
+        'MEDIUM',
+        'MEDIUM',
+        'Simmer vegetables and broth for 30 minutes.'
+    ),
+    (
+        5,
+        'Iced Tea',
+        'EASY',
+        'SHORT',
+        'Brew tea, add ice, and chill for 1 hour.'
+    ),
+    (
+        6,
+        'French Fries',
+        'EASY',
+        'SHORT',
+        'Fry the potatoes until golden and crispy.'
+    ),
+    (
+        7,
+        'Grilled Chicken',
+        'MEDIUM',
+        'MEDIUM',
+        'Grill chicken for 20 minutes on each side.'
+    ),
+    (
+        8,
+        'Tomato Soup',
+        'EASY',
+        'SHORT',
+        'Simmer tomatoes and blend until smooth.'
+    ),
+    (
+        9,
+        'Banana Pancakes',
+        'MEDIUM',
+        'SHORT',
+        'Mix ingredients and cook on a hot griddle.'
+    ),
+    (
+        10,
+        'Stir-Fry',
+        'MEDIUM',
+        'MEDIUM',
+        'Stir-fry vegetables and protein in a hot pan.'
+    ),
+    (
+        11,
+        'BBQ Ribs',
+        'HARD',
+        'LONG',
+        'Cook ribs in the oven, then grill with BBQ sauce.'
+    ),
+    (
+        12,
+        'Shrimp Scampi',
+        'MEDIUM',
+        'LONG',
+        'Cook shrimp in garlic butter sauce for 10 minutes.'
+    ),
+    (
+        13,
+        'Vegan Brownies',
+        'EASY',
+        'MEDIUM',
+        'Mix ingredients and bake at 350°F for 25 minutes.'
+    ),
+    (
+        14,
+        'Spinach Smoothie',
+        'EASY',
+        'SHORT',
+        'Blend spinach, banana, and almond milk.'
+    ),
+    (
+        15,
+        'Lemonade',
+        'EASY',
+        'SHORT',
+        'Mix lemon juice, sugar, and water.'
+    ),
+    (
+        16,
+        'Lasagna',
+        'HARD',
+        'LONG',
+        'Layer noodles, sauce, and cheese, bake for 1 hour.'
+    ),
+    (
+        17,
+        'Tacos',
+        'EASY',
+        'MEDIUM',
+        'Fill taco shells with meat, lettuce, and cheese.'
+    ),
+    (
+        18,
+        'Garlic Bread',
+        'EASY',
+        'SHORT',
+        'Toast bread with garlic butter.'
+    ),
+    (
+        19,
+        'Pumpkin Pie',
+        'MEDIUM',
+        'MEDIUM',
+        'Bake pumpkin filling in pie crust for 45 minutes.'
+    ),
+    (
+        20,
+        'Mango Smoothie',
+        'EASY',
+        'SHORT',
+        'Blend mango, yogurt, and ice.'
+    ),
+    (
+        21,
+        'Cheeseburger',
+        'EASY',
+        'MEDIUM',
+        'Grill beef patties and assemble with buns and cheese.'
+    ),
+    (
+        22,
+        'Lobster Bisque',
+        'HARD',
+        'LONG',
+        'Simmer lobster and cream for 1 hour.'
+    ),
+    (
+        23,
+        'Avocado Toast',
+        'EASY',
+        'SHORT',
+        'Mash avocado on toast and season.'
+    ),
+    (
+        24,
+        'Stuffed Peppers',
+        'MEDIUM',
+        'MEDIUM',
+        'Stuff peppers with rice and ground meat, bake for 30 minutes.'
+    ),
+    (
+        25,
+        'Chicken Alfredo',
+        'MEDIUM',
+        'LONG',
+        'Cook pasta, add chicken and Alfredo sauce.'
+    ),
+    (
+        26,
+        'Vegetarian Chili',
+        'MEDIUM',
+        'MEDIUM',
+        'Simmer beans and vegetables in a pot for 45 minutes.'
+    ),
+    (
+        27,
+        'Berry Parfait',
+        'EASY',
+        'SHORT',
+        'Layer berries and yogurt in a glass.'
+    ),
+    (
+        28,
+        'Apple Crumble',
+        'MEDIUM',
+        'MEDIUM',
+        'Bake apples with crumble topping for 40 minutes.'
+    ),
+    (
+        29,
+        'Roast Turkey',
+        'HARD',
+        'LONG',
+        'Roast turkey in the oven for 3 hours at 350°F.'
+    ),
+    (
+        30,
+        'Seafood Paella',
+        'HARD',
+        'LONG',
+        'Cook seafood with rice and spices for 1 hour.'
+    ),
+    (
+        31,
+        'Chocolate Cookies',
+        'EASY',
+        'SHORT',
+        'Mix dough and bake at 350°F for 12 minutes.'
+    ),
+    (
+        32,
+        'Vegetable Stir-Fry',
+        'EASY',
+        'MEDIUM',
+        'Stir-fry vegetables in oil for 10 minutes.'
+    ),
+    (
+        33,
+        'Chicken Salad',
+        'MEDIUM',
+        'MEDIUM',
+        'Mix cooked chicken with veggies and dressing.'
+    ),
+    (
+        34,
+        'Beef Tacos',
+        'MEDIUM',
+        'SHORT',
+        'Cook beef, then stuff tacos with it.'
+    ),
+    (
+        35,
+        'Eggplant Parmesan',
+        'HARD',
+        'LONG',
+        'Bread and fry eggplant, then layer with sauce and cheese.'
+    ),
+    (
+        36,
+        'Green Smoothie',
+        'EASY',
+        'SHORT',
+        'Blend kale, banana, and apple juice.'
+    ),
+    (
+        37,
+        'Grilled Salmon',
+        'MEDIUM',
+        'MEDIUM',
+        'Grill salmon for 10 minutes per side.'
+    ),
+    (
+        38,
+        'Homemade Pizza',
+        'HARD',
+        'LONG',
+        'Roll dough, add toppings, and bake at 475°F for 15 minutes.'
+    ),
+    (
+        39,
+        'Fruit Salad',
+        'EASY',
+        'SHORT',
+        'Chop fruits and mix together.'
+    ),
+    (
+        40,
+        'Pork Schnitzel',
+        'HARD',
+        'LONG',
+        'Bread and fry pork cutlets, serve with lemon.'
+    ),
+    (
+        41,
+        'Quiche Lorraine',
+        'HARD',
+        'LONG',
+        'Bake a custard mixture with bacon and cheese in pie crust.'
+    ),
+    (
+        42,
+        'Chili Con Carne',
+        'MEDIUM',
+        'MEDIUM',
+        'Simmer beef, beans, and spices for 1 hour.'
+    ),
+    (
+        43,
+        'Pulled Pork',
+        'HARD',
+        'LONG',
+        'Slow cook pork shoulder for 8 hours and shred.'
+    ),
+    (
+        44,
+        'Crispy Tofu',
+        'EASY',
+        'MEDIUM',
+        'Fry tofu cubes until crispy and serve with sauce.'
+    ),
+    (
+        45,
+        'Mushroom Risotto',
+        'HARD',
+        'LONG',
+        'Cook rice with broth, mushrooms, and Parmesan for 45 minutes.'
+    ),
+    (
+        46,
+        'Frittata',
+        'MEDIUM',
+        'MEDIUM',
+        'Cook eggs with veggies in a pan until set.'
+    ),
+    (
+        47,
+        'Omelette',
+        'EASY',
+        'SHORT',
+        'Cook eggs in a pan and fold with fillings.'
+    ),
+    (
+        48,
+        'Cheese Sandwich',
+        'EASY',
+        'SHORT',
+        'Grill bread with cheese inside.'
+    );
 
 -- Insert recipe_category data
 INSERT INTO

@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
+import DOMPurify from 'dompurify'
 
 import PageContainer from '@Components/PageContainer'
 import RecipeHeader from '@Components/RecipeHeader'
@@ -10,23 +11,20 @@ const InstructionsPage = () => {
     const { id } = useParams()
 
     const fetchRecipe = async (id) => {
-        const { data } = await axios.get(`/api/recipe/?id=${id}`)
+        const { data } = await axios.get(`/api/instructions/?id=${id}`)
         return data
     }
 
-    const {
-        data: recipe,
-        isLoading,
-        error
-    } = useQuery({
+    const { data: recipe, isLoading } = useQuery({
         queryKey: ['recipe', id],
         queryFn: () => fetchRecipe(id),
         enabled: !!id
     })
 
-    if (error) {
-        console.error('Error fetching the recipe:', error)
-    }
+    const sanitizedInstructions =
+        !isLoading && recipe && recipe.instructions
+            ? DOMPurify.sanitize(recipe.instructions.replace(/\n/g, '<br />'))
+            : ''
 
     return (
         <PageContainer>
@@ -35,8 +33,9 @@ const InstructionsPage = () => {
             </div>
 
             <RecipeNavigation id={id} />
-
-            <p>On this page you can view recipe instructions from {id}.</p>
+            <div className="text-lg text-primary-dark font-bold leading-8">
+                {!isLoading && <p dangerouslySetInnerHTML={{ __html: sanitizedInstructions }} />}
+            </div>
         </PageContainer>
     )
 }

@@ -26,12 +26,12 @@ const HomePage = () => {
         error: recipesError
     } = useQuery({
         queryKey: ['recipes'],
-        queryFn: () => axios.get('/api/homepage/recipes?amount=4').then((response) => response.data)
+        queryFn: () => axios.get('/api/homepage/recipes?amount=5').then((response) => response.data)
     })
 
     return (
         <PageContainer>
-            <div className="flex flex-row items-center justify-center mb-12 text-center text-6xl text-primary-dark">
+            <div className="flex flex-row items-center justify-center mb-12 text-center text-6xl text-primary-dark select-none">
                 <div className="font-bold">Find Recipes,&nbsp;</div>
                 <div className="font-bold italic text-primary-light text-stroke-dark">Fast.</div>
             </div>
@@ -50,7 +50,7 @@ const HomePage = () => {
                     <ArrowRightIcon stroke={2} />
                 </div>
             </div>
-            <div className="grid grid-cols-4 gap-4 w-full">
+            <div className="grid grid-cols-5 gap-6 w-full">
                 {recipesLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">Loading recipes...</div>
                 ) : recipesError ? (
@@ -70,7 +70,7 @@ const HomePage = () => {
                     <ArrowRightIcon stroke={2} />
                 </div>
             </div>
-            <div className="grid grid-cols-5 gap-4 w-full">
+            <div className="grid grid-cols-5 gap-6 w-full">
                 {categoriesLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">Loading categories...</div>
                 ) : categoriesError ? (

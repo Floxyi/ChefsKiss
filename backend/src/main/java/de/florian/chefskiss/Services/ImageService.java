@@ -1,6 +1,5 @@
 package de.florian.chefskiss.Services;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,10 +14,14 @@ import java.util.Optional;
 @Service
 public class ImageService {
 
-    @Autowired
-    private ImageRepository imageRepository;
-    @Autowired
-    private RecipeRepository recipeRepository;
+    private final ImageRepository imageRepository;
+    private final RecipeRepository recipeRepository;
+
+    public ImageService(ImageRepository imageRepository, RecipeRepository recipeRepository) {
+        this.imageRepository = imageRepository;
+        this.recipeRepository = recipeRepository;
+    }
+
 
     public void saveImage(MultipartFile file, Integer recipeId) throws IOException {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(recipeId);

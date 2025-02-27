@@ -1,7 +1,7 @@
 package de.florian.chefskiss.Controller;
 
 import de.florian.chefskiss.Dto.CategoriesDto;
-import de.florian.chefskiss.Dto.RecipeDto;
+import de.florian.chefskiss.Dto.RecipeTileDto;
 import de.florian.chefskiss.Enums.Difficulty;
 import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Services.CategoryService;
@@ -12,23 +12,23 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/search")
-public class SearchController {
+public class SearchPageController {
 
     private final RecipeService recipeService;
     private final CategoryService categoryService;
 
-    public SearchController(RecipeService recipeService, CategoryService categoryService) {
+    public SearchPageController(RecipeService recipeService, CategoryService categoryService) {
         this.recipeService = recipeService;
         this.categoryService = categoryService;
     }
 
     @GetMapping
-    public ResponseEntity<List<RecipeDto>> getRecipes(
+    public ResponseEntity<List<RecipeTileDto>> getRecipes(
         @RequestParam(required = false) String category,
         @RequestParam(required = false) Difficulty difficulty,
         @RequestParam(required = false) Time time
     ) {
-        List<RecipeDto> recipes;
+        List<RecipeTileDto> recipes;
         if (category == null && difficulty == null && time == null) {
             recipes = recipeService.findAllRecipes();
         } else {

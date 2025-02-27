@@ -50,10 +50,4 @@ public class Category {
     public void setName(String name) {
         this.name = name;
     }
-
-    public void addRecipe(Recipe recipe) {
-        if (recipe != null) {
-            recipes.add(recipe);
-        }
-    }
 }

@@ -21,8 +21,10 @@ const RecipeNavigation = ({ id }) => {
                             isActive ? 'font-bold text-primary-dark border-b' : 'text-primary-dark hover:font-bold'
                         }`}
                     >
-                        {tab.label}
-                        {isActive && <div className="mt-3 mb-[-1px] w-full h-1 bg-primary-dark rounded-t"></div>}
+                        <div className="h-full flex flex-col justify-end">
+                            <div className="mb-2">{tab.label}</div>
+                            {isActive && <div className="mb-[-1px] h-[3px] bg-primary-dark rounded-t"></div>}
+                        </div>
                     </button>
                 )
             })}

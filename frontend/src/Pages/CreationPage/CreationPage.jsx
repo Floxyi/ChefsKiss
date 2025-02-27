@@ -39,9 +39,10 @@ const CreationPage = () => {
                 title: name,
                 difficulty: selectedDifficultyValue,
                 time: selectedTimeValue,
-                categoryIds: selectedCategories.map((category) => category.id)
+                categoryIds: selectedCategories.map((category) => category.id),
+                instructions: cookingInstructions
             }
-            const response = await axios.post('/api/recipe/create', recipe)
+            const response = await axios.post('/api/creation/create', recipe)
             onFileUpload(response.data.id)
             return response.data
         },
@@ -67,9 +68,9 @@ const CreationPage = () => {
                 <div className="h-full flex flex-col col-span-6">
                     <div className="flex flex-col flex-1">
                         <div>
-                            <p className="text-xl text-primary-dark font-semibold">Name:</p>
+                            <p className="text-xl text-primary-dark font-semibold select-none">Name:</p>
                             <input
-                                className="mt-2 w-full font-bold text-xl text-primary-dark bg-transparent border-[3px] border-primary-dark pl-4 rounded-full placeholder:font-normal placeholder:text-primary-normal focus:outline-none"
+                                className="mt-2 w-full font-bold text-xl text-primary-dark bg-transparent border-[3px] border-primary-dark pl-4 rounded-full placeholder:font-normal placeholder:select-none placeholder:text-primary-normal focus:outline-none"
                                 type="text"
                                 value={name}
                                 placeholder="Pumpkin Soup"
@@ -99,14 +100,14 @@ const CreationPage = () => {
                             </div>
                         </div>
                         <div className="mt-4">
-                            <p className="text-xl text-primary-dark font-semibold">Upload Pictures:</p>
+                            <p className="text-xl text-primary-dark font-semibold select-none">Upload Pictures:</p>
                             <FileUpload onFileChange={onFileChange} previews={previews} uploadStatus={uploadStatus} />
                         </div>
                         <div className="mt-4 flex flex-col flex-1">
-                            <p className="text-xl text-primary-dark font-semibold">Cooking Instructions:</p>
+                            <p className="text-xl text-primary-dark font-semibold select-none">Cooking Instructions:</p>
                             <div className="flex-1 mb-2">
                                 <textarea
-                                    className="w-full h-full resize-none font-bold rounded-2xl overflow-y-auto custom-scrollbar text-primary-dark bg-transparent border-[3px] border-primary-dark p-2 placeholder:font-normal placeholder:text-primary-normal focus:outline-none"
+                                    className="w-full h-full resize-none font-bold rounded-2xl overflow-y-auto custom-scrollbar text-primary-dark bg-transparent border-[3px] border-primary-dark p-2 placeholder:font-normal placeholder:text-primary-normal placeholder:select-none focus:outline-none"
                                     value={cookingInstructions}
                                     onChange={(e) => setCookingInstruction(e.target.value)}
                                     placeholder="Write down your cooking instructions here!"
@@ -120,7 +121,7 @@ const CreationPage = () => {
                         <div className="text-primary-dark flex w-12 h-12 rounded-full border-[3px] border-primary-dark justify-center items-center">
                             <ArrowRightIcon width={48} height={48} stroke={2} />
                         </div>
-                        <p className="text-xl text-primary-dark font-semibold">Create</p>
+                        <p className="text-xl text-primary-dark font-semibold select-none">Create</p>
                     </div>
                 </div>
             </div>

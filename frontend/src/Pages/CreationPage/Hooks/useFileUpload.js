@@ -28,7 +28,7 @@ const useFileUpload = () => {
         formData.append('recipeId', recipeId)
 
         try {
-            await axios.post('/api/upload', formData)
+            await axios.post('/api/creation/upload', formData)
             setUploadStatus('Files uploaded successfully.')
             setSelectedFiles([])
             setPreviews([])

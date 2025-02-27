@@ -21,7 +21,7 @@ const Search = () => {
     return (
         <div className="h-12 w-[600px] border-[3px] border-primary-dark rounded-3xl bg-transparent px-4 py-2 flex flex-row items-center">
             <input
-                className="w-full font-bold text-xl text-primary-dark bg-transparent placeholder:font-normal placeholder:text-primary-normal focus:outline-none"
+                className="w-full font-bold text-xl text-primary-dark bg-transparent placeholder:font-normal placeholder:text-primary-normal placeholder:select-none focus:outline-none"
                 type="text"
                 value={value}
                 onChange={handleChange}

@@ -30,7 +30,7 @@ const Footer = () => {
     return (
         <div className="min-w-full">
             <div className="max-h-14 flex flex-row justify-between items-center bg-primary-light border-4 border-primary-dark rounded-full px-6 py-4 mx-5 mb-5">
-                <div className="w-[340px] flex flex-row justify-start gap-4 items-center px-4 py-1 text-primary-dark">
+                <div className="w-[340px] flex flex-row justify-start gap-4 items-center px-4 py-1 text-primary-dark select-none">
                     {buildLink('/imprint', 'Imprint & Privacy Policy')}⦁{buildLink('/contact', 'Contact')}
                 </div>
                 <div className="font-bold select-none text-base text-primary-dark">© Chef’s Kiss</div>

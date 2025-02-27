@@ -1,6 +1,6 @@
 package de.florian.chefskiss.Services;
 
-import de.florian.chefskiss.Dto.RecipeDto;
+import de.florian.chefskiss.Dto.RecipeTileDto;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Entities.Recipe;
 import de.florian.chefskiss.Enums.Difficulty;
@@ -27,13 +27,13 @@ public class RecipeService {
         return recipeRepository.save(recipe);
     }
 
-    public List<RecipeDto> findAllRecipes() {
+    public List<RecipeTileDto> findAllRecipes() {
         List<Recipe> recipes = recipeRepository.findAll();
 
         return recipes
             .stream()
             .map(recipe ->
-                new RecipeDto(
+                new RecipeTileDto(
                     recipe.getId(),
                     recipe.getTitle(),
                     recipe.getDifficulty().name(),
@@ -44,7 +44,7 @@ public class RecipeService {
             .collect(Collectors.toList());
     }
 
-    public List<RecipeDto> findRecipes(String category, Difficulty difficulty, Time time) {
+    public List<RecipeTileDto> findRecipes(String category, Difficulty difficulty, Time time) {
         Specification<Recipe> specification = Specification.where(null);
 
         if (category != null && !category.isEmpty()) {
@@ -61,7 +61,7 @@ public class RecipeService {
             .findAll(specification)
             .stream()
             .map(recipe ->
-                new RecipeDto(
+                new RecipeTileDto(
                     recipe.getId(),
                     recipe.getTitle(),
                     recipe.getDifficulty().name(),
@@ -72,12 +72,12 @@ public class RecipeService {
             .collect(Collectors.toList());
     }
 
-    public Optional<RecipeDto> findById(Integer id) {
+    public Optional<RecipeTileDto> findById(Integer id) {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
         if (optionalRecipe.isPresent()) {
             Recipe recipe = optionalRecipe.get();
             return Optional.of(
-                new RecipeDto(
+                new RecipeTileDto(
                     recipe.getId(),
                     recipe.getTitle(),
                     recipe.getDifficulty().name(),
@@ -90,13 +90,13 @@ public class RecipeService {
         }
     }
 
-    public List<RecipeDto> findAmountOfRecipes(Integer amount) {
+    public List<RecipeTileDto> findAmountOfRecipes(Integer amount) {
         List<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, amount)).getContent();
 
         return recipes
             .stream()
             .map(recipe ->
-                new RecipeDto(
+                new RecipeTileDto(
                     recipe.getId(),
                     recipe.getTitle(),
                     recipe.getDifficulty().name(),

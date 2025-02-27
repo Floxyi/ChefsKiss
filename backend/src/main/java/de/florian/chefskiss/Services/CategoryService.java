@@ -2,9 +2,10 @@ package de.florian.chefskiss.Services;
 
 import de.florian.chefskiss.Dto.CategoriesDto;
 import de.florian.chefskiss.Dto.CategoryWithRecipeCountDto;
-import de.florian.chefskiss.Dto.CategoryWithRecipesDto;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Repositories.CategoryRepository;
+
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -19,10 +20,6 @@ public class CategoryService {
 
     public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
-    }
-
-    public List<CategoryWithRecipesDto> findCategoriesWithRecipes() {
-        return categoryRepository.findCategoriesWithRecipes();
     }
 
     public List<CategoryWithRecipeCountDto> findCategoriesWithRecipeCount() {
@@ -42,6 +39,6 @@ public class CategoryService {
     }
 
     public Set<Category> findCategoriesByIds(Set<Integer> categoryIds) {
-        return categoryRepository.findAllById(categoryIds).stream().collect(Collectors.toSet());
+        return new HashSet<>(categoryRepository.findAllById(categoryIds));
     }
 }

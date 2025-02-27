@@ -7,7 +7,7 @@ import ClockIcon from '@Icons/ClockIcon'
 import SkillLevelBasicIcon from '@Icons/SkillLevelBasicIcon'
 import SkillLevelAdvancedIcon from '@Icons/SkillLevelAdvancedIcon'
 import SkillLevelIntermediateIcon from '@Icons/SkillLevelIntermediateIcon'
-import VegetarianIcon from '@Icons/VegetarianIcon'
+import VLabelIcon from '@Icons/VLabelIcon'
 
 const RecipeTile = ({ recipe }) => {
     const navigate = useNavigate()
@@ -15,6 +15,7 @@ const RecipeTile = ({ recipe }) => {
     const { id, title, time, difficulty, categories } = recipe
 
     const isVegan = categories.some((category) => category.toLowerCase() === 'vegan')
+    const isVegetarian = categories.some((category) => category.toLowerCase() === 'vegetarian')
 
     const SkillLevelIcon = ({ difficulty }) => {
         switch (difficulty) {
@@ -41,7 +42,12 @@ const RecipeTile = ({ recipe }) => {
                     <div className="font-bold text-primary-dark text-xl">{title}</div>
                     {isVegan && (
                         <div className="text-green-800">
-                            <VegetarianIcon width={20} height={20} />
+                            <VLabelIcon width={20} height={20} />
+                        </div>
+                    )}
+                    {isVegetarian && !isVegan && (
+                        <div className="text-yellow-500">
+                            <VLabelIcon width={20} height={20} />
                         </div>
                     )}
                 </div>
