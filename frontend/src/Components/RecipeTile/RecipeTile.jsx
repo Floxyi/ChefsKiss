@@ -12,7 +12,7 @@ import VLabelIcon from '@Icons/VLabelIcon'
 const RecipeTile = ({ recipe }) => {
     const navigate = useNavigate()
 
-    const { id, title, time, difficulty, categories } = recipe
+    const { id, title, time, difficulty, categories, titleImage } = recipe
 
     const isVegan = categories.some((category) => category.toLowerCase() === 'vegan')
     const isVegetarian = categories.some((category) => category.toLowerCase() === 'vegetarian')
@@ -35,7 +35,11 @@ const RecipeTile = ({ recipe }) => {
             className="bg-primary-background border-[3px] border-primary-dark rounded-xl cursor-pointer select-none p-4 hover:scale-105 hover:shadow-xl"
             onClick={() => navigate(`/recipe/${id}`)}
         >
-            <img className={` w-full rounded-lg`} src={burger} alt="logo" />
+            <img
+                className="w-full h-40 rounded-lg object-cover"
+                src={recipe?.titleImage ? `data:${recipe.titleImage.type};base64,${recipe.titleImage.data}` : burger}
+                alt={recipe?.title || 'Recipe Image'}
+            />
 
             <div className="flex flex-col items-start max-w-72 mt-3">
                 <div className="flex flex-row items-center gap-2 max-w-72">

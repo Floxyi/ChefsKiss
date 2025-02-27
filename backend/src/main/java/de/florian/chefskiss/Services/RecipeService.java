@@ -1,12 +1,15 @@
 package de.florian.chefskiss.Services;
 
+import de.florian.chefskiss.Dto.ImageDto;
 import de.florian.chefskiss.Dto.RecipeTileDto;
 import de.florian.chefskiss.Entities.Category;
+import de.florian.chefskiss.Entities.Image;
 import de.florian.chefskiss.Entities.Recipe;
 import de.florian.chefskiss.Enums.Difficulty;
 import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Repositories.RecipeRepository;
 import de.florian.chefskiss.Specifications.RecipeSpecification;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -30,18 +33,7 @@ public class RecipeService {
     public List<RecipeTileDto> findAllRecipes() {
         List<Recipe> recipes = recipeRepository.findAll();
 
-        return recipes
-            .stream()
-            .map(recipe ->
-                new RecipeTileDto(
-                    recipe.getId(),
-                    recipe.getTitle(),
-                    recipe.getDifficulty().name(),
-                    recipe.getTime().name(),
-                    recipe.getCategories().stream().map(Category::getName).collect(Collectors.toSet())
-                )
-            )
-            .collect(Collectors.toList());
+        return recipes.stream().map(recipe -> createRecipeTileDto(recipe)).collect(Collectors.toList());
     }
 
     public List<RecipeTileDto> findRecipes(String category, Difficulty difficulty, Time time) {
@@ -60,15 +52,7 @@ public class RecipeService {
         return recipeRepository
             .findAll(specification)
             .stream()
-            .map(recipe ->
-                new RecipeTileDto(
-                    recipe.getId(),
-                    recipe.getTitle(),
-                    recipe.getDifficulty().name(),
-                    recipe.getTime().name(),
-                    recipe.getCategories().stream().map(Category::getName).collect(Collectors.toSet())
-                )
-            )
+            .map(recipe -> createRecipeTileDto(recipe))
             .collect(Collectors.toList());
     }
 
@@ -76,15 +60,7 @@ public class RecipeService {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
         if (optionalRecipe.isPresent()) {
             Recipe recipe = optionalRecipe.get();
-            return Optional.of(
-                new RecipeTileDto(
-                    recipe.getId(),
-                    recipe.getTitle(),
-                    recipe.getDifficulty().name(),
-                    recipe.getTime().name(),
-                    recipe.getCategories().stream().map(Category::getName).collect(Collectors.toSet())
-                )
-            );
+            return Optional.of(createRecipeTileDto(recipe));
         } else {
             return Optional.empty();
         }
@@ -92,18 +68,24 @@ public class RecipeService {
 
     public List<RecipeTileDto> findAmountOfRecipes(Integer amount) {
         List<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, amount)).getContent();
+        return recipes.stream().map(recipe -> createRecipeTileDto(recipe)).collect(Collectors.toList());
+    }
 
-        return recipes
+    private RecipeTileDto createRecipeTileDto(Recipe recipe) {
+        Optional<ImageDto> titleImageDto = recipe
+            .getImages()
             .stream()
-            .map(recipe ->
-                new RecipeTileDto(
-                    recipe.getId(),
-                    recipe.getTitle(),
-                    recipe.getDifficulty().name(),
-                    recipe.getTime().name(),
-                    recipe.getCategories().stream().map(Category::getName).collect(Collectors.toSet())
-                )
-            )
-            .collect(Collectors.toList());
+            .sorted(Comparator.comparing(Image::getId))
+            .findFirst()
+            .map(image -> new ImageDto(image.getType(), image.getData()));
+
+        return new RecipeTileDto(
+            recipe.getId(),
+            recipe.getTitle(),
+            recipe.getDifficulty().name(),
+            recipe.getTime().name(),
+            recipe.getCategories().stream().map(Category::getName).collect(Collectors.toSet()),
+            titleImageDto
+        );
     }
 }
