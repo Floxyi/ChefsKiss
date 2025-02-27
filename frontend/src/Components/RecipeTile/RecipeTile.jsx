@@ -9,7 +9,7 @@ import SkillLevelAdvancedIcon from '@Icons/SkillLevelAdvancedIcon'
 import SkillLevelIntermediateIcon from '@Icons/SkillLevelIntermediateIcon'
 import VegetarianIcon from '@Icons/VegetarianIcon'
 
-const RecipeTile = ({ recipe, small }) => {
+const RecipeTile = ({ recipe }) => {
     const navigate = useNavigate()
 
     const { id, title, time, difficulty, categories } = recipe
@@ -45,7 +45,7 @@ const RecipeTile = ({ recipe, small }) => {
                         </div>
                     )}
                 </div>
-                <div className="flex flex-row items-center gap-2 text-sm text-primary-dark mt-2 max-w-72 overflow-x-scroll scrollbar-none flex-wrap">
+                <div className="flex flex-row items-center gap-2 text-sm text-primary-dark mt-2 max-w-72 flex-wrap">
                     <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-1 overflow-hidden whitespace-nowrap min-w-min">
                         <ClockIcon width={14} height={14} />
                         {TimeLabels[time]}

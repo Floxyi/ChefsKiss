@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
 import { useSearchParams, useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 import { Difficulty, DifficultyValues } from '@Enums/Difficulty'
 import { Time, TimeValues } from '@Enums/Time'
@@ -8,11 +9,6 @@ import { updateQueryString } from '@Infrastructure/QueryHelper'
 const useSearchRecipes = () => {
     const navigate = useNavigate()
     const [searchParams] = useSearchParams()
-
-    const [recipes, setRecipes] = useState([])
-    const [categories, setCategories] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-    const [error, setError] = useState(null)
 
     const categoryParam = searchParams.get('category') || 'All'
     const timeParam = searchParams.get('time') || Time.ALL.value
@@ -24,42 +20,31 @@ const useSearchRecipes = () => {
         Difficulty[difficultyParam]?.value || Difficulty.ALL.value
     )
 
-    const fetchRecipes = useCallback(async () => {
-        setIsLoading(true)
-        setError(null)
+    const {
+        data: recipes,
+        isLoading,
+        error
+    } = useQuery({
+        queryKey: ['recipes', selectedCategory, selectedTimeValue, selectedDifficultyValue],
+        queryFn: async () => {
+            const queryParams = new URLSearchParams()
 
-        const queryParams = new URLSearchParams()
+            if (selectedCategory !== 'All') queryParams.set('category', selectedCategory)
+            if (selectedTimeValue !== Time.ALL.value) queryParams.set('time', selectedTimeValue)
+            if (selectedDifficultyValue !== Difficulty.ALL.value) queryParams.set('difficulty', selectedDifficultyValue)
 
-        if (selectedCategory !== 'All') queryParams.set('category', selectedCategory)
-        if (selectedTimeValue !== Time.ALL.value) queryParams.set('time', selectedTimeValue)
-        if (selectedDifficultyValue !== Difficulty.ALL.value) queryParams.set('difficulty', selectedDifficultyValue)
-
-        try {
             const { data } = await axios.get(`/api/search${queryParams.toString() ? `?${queryParams}` : ''}`)
-            setRecipes(data)
-        } catch (err) {
-            setError('Failed to fetch recipes. Please try again later.')
-        } finally {
-            setIsLoading(false)
+            return data
         }
-    }, [selectedCategory, selectedTimeValue, selectedDifficultyValue])
+    })
 
-    const fetchCategories = async () => {
-        try {
+    const { data: categories } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
             const { data } = await axios.get('/api/search/categories')
-            setCategories(data)
-        } catch (err) {
-            console.error('Error fetching categories:', err)
+            return data
         }
-    }
-
-    useEffect(() => {
-        fetchRecipes()
-    }, [selectedCategory, selectedTimeValue, selectedDifficultyValue, fetchRecipes])
-
-    useEffect(() => {
-        fetchCategories()
-    }, [])
+    })
 
     const changeCategory = (category) => {
         setSelectedCategory(category)

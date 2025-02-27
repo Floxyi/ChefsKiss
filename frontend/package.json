@@ -12,6 +12,7 @@
     "format:check": "prettier --check ."
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.66.9",
     "axios": "^1.7.9",
     "react": "^19.0.0",
     "react-app-rewired": "^2.2.1",

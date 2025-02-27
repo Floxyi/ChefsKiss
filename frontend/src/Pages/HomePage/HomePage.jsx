@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 import PageContainer from '@Components/PageContainer'
@@ -11,35 +11,23 @@ import RecipeTile from '@Components/RecipeTile'
 const HomePage = () => {
     const navigate = useNavigate()
 
-    const [categories, setCategories] = useState([])
-    const [recipes, setRecipes] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
+    const {
+        data: categories,
+        isLoading: categoriesLoading,
+        error: categoriesError
+    } = useQuery({
+        queryKey: ['categories'],
+        queryFn: () => axios.get('/api/homepage/categories?amount=5').then((response) => response.data)
+    })
 
-    useEffect(() => {
-        axios
-            .get(`/api/homepage/categories?amount=5`)
-            .then((response) => {
-                setCategories(response.data)
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching the categories:', error)
-                setIsLoading(false)
-            })
-    }, [])
-
-    useEffect(() => {
-        axios
-            .get('/api/homepage/recipes?amount=4')
-            .then((response) => {
-                setRecipes(response.data)
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching the recipes:', error)
-                setIsLoading(false)
-            })
-    }, [])
+    const {
+        data: recipes,
+        isLoading: recipesLoading,
+        error: recipesError
+    } = useQuery({
+        queryKey: ['recipes'],
+        queryFn: () => axios.get('/api/homepage/recipes?amount=4').then((response) => response.data)
+    })
 
     return (
         <PageContainer>
@@ -63,8 +51,10 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="grid grid-cols-4 gap-4 w-full">
-                {isLoading ? (
+                {recipesLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">Loading recipes...</div>
+                ) : recipesError ? (
+                    <div className="min-w-full min-h-full text-red-600">Error fetching recipes</div>
                 ) : (
                     recipes.map((recipe) => <RecipeTile key={recipe.id} recipe={recipe} small />)
                 )}
@@ -81,8 +71,10 @@ const HomePage = () => {
                 </div>
             </div>
             <div className="grid grid-cols-5 gap-4 w-full">
-                {isLoading ? (
+                {categoriesLoading ? (
                     <div className="min-w-full min-h-full text-primary-dark">Loading categories...</div>
+                ) : categoriesError ? (
+                    <div className="min-w-full min-h-full text-red-600">Error fetching categories</div>
                 ) : (
                     categories.map((category) => (
                         <Tile

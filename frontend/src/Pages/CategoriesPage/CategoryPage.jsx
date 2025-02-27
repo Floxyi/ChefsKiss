@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 import Tile from '@Components/Tile'
@@ -10,21 +10,13 @@ import ArrowRightIcon from '@Icons/ArrowRightIcon'
 const CategoryPage = () => {
     const navigate = useNavigate()
 
-    const [categories, setCategories] = useState([])
-    const [isLoading, setIsLoading] = useState(true)
-
-    useEffect(() => {
-        axios
-            .get('/api/categories/')
-            .then((response) => {
-                setCategories(response.data)
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching the categories:', error)
-                setIsLoading(false)
-            })
-    }, [])
+    const { data: categories, isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            const response = await axios.get('/api/categories/')
+            return response.data
+        }
+    })
 
     return (
         <PageContainer>

@@ -1,13 +1,15 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { useMutation } from '@tanstack/react-query'
+import axios from 'axios'
+
 import Dropdown from '@Components/Dropdown'
 import PageContainer from '@Components/PageContainer'
 import Title from '@Components/Title'
-import { useState } from 'react'
 import CategoryDropdown from '@Components/CategoryDropdown'
 import FileUpload from '@Components/FileUpload'
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
-import axios from 'axios'
 import useFileUpload from './Hooks/useFileUpload'
-import { useNavigate } from 'react-router-dom'
 import { DifficultyLabels, DifficultyOptions, DifficultyValues } from '@Enums/Difficulty'
 import { TimeLabels, TimeOptions, TimeValues } from '@Enums/Time'
 
@@ -31,8 +33,8 @@ const CreationPage = () => {
         setSelectedDifficultyValue(DifficultyValues[difficulty] ?? null)
     }
 
-    const createRecipe = async () => {
-        try {
+    const createRecipeMutation = useMutation({
+        mutationFn: async () => {
             const recipe = {
                 title: name,
                 difficulty: selectedDifficultyValue,
@@ -41,16 +43,20 @@ const CreationPage = () => {
             }
             const response = await axios.post('/api/recipe/create', recipe)
             onFileUpload(response.data.id)
+            return response.data
+        },
+        onSuccess: (data) => {
             setIsRecipeCreated(true)
-            navigate(`/recipe/${response.data.id}`)
-        } catch (error) {
+            navigate(`/recipe/${data.id}`)
+        },
+        onError: (error) => {
             console.error('Error creating recipe:', error)
         }
-    }
+    })
 
     const handleCreateClick = async () => {
         if (!isRecipeCreated) {
-            await createRecipe()
+            await createRecipeMutation.mutateAsync()
         }
     }
 

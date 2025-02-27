@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 import PageContainer from '@Components/PageContainer'
@@ -9,21 +9,24 @@ import RecipeNavigation from '@Components/RecipeNavigation'
 const InstructionsPage = () => {
     const { id } = useParams()
 
-    const [recipe, setRecipe] = useState(null)
-    const [isLoading, setIsLoading] = useState(true)
+    const fetchRecipe = async (id) => {
+        const { data } = await axios.get(`/api/recipe/?id=${id}`)
+        return data
+    }
 
-    useEffect(() => {
-        axios
-            .get(`/api/recipe/?id=${id}`)
-            .then((response) => {
-                setRecipe(response.data)
-                setIsLoading(false)
-            })
-            .catch((error) => {
-                console.error('Error fetching the categories:', error)
-                setIsLoading(false)
-            })
-    }, [id])
+    const {
+        data: recipe,
+        isLoading,
+        error
+    } = useQuery({
+        queryKey: ['recipe', id],
+        queryFn: () => fetchRecipe(id),
+        enabled: !!id
+    })
+
+    if (error) {
+        console.error('Error fetching the recipe:', error)
+    }
 
     return (
         <PageContainer>

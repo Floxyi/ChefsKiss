@@ -6,7 +6,7 @@ import Title from '@Components/Title'
 import { Difficulty, DifficultyLabels, DifficultyOptionsFull } from '@Enums/Difficulty'
 import { Time, TimeLabels, TimeOptionsFull } from '@Enums/Time'
 
-import useSearchRecipes from './useSearchRecipes'
+import useSearchRecipes from './Hooks/useSearchRecipes'
 
 const SearchPage = () => {
     const {
