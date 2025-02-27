@@ -77,7 +77,7 @@ const CreationPage = () => {
                                 onChange={(e) => setName(e.target.value)}
                             />
                         </div>
-                        <div className="grid grid-cols-5 gap-2 mt-6">
+                        <div className="grid grid-cols-4 gap-2 mt-6">
                             <Dropdown
                                 label="Time"
                                 options={TimeOptions}
@@ -92,7 +92,7 @@ const CreationPage = () => {
                                 defaultValue={'select'}
                                 onChange={changeDifficulty}
                             />
-                            <div className="col-span-3">
+                            <div className="col-span-2">
                                 <CategoryDropdown
                                     selectedCategories={selectedCategories}
                                     setSelectedCategories={setSelectedCategories}
