@@ -1,10 +1,9 @@
 package de.florian.chefskiss.Controller;
 
-import de.florian.chefskiss.Dto.RecipePageDto;
+import de.florian.chefskiss.Dto.RecipeInstructionsDto;
 import de.florian.chefskiss.Services.InstructionsPageService;
-import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/instructions")
@@ -17,7 +16,7 @@ public class InstructionsPageController {
     }
 
     @GetMapping("/")
-    public @ResponseBody Optional<RecipePageDto> getRecipe(@RequestParam(name = "id") int id) {
+    public @ResponseBody Optional<RecipeInstructionsDto> getRecipe(@RequestParam(name = "id") int id) {
         return instructionsPageService.findById(id);
     }
 }

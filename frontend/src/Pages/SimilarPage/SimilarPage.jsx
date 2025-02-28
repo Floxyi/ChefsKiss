@@ -5,6 +5,7 @@ import axios from 'axios'
 import PageContainer from '@Components/PageContainer'
 import RecipeHeader from '@Components/RecipeHeader'
 import RecipeNavigation from '@Components/RecipeNavigation'
+import RecipeTile from '@Components/RecipeTile'
 
 const SimilarPage = () => {
     const { id } = useParams()
@@ -14,19 +15,14 @@ const SimilarPage = () => {
         return data
     }
 
-    const {
-        data: recipe,
-        isLoading,
-        error
-    } = useQuery({
+    const { data, isLoading } = useQuery({
         queryKey: ['recipe', id],
         queryFn: () => fetchRecipe(id),
         enabled: !!id
     })
 
-    if (error) {
-        console.error('Error fetching the recipe:', error)
-    }
+    const { title, difficulty, time, categories, images } = data ?? {}
+    const recipe = { id, title, difficulty, time, categories, images }
 
     return (
         <PageContainer>
@@ -36,7 +32,11 @@ const SimilarPage = () => {
 
             <RecipeNavigation id={id} />
 
-            <p>On this page you can view similar recipes from {id}.</p>
+            <div className="grid grid-cols-5 gap-6 w-full">
+                {data?.similarRecipes?.map((recipe) => (
+                    <RecipeTile key={recipe.id} recipe={recipe} small />
+                ))}
+            </div>
         </PageContainer>
     )
 }

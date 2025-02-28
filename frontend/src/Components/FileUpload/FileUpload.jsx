@@ -24,11 +24,11 @@ const FileUpload = ({ onFileChange, previews }) => {
                     <PlusIcon />
                 </div>
             </label>
-            <div className="flex flex-wrap mt-2 gap-4">
+            <div className="flex overflow-y-scroll mt-2 gap-4">
                 {previews.length > 0 &&
                     previews.map((preview, index) => (
                         <img
-                            className="h-[90px] border-4 border-primary-dark rounded-lg"
+                            className="h-[90px] shadow-md rounded-lg mb-4"
                             key={index}
                             src={preview}
                             alt={`Preview ${index}`}
