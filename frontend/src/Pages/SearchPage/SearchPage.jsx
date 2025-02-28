@@ -62,19 +62,21 @@ const SearchPage = () => {
                 </div>
             </div>
 
-            <div className="grid grid-cols-4 gap-8 w-full">
-                {isLoading ? (
-                    <div className="text-center font-bold text-primary-dark">Loading recipes...</div>
-                ) : error ? (
-                    <p className="text-center font-bold text-primary-dark">{error}</p>
-                ) : recipes.length === 0 ? (
-                    <p className="text-center font-bold text-primary-dark">
-                        :( <br /> We are sorry, but we couldn't find any matching recipes.
-                    </p>
-                ) : (
-                    recipes.map((recipe) => <RecipeTile key={recipe.id} recipe={recipe} />)
-                )}
-            </div>
+            {isLoading ? (
+                <div className="text-center font-bold text-primary-dark">Loading recipes...</div>
+            ) : error ? (
+                <p className="text-center font-bold text-primary-dark">{error}</p>
+            ) : recipes.length === 0 ? (
+                <p className="text-center font-bold text-primary-dark">
+                    We are sorry, but we couldn't find any matching recipes. <br /> :(
+                </p>
+            ) : (
+                <div className="grid grid-cols-4 gap-8 w-full">
+                    {recipes.map((recipe) => (
+                        <RecipeTile key={recipe.id} recipe={recipe} />
+                    ))}
+                </div>
+            )}
         </PageContainer>
     )
 }
