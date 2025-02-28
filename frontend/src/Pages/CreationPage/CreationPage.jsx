@@ -23,7 +23,7 @@ const CreationPage = () => {
     const [isRecipeCreated, setIsRecipeCreated] = useState(false)
     const [selectedCategories, setSelectedCategories] = useState([])
 
-    const { previews, uploadStatus, onFileChange, onFileUpload } = useFileUpload()
+    const { fileAmount, previews, uploadStatus, onFileChange, onFileUpload } = useFileUpload()
 
     const changeTime = (time) => {
         setSelectedTimeValue(TimeValues[time] ?? null)
@@ -31,6 +31,17 @@ const CreationPage = () => {
 
     const changeDifficulty = (difficulty) => {
         setSelectedDifficultyValue(DifficultyValues[difficulty] ?? null)
+    }
+
+    const isValid = () => {
+        return (
+            name &&
+            selectedTimeValue &&
+            selectedDifficultyValue &&
+            cookingInstructions &&
+            selectedCategories.length > 0 &&
+            fileAmount > 0
+        )
     }
 
     const createRecipeMutation = useMutation({
@@ -117,11 +128,23 @@ const CreationPage = () => {
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-end">
-                    <div className="w-fit h-fit flex flex-col items-center cursor-pointer" onClick={handleCreateClick}>
-                        <div className="text-primary-dark flex w-12 h-12 rounded-full border-[3px] border-primary-dark justify-center items-center">
+                    <div className="w-fit h-fit flex flex-col items-center">
+                        <div
+                            className={`flex w-12 h-12 mb-2 mt-1 rounded-full border-[3px] justify-center items-center
+                                ${
+                                    isValid()
+                                        ? 'cursor-pointer text-primary-dark border-primary-dark hover:w-14 hover:h-14 hover:mb-1 hover:mt-0'
+                                        : 'cursor-not-allowed text-primary-normal border-primary-normal'
+                                }`}
+                            onClick={isValid() ? handleCreateClick : null}
+                        >
                             <ArrowRightIcon width={48} height={48} stroke={2} />
                         </div>
-                        <p className="text-xl text-primary-dark font-semibold select-none">Create</p>
+                        <p
+                            className={`text-xl font-semibold select-none ${isValid() ? 'text-primary-dark' : 'text-primary-normal'}`}
+                        >
+                            Create
+                        </p>
                     </div>
                 </div>
             </div>

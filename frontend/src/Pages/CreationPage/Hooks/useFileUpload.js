@@ -38,7 +38,7 @@ const useFileUpload = () => {
     }
 
     return {
-        selectedFiles,
+        fileAmount: selectedFiles.length,
         previews,
         uploadStatus,
         onFileChange,
