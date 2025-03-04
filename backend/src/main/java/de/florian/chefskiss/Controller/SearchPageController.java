@@ -26,13 +26,14 @@ public class SearchPageController {
     public ResponseEntity<List<RecipeTileDto>> getRecipes(
         @RequestParam(required = false) String category,
         @RequestParam(required = false) Difficulty difficulty,
-        @RequestParam(required = false) Time time
+        @RequestParam(required = false) Time time,
+        @RequestParam(required = false) String q
     ) {
         List<RecipeTileDto> recipes;
-        if (category == null && difficulty == null && time == null) {
+        if (category == null && difficulty == null && time == null && q == null) {
             recipes = recipeService.findAllRecipes();
         } else {
-            recipes = recipeService.findRecipes(category, difficulty, time);
+            recipes = recipeService.findRecipes(category, difficulty, time, q);
         }
         return ResponseEntity.ok(recipes);
     }

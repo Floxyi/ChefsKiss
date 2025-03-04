@@ -38,7 +38,7 @@ public class RecipeService {
         return recipes.stream().map(recipe -> createRecipeTileDto(recipe)).collect(Collectors.toList());
     }
 
-    public List<RecipeTileDto> findRecipes(String category, Difficulty difficulty, Time time) {
+    public List<RecipeTileDto> findRecipes(String category, Difficulty difficulty, Time time, String q) {
         Specification<Recipe> specification = Specification.where(null);
 
         if (category != null && !category.isEmpty()) {
@@ -49,6 +49,9 @@ public class RecipeService {
         }
         if (time != null) {
             specification = specification.and(RecipeSpecification.hasTime(time));
+        }
+        if (q != null && !q.isEmpty()) {
+            specification = specification.and(RecipeSpecification.hasName(q));
         }
 
         return recipeRepository

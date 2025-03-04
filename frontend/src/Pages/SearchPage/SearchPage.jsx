@@ -17,9 +17,11 @@ const SearchPage = () => {
         selectedCategory,
         selectedTimeValue,
         selectedDifficultyValue,
+        searchText,
         changeCategory,
         changeTime,
-        changeDifficulty
+        changeDifficulty,
+        changeSearchText
     } = useSearchRecipes()
 
     return (
@@ -27,7 +29,7 @@ const SearchPage = () => {
             <Title title="Search" margin />
 
             <div className="flex flex-row justify-around pb-8">
-                <Search />
+                <Search searchText={searchText} changeSearchText={changeSearchText} />
             </div>
 
             <div className="flex flex-row justify-center pb-8">

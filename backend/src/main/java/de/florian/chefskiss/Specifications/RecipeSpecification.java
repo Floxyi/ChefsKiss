@@ -23,4 +23,8 @@ public class RecipeSpecification {
     public static Specification<Recipe> hasTime(Time time) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("time"), time);
     }
+
+    public static Specification<Recipe> hasName(String name) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), "%" + name + "%");
+    }
 }
