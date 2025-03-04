@@ -42,7 +42,7 @@ public class SimilarPageService {
             .map(image -> new ImageDto(image.getType(), image.getData()))
             .toList();
 
-        List<RecipeTileDto> similarRecipes = recipeService.findAmountOfRecipes(5);
+        List<RecipeTileDto> similarRecipes = recipeService.findSimilarRecipes(recipe, 5);
 
         return new RecipeSimilarDto(
             recipe.getId(),

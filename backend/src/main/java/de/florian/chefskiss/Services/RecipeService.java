@@ -9,9 +9,11 @@ import de.florian.chefskiss.Enums.Difficulty;
 import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Repositories.RecipeRepository;
 import de.florian.chefskiss.Specifications.RecipeSpecification;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.domain.Specification;
@@ -69,6 +71,25 @@ public class RecipeService {
     public List<RecipeTileDto> findAmountOfRecipes(Integer amount) {
         List<Recipe> recipes = recipeRepository.findAll(PageRequest.of(0, amount)).getContent();
         return recipes.stream().map(recipe -> createRecipeTileDto(recipe)).collect(Collectors.toList());
+    }
+
+    public List<RecipeTileDto> findSimilarRecipes(Recipe targetRecipe, int limit) {
+        Set<Category> targetCategories = targetRecipe.getCategories();
+
+        List<Recipe> similarRecipes = recipeRepository
+            .findAll()
+            .stream()
+            .filter(recipe -> !recipe.getId().equals(targetRecipe.getId()))
+            .filter(recipe -> !Collections.disjoint(recipe.getCategories(), targetCategories))
+            .sorted(Comparator.comparingInt(recipe -> -countCommonCategories(recipe, targetCategories)))
+            .limit(limit)
+            .toList();
+
+        return similarRecipes.stream().map(recipe -> createRecipeTileDto(recipe)).toList();
+    }
+
+    private int countCommonCategories(Recipe recipe, Set<Category> targetCategories) {
+        return (int) recipe.getCategories().stream().filter(targetCategories::contains).count();
     }
 
     private RecipeTileDto createRecipeTileDto(Recipe recipe) {
