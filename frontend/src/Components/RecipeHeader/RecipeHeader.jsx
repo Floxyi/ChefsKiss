@@ -1,26 +1,11 @@
 import Title from '@Components/Title'
-import { Difficulty, DifficultyLabels } from '@Enums/Difficulty'
+import { DifficultyLabels } from '@Enums/Difficulty'
 import { TimeLabels } from '@Enums/Time'
 import ClockIcon from '@Icons/ClockIcon'
-import SkillLevelBasicIcon from '@Icons/SkillLevelBasicIcon'
-import SkillLevelAdvancedIcon from '@Icons/SkillLevelAdvancedIcon'
-import SkillLevelIntermediateIcon from '@Icons/SkillLevelIntermediateIcon'
+import { SkillLevelIcon } from '@Infrastructure/SkillLevelIconHelper'
 
 const RecipeHeader = ({ isLoading, recipe }) => {
     const { time, difficulty, categories, images } = recipe ?? {}
-
-    const SkillLevelIcon = ({ difficulty }) => {
-        switch (difficulty) {
-            case Difficulty.EASY.value:
-                return <SkillLevelBasicIcon width={14} height={14} />
-            case Difficulty.MEDIUM.value:
-                return <SkillLevelIntermediateIcon width={14} height={14} />
-            case Difficulty.HARD.value:
-                return <SkillLevelAdvancedIcon width={14} height={14} />
-            default:
-                return <SkillLevelBasicIcon width={14} height={14} />
-        }
-    }
 
     const InfoBadge = ({ icon: Icon, label }) => {
         return (
