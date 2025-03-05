@@ -1,8 +1,7 @@
 package de.florian.chefskiss.Services;
 
 import de.florian.chefskiss.Dto.ImageDto;
-import de.florian.chefskiss.Dto.RecipeSimilarDto;
-import de.florian.chefskiss.Dto.RecipeTileDto;
+import de.florian.chefskiss.Dto.RecipeInstructionsDto;
 import de.florian.chefskiss.Entities.Category;
 import de.florian.chefskiss.Entities.Image;
 import de.florian.chefskiss.Entities.Recipe;
@@ -14,27 +13,25 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SimilarPageService {
+public class RecipeInstructionsService {
 
     private final RecipeRepository recipeRepository;
-    private final RecipeService recipeService;
 
-    public SimilarPageService(RecipeRepository recipeRepository, RecipeService recipeService) {
+    public RecipeInstructionsService(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
-        this.recipeService = recipeService;
     }
 
-    public Optional<RecipeSimilarDto> findById(Integer id) {
+    public Optional<RecipeInstructionsDto> findById(Integer id) {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
         if (optionalRecipe.isPresent()) {
             Recipe recipe = optionalRecipe.get();
-            return Optional.of(createRecipeSimilarDto(recipe));
+            return Optional.of(createRecipeInstructionsDto(recipe));
         } else {
             return Optional.empty();
         }
     }
 
-    private RecipeSimilarDto createRecipeSimilarDto(Recipe recipe) {
+    private RecipeInstructionsDto createRecipeInstructionsDto(Recipe recipe) {
         List<ImageDto> imageDtos = recipe
             .getImages()
             .stream()
@@ -42,16 +39,14 @@ public class SimilarPageService {
             .map(image -> new ImageDto(image.getType(), image.getData()))
             .toList();
 
-        List<RecipeTileDto> similarRecipes = recipeService.findSimilarRecipes(recipe, 5);
-
-        return new RecipeSimilarDto(
+        return new RecipeInstructionsDto(
             recipe.getId(),
             recipe.getTitle(),
             recipe.getDifficulty().name(),
             recipe.getTime().name(),
             recipe.getCategories().stream().map(Category::getName).collect(Collectors.toSet()),
-            imageDtos,
-            similarRecipes
+            recipe.getInstructions(),
+            imageDtos
         );
     }
 }

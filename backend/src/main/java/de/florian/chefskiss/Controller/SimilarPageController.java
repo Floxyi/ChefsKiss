@@ -1,7 +1,7 @@
 package de.florian.chefskiss.Controller;
 
 import de.florian.chefskiss.Dto.RecipeSimilarDto;
-import de.florian.chefskiss.Services.SimilarPageService;
+import de.florian.chefskiss.Services.SimilarRecipesService;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.*;
 
@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/similar")
 public class SimilarPageController {
 
-    private final SimilarPageService similarPageService;
+    private final SimilarRecipesService similarRecipesService;
 
-    public SimilarPageController(SimilarPageService similarPageService) {
-        this.similarPageService = similarPageService;
+    public SimilarPageController(SimilarRecipesService similarRecipesService) {
+        this.similarRecipesService = similarRecipesService;
     }
 
     @GetMapping("/")
     public @ResponseBody Optional<RecipeSimilarDto> getRecipe(@RequestParam(name = "id") int id) {
-        return similarPageService.findById(id);
+        return similarRecipesService.findById(id);
     }
 }
