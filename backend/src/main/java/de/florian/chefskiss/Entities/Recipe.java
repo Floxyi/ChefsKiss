@@ -27,21 +27,19 @@ public class Recipe {
     private Time time;
 
     @ManyToMany
-    @JoinTable(
-        name = "recipe_category",
-        joinColumns = @JoinColumn(name = "recipe_id"),
-        inverseJoinColumns = @JoinColumn(name = "category_id")
-    )
+    @JoinTable(name = "recipe_category", joinColumns = @JoinColumn(name = "recipe_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     @JsonManagedReference
     private Set<Category> categories = new HashSet<>();
 
     @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Image> images = new HashSet<>();
 
-    @Column(nullable = false)
+    @Lob
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String instructions;
 
-    public Recipe() {}
+    public Recipe() {
+    }
 
     public Recipe(String title, Difficulty difficulty, Time time, Set<Category> categories, String instructions) {
         this.title = title;
