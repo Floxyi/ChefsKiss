@@ -1,76 +1,33 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { useMutation } from '@tanstack/react-query'
-import axios from 'axios'
-
 import Dropdown from '@Components/Dropdown'
 import PageContainer from '@Components/PageContainer'
 import Title from '@Components/Title'
 import CategoryDropdown from '@Components/CategoryDropdown'
 import FileUpload from '@Components/FileUpload'
+
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
-import useFileUpload from './Hooks/useFileUpload'
-import { DifficultyLabels, DifficultyOptions, DifficultyValues } from '@Enums/Difficulty'
-import { TimeLabels, TimeOptions, TimeValues } from '@Enums/Time'
+
+import { DifficultyLabels, DifficultyOptions } from '@Enums/Difficulty'
+import { TimeLabels, TimeOptions } from '@Enums/Time'
+
+import useRecipeCreation from './Hooks/useRecipeCreation'
 
 const CreationPage = () => {
-    const navigate = useNavigate()
-
-    const [name, setName] = useState('')
-    const [selectedTimeValue, setSelectedTimeValue] = useState(null)
-    const [selectedDifficultyValue, setSelectedDifficultyValue] = useState(null)
-    const [cookingInstructions, setCookingInstruction] = useState('')
-    const [isRecipeCreated, setIsRecipeCreated] = useState(false)
-    const [selectedCategories, setSelectedCategories] = useState([])
-
-    const { fileAmount, previews, uploadStatus, onFileChange, onFileUpload } = useFileUpload()
-
-    const changeTime = (time) => {
-        setSelectedTimeValue(TimeValues[time] ?? null)
-    }
-
-    const changeDifficulty = (difficulty) => {
-        setSelectedDifficultyValue(DifficultyValues[difficulty] ?? null)
-    }
-
-    const isValid = () => {
-        return (
-            name &&
-            selectedTimeValue &&
-            selectedDifficultyValue &&
-            cookingInstructions &&
-            selectedCategories.length > 0 &&
-            fileAmount > 0
-        )
-    }
-
-    const createRecipeMutation = useMutation({
-        mutationFn: async () => {
-            const recipe = {
-                title: name,
-                difficulty: selectedDifficultyValue,
-                time: selectedTimeValue,
-                categoryIds: selectedCategories.map((category) => category.id),
-                instructions: cookingInstructions
-            }
-            const response = await axios.post('/api/creation/create', recipe)
-            onFileUpload(response.data.id)
-            return response.data
-        },
-        onSuccess: (data) => {
-            setIsRecipeCreated(true)
-            navigate(`/recipe/${data.id}`)
-        },
-        onError: (error) => {
-            console.error('Error creating recipe:', error)
-        }
-    })
-
-    const handleCreateClick = async () => {
-        if (!isRecipeCreated) {
-            await createRecipeMutation.mutateAsync()
-        }
-    }
+    const {
+        name,
+        setName,
+        selectedTimeValue,
+        setSelectedTimeValue,
+        selectedDifficultyValue,
+        setSelectedDifficultyValue,
+        cookingInstructions,
+        setCookingInstructions,
+        selectedCategories,
+        setSelectedCategories,
+        isValid,
+        handleCreateClick,
+        previews,
+        onFileChange
+    } = useRecipeCreation()
 
     return (
         <PageContainer>
@@ -94,14 +51,14 @@ const CreationPage = () => {
                                 options={TimeOptions}
                                 value={TimeLabels[selectedTimeValue] ?? 'select'}
                                 defaultValue={'select'}
-                                onChange={changeTime}
+                                onChange={(time) => setSelectedTimeValue(time)}
                             />
                             <Dropdown
                                 label="Difficulty"
                                 options={DifficultyOptions}
                                 value={DifficultyLabels[selectedDifficultyValue] ?? 'select'}
                                 defaultValue={'select'}
-                                onChange={changeDifficulty}
+                                onChange={(difficulty) => setSelectedDifficultyValue(difficulty)}
                             />
                             <div className="col-span-2">
                                 <CategoryDropdown
@@ -112,7 +69,7 @@ const CreationPage = () => {
                         </div>
                         <div className="mt-4">
                             <p className="text-xl text-primary-dark font-semibold select-none">Upload Pictures:</p>
-                            <FileUpload onFileChange={onFileChange} previews={previews} uploadStatus={uploadStatus} />
+                            <FileUpload onFileChange={onFileChange} previews={previews} />
                         </div>
                         <div className="mt-4 flex flex-col flex-1">
                             <p className="text-xl text-primary-dark font-semibold select-none">Cooking Instructions:</p>
@@ -120,7 +77,7 @@ const CreationPage = () => {
                                 <textarea
                                     className="w-full h-full resize-none font-bold rounded-2xl overflow-y-auto custom-scrollbar text-primary-dark bg-transparent border-[3px] border-primary-dark p-2 placeholder:font-normal placeholder:text-primary-normal placeholder:select-none focus:outline-none"
                                     value={cookingInstructions}
-                                    onChange={(e) => setCookingInstruction(e.target.value)}
+                                    onChange={(e) => setCookingInstructions(e.target.value)}
                                     placeholder="Write down your cooking instructions here!"
                                 />
                             </div>
