@@ -5,7 +5,7 @@ import { DifficultyLabels } from '@Enums/Difficulty'
 import { TimeLabels } from '@Enums/Time'
 import ClockIcon from '@Icons/ClockIcon'
 import VLabelIcon from '@Icons/VLabelIcon'
-import { SkillLevelIcon } from '@Infrastructure/SkillLevelIconHelper'
+import { getSkillLevelIcon } from '@Infrastructure/SkillLevelIconHelper'
 
 const RecipeTile = ({ recipe }) => {
     const navigate = useNavigate()
@@ -46,7 +46,7 @@ const RecipeTile = ({ recipe }) => {
                         {TimeLabels[time]}
                     </div>
                     <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-1 overflow-hidden min-w-min">
-                        <SkillLevelIcon difficulty={difficulty} />
+                        {getSkillLevelIcon(difficulty)}
                         {DifficultyLabels[difficulty]}
                     </div>
                 </div>

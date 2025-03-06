@@ -4,15 +4,15 @@ import SkillLevelBasicIcon from '@Icons/SkillLevelBasicIcon'
 import SkillLevelAdvancedIcon from '@Icons/SkillLevelAdvancedIcon'
 import SkillLevelIntermediateIcon from '@Icons/SkillLevelIntermediateIcon'
 
-export const SkillLevelIcon = ({ difficulty }) => {
+export const getSkillLevelIcon = (difficulty) => {
     switch (difficulty) {
         case Difficulty.EASY.value:
-            return <SkillLevelBasicIcon width={14} height={14} />
+            return <SkillLevelBasicIcon />
         case Difficulty.MEDIUM.value:
-            return <SkillLevelIntermediateIcon width={14} height={14} />
+            return <SkillLevelIntermediateIcon />
         case Difficulty.HARD.value:
-            return <SkillLevelAdvancedIcon width={14} height={14} />
+            return <SkillLevelAdvancedIcon />
         default:
-            return <SkillLevelBasicIcon width={14} height={14} />
+            return <SkillLevelBasicIcon />
     }
 }

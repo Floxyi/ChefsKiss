@@ -24,7 +24,7 @@ const FileUpload = ({ onFileChange, previews }) => {
                     <PlusIcon />
                 </div>
             </label>
-            <div className="flex overflow-y-scroll mt-2 gap-4">
+            <div className="flex mt-2 gap-4">
                 {previews.length > 0 &&
                     previews.map((preview, index) => (
                         <img

@@ -75,7 +75,7 @@ const CreationPage = () => {
                             <p className="text-xl text-primary-dark font-semibold select-none">Cooking Instructions:</p>
                             <div className="flex-1 mb-2">
                                 <textarea
-                                    className="w-full h-full resize-none font-bold rounded-2xl overflow-y-auto custom-scrollbar text-primary-dark bg-transparent border-[3px] border-primary-dark p-2 placeholder:font-normal placeholder:text-primary-normal placeholder:select-none focus:outline-none"
+                                    className="w-full h-full resize-none font-bold rounded-2xl custom-scrollbar text-primary-dark bg-transparent border-[3px] border-primary-dark p-2 placeholder:font-normal placeholder:text-primary-normal placeholder:select-none focus:outline-none"
                                     value={cookingInstructions}
                                     onChange={(e) => setCookingInstructions(e.target.value)}
                                     placeholder="Write down your cooking instructions here!"
@@ -88,10 +88,9 @@ const CreationPage = () => {
                     <div className="w-fit h-fit flex flex-col items-center">
                         <div
                             className={`flex w-12 h-12 mb-2 mt-1 rounded-full border-[3px] justify-center items-center
-                                ${
-                                    isValid()
-                                        ? 'cursor-pointer text-primary-dark border-primary-dark hover:w-14 hover:h-14 hover:mb-1 hover:mt-0'
-                                        : 'cursor-not-allowed text-primary-normal border-primary-normal'
+                                ${isValid()
+                                    ? 'cursor-pointer text-primary-dark border-primary-dark hover:w-14 hover:h-14 hover:mb-1 hover:mt-0'
+                                    : 'cursor-not-allowed text-primary-normal border-primary-normal'
                                 }`}
                             onClick={isValid() ? handleCreateClick : null}
                         >
