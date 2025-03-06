@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/similar")
-public class SimilarPageController {
+public class SimilarRecipesController {
 
     private final SimilarRecipesService similarRecipesService;
 
-    public SimilarPageController(SimilarRecipesService similarRecipesService) {
+    public SimilarRecipesController(SimilarRecipesService similarRecipesService) {
         this.similarRecipesService = similarRecipesService;
     }
 

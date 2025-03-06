@@ -13,12 +13,12 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/creation")
-public class CreationPageController {
+public class CreationController {
 
     private final ImageService imageService;
     private final RecipeCreationService recipeCreationService;
 
-    public CreationPageController(ImageService imageService, RecipeCreationService recipeCreationService) {
+    public CreationController(ImageService imageService, RecipeCreationService recipeCreationService) {
         this.imageService = imageService;
         this.recipeCreationService = recipeCreationService;
     }

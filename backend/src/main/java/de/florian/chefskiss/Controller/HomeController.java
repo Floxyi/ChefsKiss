@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/homepage")
-public class HomePageController {
+public class HomeController {
 
     private final CategoryService categoryService;
     private final RecipeService recipeService;
 
-    public HomePageController(CategoryService categoryService, RecipeService recipeService) {
+    public HomeController(CategoryService categoryService, RecipeService recipeService) {
         this.categoryService = categoryService;
         this.recipeService = recipeService;
     }

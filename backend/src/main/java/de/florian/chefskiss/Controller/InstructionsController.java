@@ -9,11 +9,11 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/instructions")
-public class InstructionsPageController {
+public class InstructionsController {
 
     private final RecipeInstructionsService recipeInstructionsService;
 
-    public InstructionsPageController(RecipeInstructionsService recipeInstructionsService) {
+    public InstructionsController(RecipeInstructionsService recipeInstructionsService) {
         this.recipeInstructionsService = recipeInstructionsService;
     }
 
