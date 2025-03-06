@@ -17,7 +17,7 @@ public class CategoryPageController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping(path = "/")
+    @GetMapping
     public ResponseEntity<List<CategoryWithRecipeCountDto>> getCategoriesWithRecipes() {
         try {
             List<CategoryWithRecipeCountDto> categories = categoryService.findCategoriesWithRecipeCount();

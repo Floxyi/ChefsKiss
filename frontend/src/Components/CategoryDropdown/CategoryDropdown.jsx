@@ -23,7 +23,7 @@ const CategoryDropdown = ({ selectedCategories, setSelectedCategories }) => {
 
     const fetchCategories = async () => {
         try {
-            const { data } = await axios.get('/api/search/categories')
+            const { data } = await axios.get('/api/categories')
             setCategories(data)
         } catch (err) {
             console.error('Error fetching categories:', err)
