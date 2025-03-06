@@ -46,7 +46,7 @@ const RecipeTile = ({ recipe }) => {
                         {TimeLabels[time]}
                     </div>
                     <div className="flex flex-row items-center gap-1 text-primary-dark border-[2px] border-primary-dark rounded-lg px-1 overflow-hidden min-w-min">
-                        {getSkillLevelIcon(difficulty)}
+                        {getSkillLevelIcon(difficulty, 14)}
                         {DifficultyLabels[difficulty]}
                     </div>
                 </div>

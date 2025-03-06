@@ -33,12 +33,12 @@ const RecipeHeader = ({ isLoading, recipe }) => {
                 <div className="flex flex-col items-start gap-2 text-sm text-primary-dark flex-wrap min-w-fit">
                     <div className="flex flex-row items-center gap-4">
                         <p className="text-xl font-bold">Time:</p>
-                        <InfoBadge icon={ClockIcon} label={TimeLabels[time]} />
+                        <InfoBadge icon={<ClockIcon width={18} height={18} />} label={TimeLabels[time]} />
                     </div>
 
                     <div className="flex flex-row items-center gap-4 mt-2">
                         <p className="text-xl font-bold">Difficulty:</p>
-                        <InfoBadge icon={getSkillLevelIcon(difficulty)} label={DifficultyLabels[difficulty]} />
+                        <InfoBadge icon={getSkillLevelIcon(difficulty, 18)} label={DifficultyLabels[difficulty]} />
                     </div>
 
 
