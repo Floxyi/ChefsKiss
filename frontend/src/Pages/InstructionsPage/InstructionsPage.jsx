@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 
 import PageContainer from '@Components/PageContainer'
 import RecipeHeader from '@Components/RecipeHeader'
@@ -7,12 +7,17 @@ import useRecipeInstructions from './Hooks/useRecipeInstructions'
 
 const InstructionsPage = () => {
     const { id } = useParams()
+    const navigate = useNavigate()
 
     const { recipe, isLoading, isError, error, sanitizedInstructions } = useRecipeInstructions(id)
 
+    if (error?.response?.status === 404) {
+        navigate('/not-found')
+    }
+
     return (
         <PageContainer>
-            <RecipeHeader isLoading={isLoading} recipe={recipe} />
+            <RecipeHeader isLoading={isLoading || error} recipe={recipe} />
 
             <RecipeNavigation id={id} />
 
@@ -20,7 +25,7 @@ const InstructionsPage = () => {
                 {isError ? (
                     <div>{error.message}</div>
                 ) : isLoading ? (
-                    <div>Loading similar recipes...</div>
+                    <div>Loading recipe instructions...</div>
                 ) : (
                     sanitizedInstructions && <p dangerouslySetInnerHTML={{ __html: sanitizedInstructions }} />
                 )}

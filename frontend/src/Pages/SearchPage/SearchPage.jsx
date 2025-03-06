@@ -67,7 +67,7 @@ const SearchPage = () => {
             {isLoading ? (
                 <div className="text-center font-bold text-primary-dark">Loading recipes...</div>
             ) : error ? (
-                <p className="text-center font-bold text-primary-dark">{error}</p>
+                <p className="text-center font-bold text-primary-dark">{error.message}</p>
             ) : recipes.length === 0 ? (
                 <p className="text-center font-bold text-primary-dark">
                     We are sorry, but we couldn't find any matching recipes. <br /> :(

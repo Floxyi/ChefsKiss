@@ -17,7 +17,8 @@ const useRecipeInstructions = (id) => {
         enabled: !!id,
         onError: (err) => {
             console.error('Error fetching recipe:', err)
-        }
+        },
+        retry: false
     })
 
     const sanitizedInstructions =

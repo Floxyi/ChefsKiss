@@ -30,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Route path="/search" element={<SearchPage />} />
                     <Route path="/recipe/:id" element={<InstructionsPage />} />
                     <Route path="/recipe/:id/similar" element={<SimilarPage />} />
+                    <Route path="/not-found" element={<NotFoundPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>
             </Router>

@@ -11,7 +11,8 @@ const useSimilarRecipe = (id) => {
         enabled: !!id,
         onError: (err) => {
             console.error('Error fetching similar recipes:', err)
-        }
+        },
+        retry: false
     })
 
     return { data, isLoading, isError, error }

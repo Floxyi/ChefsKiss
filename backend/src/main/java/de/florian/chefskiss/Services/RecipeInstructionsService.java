@@ -8,10 +8,9 @@ import de.florian.chefskiss.Entities.Recipe;
 import de.florian.chefskiss.Repositories.RecipeRepository;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 @Service
 public class RecipeInstructionsService {
@@ -22,11 +21,12 @@ public class RecipeInstructionsService {
         this.recipeRepository = recipeRepository;
     }
 
-    public RecipeInstructionsDto findById(Integer id) {
-        Recipe recipe = recipeRepository
-            .findById(id)
-            .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Recipe not found"));
-        return createRecipeInstructionsDto(recipe);
+    public Optional<RecipeInstructionsDto> findById(Integer id) {
+        Optional<Recipe> recipe = recipeRepository.findById(id);
+        if (recipe.isEmpty()) {
+            return Optional.empty();
+        }
+        return Optional.of(createRecipeInstructionsDto(recipe.get()));
     }
 
     private RecipeInstructionsDto createRecipeInstructionsDto(Recipe recipe) {
