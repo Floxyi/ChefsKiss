@@ -8,19 +8,17 @@ const useRecipeInstructions = (id) => {
         isLoading,
         isError,
         error
-    } = useQuery(
-        ['recipe', id],
-        async () => {
+    } = useQuery({
+        queryKey: ['recipe', id],
+        queryFn: async () => {
             const { data } = await axios.get(`/api/instructions/?id=${id}`)
             return data
         },
-        {
-            enabled: !!id,
-            onError: (err) => {
-                console.error('Error fetching recipe:', err)
-            }
+        enabled: !!id,
+        onError: (err) => {
+            console.error('Error fetching recipe:', err)
         }
-    )
+    })
 
     const sanitizedInstructions =
         !isLoading && recipe && recipe.instructions
