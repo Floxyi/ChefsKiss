@@ -13,17 +13,33 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
+/**
+ * Service class responsible for finding and displaying similar recipes.
+ * It provides methods to fetch a recipe by ID and return its similar recipes.
+ */
 @Service
 public class SimilarRecipesService {
 
     private final RecipeRepository recipeRepository;
     private final RecipeService recipeService;
 
+    /**
+     * Constructs the SimilarRecipesService with the required RecipeRepository and RecipeService.
+     *
+     * @param recipeRepository the repository used to manage recipe data
+     * @param recipeService the service used to manage recipes and find similar recipes
+     */
     public SimilarRecipesService(RecipeRepository recipeRepository, RecipeService recipeService) {
         this.recipeRepository = recipeRepository;
         this.recipeService = recipeService;
     }
 
+    /**
+     * Finds a recipe by its ID and returns its similar recipes.
+     *
+     * @param id the ID of the recipe to fetch
+     * @return an Optional containing a RecipeSimilarDto if the recipe is found, or an empty Optional if not
+     */
     public Optional<RecipeSimilarDto> findById(Integer id) {
         Optional<Recipe> recipe = recipeRepository.findById(id);
         if (recipe.isEmpty()) {
@@ -32,6 +48,12 @@ public class SimilarRecipesService {
         return Optional.of(createRecipeSimilarDto(recipe.get()));
     }
 
+    /**
+     * Creates a RecipeSimilarDto from a Recipe entity.
+     *
+     * @param recipe the Recipe entity to transform
+     * @return the created RecipeSimilarDto
+     */
     private RecipeSimilarDto createRecipeSimilarDto(Recipe recipe) {
         List<ImageDto> imageDtos = recipe
             .getImages()

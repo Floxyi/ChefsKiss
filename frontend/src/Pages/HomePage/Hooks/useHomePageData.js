@@ -1,7 +1,14 @@
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
+/**
+ * Custom Hook to fetch data for the home page.
+ * Fetches categories and recipes from the API using React Query.
+ *
+ * @returns {Object} Contains data and loading/error states for categories and recipes.
+ */
 const useHomePageData = () => {
+    // Fetches categories with a limit of 5 items
     const {
         data: categories,
         isLoading: categoriesLoading,
@@ -11,6 +18,7 @@ const useHomePageData = () => {
         queryFn: () => axios.get('/api/homepage/categories?amount=5').then((response) => response.data)
     })
 
+    // Fetches recipes with a limit of 4 items
     const {
         data: recipes,
         isLoading: recipesLoading,

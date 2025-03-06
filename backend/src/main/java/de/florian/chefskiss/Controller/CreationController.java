@@ -11,6 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+/**
+ * Controller class for handling recipe creation and image upload.
+ * Provides endpoints for uploading recipe images and creating recipes.
+ */
 @RestController
 @RequestMapping("/api/creation")
 public class CreationController {
@@ -18,11 +22,24 @@ public class CreationController {
     private final ImageService imageService;
     private final RecipeCreationService recipeCreationService;
 
+    /**
+     * Constructor to initialize CreationController with ImageService and RecipeCreationService.
+     *
+     * @param imageService The service for handling image uploads.
+     * @param recipeCreationService The service for creating recipes.
+     */
     public CreationController(ImageService imageService, RecipeCreationService recipeCreationService) {
         this.imageService = imageService;
         this.recipeCreationService = recipeCreationService;
     }
 
+    /**
+     * Endpoint to upload images for a recipe.
+     *
+     * @param files The list of files to be uploaded.
+     * @param recipeId The ID of the recipe the images belong to.
+     * @return ResponseEntity containing a success message or an error message if the upload fails.
+     */
     @PostMapping("/upload")
     public ResponseEntity<String> handleImageUpload(
         @RequestParam("files") List<MultipartFile> files,
@@ -40,6 +57,12 @@ public class CreationController {
         }
     }
 
+    /**
+     * Endpoint to create a new recipe.
+     *
+     * @param request The RecipeCreationDto object containing the details of the recipe to be created.
+     * @return ResponseEntity containing the created recipe or an error message if the creation fails.
+     */
     @PostMapping(value = "/create", consumes = "application/json")
     public ResponseEntity<?> createRecipe(@RequestBody RecipeCreationDto request) {
         try {

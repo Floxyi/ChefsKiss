@@ -8,6 +8,10 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * Controller class for handling homepage-related requests.
+ * Provides endpoints for fetching top categories and recommended recipes.
+ */
 @RestController
 @RequestMapping("/api/homepage")
 public class HomeController {
@@ -15,11 +19,23 @@ public class HomeController {
     private final CategoryService categoryService;
     private final RecipeService recipeService;
 
+    /**
+     * Constructor to initialize HomeController with CategoryService and RecipeService.
+     *
+     * @param categoryService The service for handling category-related operations.
+     * @param recipeService The service for handling recipe-related operations.
+     */
     public HomeController(CategoryService categoryService, RecipeService recipeService) {
         this.categoryService = categoryService;
         this.recipeService = recipeService;
     }
 
+    /**
+     * Endpoint to retrieve top categories with recipe count.
+     *
+     * @param amount The number of categories to retrieve.
+     * @return ResponseEntity containing a list of CategoryWithRecipeCountDto.
+     */
     @GetMapping(path = "/categories")
     public ResponseEntity<List<CategoryWithRecipeCountDto>> getTopCategoriesWithRecipes(
         @RequestParam(name = "amount") int amount
@@ -28,6 +44,12 @@ public class HomeController {
         return ResponseEntity.ok(categories);
     }
 
+    /**
+     * Endpoint to retrieve recommended recipes.
+     *
+     * @param amount The number of recommended recipes to retrieve.
+     * @return ResponseEntity containing a list of RecipeTileDto.
+     */
     @GetMapping(path = "/recipes")
     public ResponseEntity<List<RecipeTileDto>> getRecommendedRecipesWithRecipes(
         @RequestParam(name = "amount") int amount
