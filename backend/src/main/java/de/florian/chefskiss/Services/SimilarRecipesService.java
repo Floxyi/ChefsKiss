@@ -9,7 +9,6 @@ import de.florian.chefskiss.Entities.Recipe;
 import de.florian.chefskiss.Repositories.RecipeRepository;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
@@ -24,13 +23,12 @@ public class SimilarRecipesService {
         this.recipeService = recipeService;
     }
 
-    public Optional<RecipeSimilarDto> findById(Integer id) {
-        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
-        if (optionalRecipe.isPresent()) {
-            Recipe recipe = optionalRecipe.get();
-            return Optional.of(createRecipeSimilarDto(recipe));
+    public RecipeSimilarDto findById(Integer id) {
+        Recipe recipe = recipeRepository.findById(id).orElse(null);
+        if (recipe != null) {
+            return createRecipeSimilarDto(recipe);
         } else {
-            return Optional.empty();
+            return null;
         }
     }
 

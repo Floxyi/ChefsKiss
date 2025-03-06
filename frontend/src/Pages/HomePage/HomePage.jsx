@@ -1,33 +1,16 @@
 import { useNavigate } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
 
 import PageContainer from '@Components/PageContainer'
 import Tile from '@Components/Tile'
 import Search from '@Components/Search'
 import ArrowRightIcon from '@Icons/ArrowRightIcon'
 import RecipeTile from '@Components/RecipeTile'
+import useHomePageData from './Hooks/useHomePageData'
 
 const HomePage = () => {
     const navigate = useNavigate()
 
-    const {
-        data: categories,
-        isLoading: categoriesLoading,
-        error: categoriesError
-    } = useQuery({
-        queryKey: ['categories'],
-        queryFn: () => axios.get('/api/homepage/categories?amount=5').then((response) => response.data)
-    })
-
-    const {
-        data: recipes,
-        isLoading: recipesLoading,
-        error: recipesError
-    } = useQuery({
-        queryKey: ['recipes'],
-        queryFn: () => axios.get('/api/homepage/recipes?amount=4').then((response) => response.data)
-    })
+    const { categories, categoriesLoading, categoriesError, recipes, recipesLoading, recipesError } = useHomePageData()
 
     return (
         <PageContainer>

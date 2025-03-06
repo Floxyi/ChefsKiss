@@ -7,6 +7,7 @@ import de.florian.chefskiss.Enums.Time;
 import de.florian.chefskiss.Services.CategoryService;
 import de.florian.chefskiss.Services.RecipeService;
 import java.util.List;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,17 +30,26 @@ public class SearchPageController {
         @RequestParam(required = false) Time time,
         @RequestParam(required = false) String q
     ) {
-        List<RecipeTileDto> recipes;
-        if (category == null && difficulty == null && time == null && q == null) {
-            recipes = recipeService.findAllRecipes();
-        } else {
-            recipes = recipeService.findRecipes(category, difficulty, time, q);
+        try {
+            List<RecipeTileDto> recipes;
+            if (category == null && difficulty == null && time == null && q == null) {
+                recipes = recipeService.findAllRecipes();
+            } else {
+                recipes = recipeService.findRecipes(category, difficulty, time, q);
+            }
+            return recipes.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(recipes);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }
-        return ResponseEntity.ok(recipes);
     }
 
     @GetMapping(path = "/categories")
-    public @ResponseBody List<CategoriesDto> getAllCategories() {
-        return categoryService.findAllCategories();
+    public ResponseEntity<List<CategoriesDto>> getAllCategories() {
+        try {
+            List<CategoriesDto> categories = categoryService.findAllCategories();
+            return categories.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(categories);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
     }
 }

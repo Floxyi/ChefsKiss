@@ -26,7 +26,8 @@ const CreationPage = () => {
         isValid,
         handleCreateClick,
         previews,
-        onFileChange
+        onFileChange,
+        errorMessage
     } = useRecipeCreation()
 
     return (
@@ -51,14 +52,14 @@ const CreationPage = () => {
                                 options={TimeOptions}
                                 value={TimeLabels[selectedTimeValue] ?? 'select'}
                                 defaultValue={'select'}
-                                onChange={(time) => setSelectedTimeValue(time)}
+                                onChange={setSelectedTimeValue}
                             />
                             <Dropdown
                                 label="Difficulty"
                                 options={DifficultyOptions}
                                 value={DifficultyLabels[selectedDifficultyValue] ?? 'select'}
                                 defaultValue={'select'}
-                                onChange={(difficulty) => setSelectedDifficultyValue(difficulty)}
+                                onChange={setSelectedDifficultyValue}
                             />
                             <div className="col-span-2">
                                 <CategoryDropdown
@@ -82,6 +83,11 @@ const CreationPage = () => {
                                 />
                             </div>
                         </div>
+                        {!errorMessage && (
+                            <div className="mt-2 p-4 text-red-600">
+                                <p>{errorMessage}</p>
+                            </div>
+                        )}
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-end">

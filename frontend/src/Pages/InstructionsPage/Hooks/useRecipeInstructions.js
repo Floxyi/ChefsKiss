@@ -1,0 +1,33 @@
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
+import DOMPurify from 'dompurify'
+
+const useRecipeInstructions = (id) => {
+    const {
+        data: recipe,
+        isLoading,
+        isError,
+        error
+    } = useQuery(
+        ['recipe', id],
+        async () => {
+            const { data } = await axios.get(`/api/instructions/?id=${id}`)
+            return data
+        },
+        {
+            enabled: !!id,
+            onError: (err) => {
+                console.error('Error fetching recipe:', err)
+            }
+        }
+    )
+
+    const sanitizedInstructions =
+        !isLoading && recipe && recipe.instructions
+            ? DOMPurify.sanitize(recipe.instructions.replace(/\n/g, '<br />'))
+            : ''
+
+    return { recipe, isLoading, isError, error, sanitizedInstructions }
+}
+
+export default useRecipeInstructions

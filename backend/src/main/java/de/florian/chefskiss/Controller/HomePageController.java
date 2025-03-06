@@ -5,6 +5,7 @@ import de.florian.chefskiss.Dto.RecipeTileDto;
 import de.florian.chefskiss.Services.CategoryService;
 import de.florian.chefskiss.Services.RecipeService;
 import java.util.List;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -20,16 +21,18 @@ public class HomePageController {
     }
 
     @GetMapping(path = "/categories")
-    public @ResponseBody List<CategoryWithRecipeCountDto> getTopCategoriesWithRecipes(
+    public ResponseEntity<List<CategoryWithRecipeCountDto>> getTopCategoriesWithRecipes(
         @RequestParam(name = "amount") int amount
     ) {
-        return categoryService.findCategoriesWithRecipeCount(amount);
+        List<CategoryWithRecipeCountDto> categories = categoryService.findCategoriesWithRecipeCount(amount);
+        return ResponseEntity.ok(categories);
     }
 
     @GetMapping(path = "/recipes")
-    public @ResponseBody List<RecipeTileDto> getRecommendedRecipesWithRecipes(
+    public ResponseEntity<List<RecipeTileDto>> getRecommendedRecipesWithRecipes(
         @RequestParam(name = "amount") int amount
     ) {
-        return recipeService.findAmountOfRecipes(amount);
+        List<RecipeTileDto> recipes = recipeService.findAmountOfRecipes(amount);
+        return ResponseEntity.ok(recipes);
     }
 }

@@ -34,7 +34,7 @@ const useSearchRecipes = () => {
             if (selectedCategory !== 'All') queryParams.set('category', selectedCategory)
             if (selectedTimeValue !== Time.ALL.value) queryParams.set('time', selectedTimeValue)
             if (selectedDifficultyValue !== Difficulty.ALL.value) queryParams.set('difficulty', selectedDifficultyValue)
-            if (searchText.trim() !== '') queryParams.set('q', searchText.trim()) // Include search text if not empty
+            if (searchText.trim() !== '') queryParams.set('q', searchText.trim())
 
             const { data } = await axios.get(`/api/search${queryParams.toString() ? `?${queryParams}` : ''}`)
             return data
@@ -44,8 +44,11 @@ const useSearchRecipes = () => {
     const { data: categories } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const { data } = await axios.get('/api/search/categories')
-            return data
+            const response = await axios.get('/api/categories/')
+            if (response.status === 204) {
+                return []
+            }
+            return response.data
         }
     })
 

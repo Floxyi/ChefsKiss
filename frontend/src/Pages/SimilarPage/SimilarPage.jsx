@@ -1,25 +1,13 @@
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@tanstack/react-query'
-import axios from 'axios'
-
 import PageContainer from '@Components/PageContainer'
 import RecipeHeader from '@Components/RecipeHeader'
 import RecipeNavigation from '@Components/RecipeNavigation'
 import RecipeTile from '@Components/RecipeTile'
+import useSimilarRecipe from './Hooks/useSimilarRecipe'
 
 const SimilarPage = () => {
     const { id } = useParams()
-
-    const fetchRecipe = async (id) => {
-        const { data } = await axios.get(`/api/similar/?id=${id}`)
-        return data
-    }
-
-    const { data, isLoading } = useQuery({
-        queryKey: ['recipe', id],
-        queryFn: () => fetchRecipe(id),
-        enabled: !!id
-    })
+    const { data, isLoading, isError, error } = useSimilarRecipe(id)
 
     const { title, difficulty, time, categories, images } = data ?? {}
     const recipe = { id, title, difficulty, time, categories, images }
@@ -33,9 +21,13 @@ const SimilarPage = () => {
             <RecipeNavigation id={id} />
 
             <div className="grid grid-cols-5 gap-6 w-full">
-                {data?.similarRecipes?.map((recipe) => (
-                    <RecipeTile key={recipe.id} recipe={recipe} small />
-                ))}
+                {isError ? (
+                    <div>{error.message}</div>
+                ) : isLoading ? (
+                    <div>Loading similar recipes...</div>
+                ) : (
+                    data?.similarRecipes?.map((recipe) => <RecipeTile key={recipe.id} recipe={recipe} small />)
+                )}
             </div>
         </PageContainer>
     )

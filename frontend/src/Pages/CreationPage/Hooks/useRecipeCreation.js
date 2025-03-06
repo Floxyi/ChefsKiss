@@ -18,6 +18,7 @@ const useRecipeCreation = () => {
 
     const [selectedFiles, setSelectedFiles] = useState([])
     const [previews, setPreviews] = useState([])
+    const [errorMessage, setErrorMessage] = useState(null)
 
     const changeTime = (time) => {
         setSelectedTimeValue(TimeValues[time] ?? null)
@@ -48,7 +49,10 @@ const useRecipeCreation = () => {
             await axios.post('/api/creation/upload', formData)
             setSelectedFiles([])
             setPreviews([])
-        } catch (error) {}
+        } catch (error) {
+            setErrorMessage('Error uploading files. Please try again.')
+            console.error('File upload failed:', error)
+        }
     }
 
     const createRecipeMutation = useMutation({
@@ -62,7 +66,11 @@ const useRecipeCreation = () => {
                 images: selectedFiles
             }
             const response = await axios.post('/api/creation/create', recipe)
-            await onFileUpload(response.data.id)
+            if (response.status === 201) {
+                await onFileUpload(response.data.id)
+            } else {
+                throw new Error('Failed to create recipe')
+            }
             return response.data
         },
         onSuccess: (data) => {
@@ -70,6 +78,17 @@ const useRecipeCreation = () => {
             navigate(`/recipe/${data.id}`)
         },
         onError: (error) => {
+            if (error.response) {
+                if (error.response.status === 400) {
+                    setErrorMessage(`Error: ${error.response.data || 'Invalid request'}`)
+                } else if (error.response.status === 500) {
+                    setErrorMessage(`Error: ${error.response.data || 'Internal server error'}`)
+                } else {
+                    setErrorMessage('An unexpected error occurred')
+                }
+            } else {
+                setErrorMessage('Network error: Unable to connect to the server')
+            }
             console.error('Error creating recipe:', error)
         }
     })
@@ -105,7 +124,8 @@ const useRecipeCreation = () => {
         isValid,
         handleCreateClick,
         previews,
-        onFileChange
+        onFileChange,
+        errorMessage
     }
 }
 
