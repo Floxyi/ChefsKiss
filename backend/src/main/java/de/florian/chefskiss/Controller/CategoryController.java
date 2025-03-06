@@ -1,5 +1,6 @@
 package de.florian.chefskiss.Controller;
 
+import de.florian.chefskiss.Dto.CategoriesDto;
 import de.florian.chefskiss.Dto.CategoryWithRecipeCountDto;
 import de.florian.chefskiss.Services.CategoryService;
 import java.util.List;
@@ -17,7 +18,7 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping(path = "/overview")
     public ResponseEntity<List<CategoryWithRecipeCountDto>> getCategoriesWithRecipes() {
         try {
             List<CategoryWithRecipeCountDto> categories = categoryService.findCategoriesWithRecipeCount();
@@ -25,6 +26,16 @@ public class CategoryController {
                 return ResponseEntity.noContent().build();
             }
             return ResponseEntity.ok(categories);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
+        }
+    }
+
+    @GetMapping(path = "/list")
+    public ResponseEntity<List<CategoriesDto>> getAllCategories() {
+        try {
+            List<CategoriesDto> categories = categoryService.findAllCategories();
+            return categories.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(categories);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
         }

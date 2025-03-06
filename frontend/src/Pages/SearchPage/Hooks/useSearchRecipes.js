@@ -44,7 +44,7 @@ const useSearchRecipes = () => {
     const { data: categories } = useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const response = await axios.get('/api/categories')
+            const response = await axios.get('/api/categories/list')
             if (response.status === 204) {
                 return []
             }

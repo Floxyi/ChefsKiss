@@ -5,7 +5,7 @@ const useCategories = () => {
     return useQuery({
         queryKey: ['categories'],
         queryFn: async () => {
-            const response = await axios.get('/api/categories/')
+            const response = await axios.get('/api/categories/overview')
             if (response.status === 204) {
                 return []
             }
