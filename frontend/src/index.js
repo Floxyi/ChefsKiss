@@ -10,6 +10,7 @@ import ImprintPage from '@Pages/ImprintPage'
 import SearchPage from '@Pages/SearchPage'
 import InstructionsPage from '@Pages/InstructionsPage'
 import SimilarPage from '@Pages/SimilarPage'
+import AboutPage from '@Pages/AboutPage'
 import ContactPage from '@Pages/ContactPage'
 import NotFoundPage from '@Pages/NotFoundPage'
 
@@ -25,11 +26,12 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                     <Route path="/" element={<HomePage />} />
                     <Route path="/categories" element={<CategoryPage />} />
                     <Route path="/create" element={<CreationPage />} />
-                    <Route path="/imprint" element={<ImprintPage />} />
-                    <Route path="/contact" element={<ContactPage />} />
                     <Route path="/search" element={<SearchPage />} />
                     <Route path="/recipe/:id" element={<InstructionsPage />} />
                     <Route path="/recipe/:id/similar" element={<SimilarPage />} />
+                    <Route path="/imprint" element={<ImprintPage />} />
+                    <Route path="/contact" element={<ContactPage />} />
+                    <Route path="/about" element={<AboutPage />} />
                     <Route path="/not-found" element={<NotFoundPage />} />
                     <Route path="*" element={<NotFoundPage />} />
                 </Routes>

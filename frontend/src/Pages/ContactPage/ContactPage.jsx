@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Button from '@Components/Button'
 import PageContainer from '@Components/PageContainer'
 import ContactField from '@Components/ContactField'
+import Title from '@Components/Title'
 
 const ContactPage = () => {
     const [formData, setFormData] = useState({
@@ -26,7 +27,7 @@ const ContactPage = () => {
     return (
         <PageContainer>
             <div className="flex flex-col items-center">
-                <h1 className="text-3xl text-primary-dark font-semibold mb-8 text-center select-none">Contact Us</h1>
+                <Title title="Contact Us" margin />
                 <p className="text-primary-dark text-lg font-bold mb-8 text-center select-none">
                     If you have any questions, suggestions, or need assistance, feel free to contact us using the
                     details below.

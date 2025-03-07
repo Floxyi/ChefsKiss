@@ -1,11 +1,12 @@
 import PageContainer from '@Components/PageContainer'
 import ImprintText from '@Components/ImprintText'
+import Title from '@Components/Title'
 
 import privacySections from './imprintData.js'
 
 const ImprintPage = () => (
     <PageContainer>
-        <h1 className="text-3xl text-primary-dark font-semibold mb-4 mt-6 select-none">Imprint</h1>
+        <Title title="Imprint" margin />
         <ImprintText>
             <strong>Company Name:</strong> ExampleTech Solutions GmbH
             <br />
